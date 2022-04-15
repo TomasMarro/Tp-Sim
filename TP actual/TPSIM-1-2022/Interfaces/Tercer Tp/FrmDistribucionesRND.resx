@@ -123,6 +123,27 @@
   <metadata name="dataGridViewTextBoxColumn2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="dataGridViewTextBoxColumn3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="RND.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Intervalos.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="FrecObtenida.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="FrecEsperada.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="C.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Cacum.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="dataGridViewTextBoxColumn5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -150,27 +171,6 @@
   <metadata name="MaxC.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="dataGridViewTextBoxColumn3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="RND.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Intervalos.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FrecObtenida.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FrecEsperada.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="C.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Cacum.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="Desde.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -189,4 +189,29 @@
   <metadata name="RND1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAHYAAAB2AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAA+aRVLdyGWqjBeXz2xoaM/sN+hP3Dgof0w32BvsF8g0YAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAD/kkkH+qRUlPmkVf3dhln/tmZv/7tvd/+5bHP/um12/7ptdv+5bHP/enW9xFVV
+        1QYAAAAAAAAAAAAAAAD/kkkH+qVVvfmkVf/5p1v/3o9p/7tweP/CfYX/v3d+/8B6gf/AeoL/vnd//3Jx
+        xP+OcaXjv2BgCAAAAAAAAAAA+KRWlfqpX//6sGz/+8OO/96Rbv+6bnb/wHqC/711ff++eH7/vnd//711
+        ff95qpX/jJKH/9aCYLUAAAAA+aRVLfmkVf36uXz//NGp//zOpP/ekW7/t2Zu/7tweP+6bXT/um53/7pu
+        d/+6bXT/kYyD/5t/fP/fjFz++aZTK/qkVJT5pVj/+ryB//zOo//7vIH/3pFu/754f//Gh47/wn+G/8SC
+        iv/Egor/wn+G/8aHjv/Ae4P/34xd//qkVpL5pFXW+rRz//zOo//80af/+rl8/96Rbv+wXWb/rGpv/6tq
+        bv+nb3L/pXJ0/6Vyc/+mcnT/smVt/9+OYf/5pFXV+aRV9fmlWP/6wYr/+rh5//q3eP/ekW7/XpuD/xvP
+        m/9s4Lv/Ree5/0bnuf9F4rT/ReK0/1HGof/fj2T/+aRV8/mkVfP6tnb//eLH//3t3v/959L/99/Q/93h
+        1P/Q69n/9PLm/87w3f9G57n/RuW2/0bltv9QyKP/4I9j//mkVfL5pFXV+7+I//3r2f/35t7/897W//3y
+        6P/56eD//vPp//np4P/+8+n/lIB7/5SAe/+UgHv/q2lu/9+MXv/5pFXT+qRUkfu/iP/969n/2Kmo/+zR
+        y//nxsL/7tTO/82Qk//rzcf//vPp/96Ucf/elHH/3pRx/96Qa//zn1b/+qNUjvmkVS37v4j+/evZ/9Sd
+        nv/+8+n/1qSk//bj2//Ef4T/897X//7z6f97fcP/X3XY/1501/9ic87/555k/PmmUysAAAAA+saWxfzp
+        1//u0sz//vPp//DW0P/56eD/++zk//jn3//+8+n/MmDy/0l29v88bfb/N2n3/6GHnLYAAAAAAAAAAP3e
+        wm3+6tj//vPp//7z6f/+8+n//vPp//7z6f/+8+n//PDo/1V58P+hs+//obPv/0d09v8+ZepWAAAAAAAA
+        AAD//78E/9e7Lfu6gK36rmn9+q5p//quaf/6rmn/+q5p/7eRk/8yYPL/RHH2/zts9/83aff/NWDzUgAA
+        AAAAAAAAAAAAAAAAAAAAAAAA+aRVLfqkVJH5pFXU+aRV9PmkVfS0iYfhM1/w/zxt9v84avf/N2n2/zFj
+        7z4AAAAA8A8AAMADAACAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIAB
+        AACAAQAA8AEAAA==
+</value>
+  </data>
 </root>

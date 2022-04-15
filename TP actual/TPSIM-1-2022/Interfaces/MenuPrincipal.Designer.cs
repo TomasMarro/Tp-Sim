@@ -32,8 +32,8 @@
             this.PanelPrincipal = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.BtnNrosRND = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.LblSeleccionGenerador = new System.Windows.Forms.Label();
             this.BtnGeneradorDeNumeros = new System.Windows.Forms.Button();
             this.PanelPrincipal.SuspendLayout();
@@ -87,6 +87,22 @@
             this.button3.Text = "Proximamente";
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // BtnNrosRND
+            // 
+            this.BtnNrosRND.BackColor = System.Drawing.Color.White;
+            this.BtnNrosRND.FlatAppearance.BorderSize = 2;
+            this.BtnNrosRND.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnNrosRND.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnNrosRND.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnNrosRND.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.BtnNrosRND.Location = new System.Drawing.Point(71, 142);
+            this.BtnNrosRND.Name = "BtnNrosRND";
+            this.BtnNrosRND.Size = new System.Drawing.Size(187, 90);
+            this.BtnNrosRND.TabIndex = 119;
+            this.BtnNrosRND.Text = "Generador de numeros aleatorios con distribución";
+            this.BtnNrosRND.UseVisualStyleBackColor = false;
+            this.BtnNrosRND.Click += new System.EventHandler(this.BtnTomaDatos_Click);
+            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
@@ -101,22 +117,6 @@
             this.button2.TabIndex = 120;
             this.button2.Text = "Proximamente";
             this.button2.UseVisualStyleBackColor = false;
-            // 
-            // BtnNrosRND
-            // 
-            this.BtnNrosRND.BackColor = System.Drawing.Color.White;
-            this.BtnNrosRND.FlatAppearance.BorderSize = 2;
-            this.BtnNrosRND.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnNrosRND.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnNrosRND.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnNrosRND.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.BtnNrosRND.Location = new System.Drawing.Point(71, 142);
-            this.BtnNrosRND.Name = "BtnNrosRND";
-            this.BtnNrosRND.Size = new System.Drawing.Size(187, 90);
-            this.BtnNrosRND.TabIndex = 119;
-            this.BtnNrosRND.Text = "Generacion De Numeros Con determinada distribucion";
-            this.BtnNrosRND.UseVisualStyleBackColor = false;
-            this.BtnNrosRND.Click += new System.EventHandler(this.BtnTomaDatos_Click);
             // 
             // LblSeleccionGenerador
             // 
