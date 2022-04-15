@@ -1,0 +1,6 @@
+-Agrgada función ExportarDatos, que abre un excel con la tabla.
+- BtnGenerarNros_Click eliminado (tenia codigo repetido de 
+BtnRegistrarProducto_Click)
+- TabIndex de los textbox y bottons actualizados de forma descendente.
+- Al hacer clic en el boton Generar Numeros mas de una vez, se actualizan los
+valores de la tabla (en caso de haber cambiado los parametros).

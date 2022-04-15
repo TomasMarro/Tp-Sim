@@ -1,0 +1,43 @@
+{
+  "activeProfileName": "MyFirstProfile",
+  "debugProfileName": "MyFirstProfile",
+  "profileDefaultSettings": {
+    "refreshIntervalMillis": 5000
+  },
+  "profiles": [
+    {
+      "connectionString": "<your-connection-string>",
+      "name": "MyFirstProfile",
+      "queues": [
+        {
+          "display": "default",
+          "queueName": "<your-first-queue-name-to-monitor>"
+        },
+        {
+          "display": "onlyDlq",
+          "queueName": "<your-second-queue-name-to-monitor>",
+          "shortName": "<your-short-name>"
+        }
+      ],
+      "settings": {
+        "refreshIntervalMillis": 2500
+      },
+      "subscriptions": [
+        {
+          "display": "default",
+          "subscriptionName": "<your-first-subscription-name-in-topic-to-monitor>",
+          "topicName": "<your-topic-name>"
+        },
+        {
+          "display": "default",
+          "subscriptionName": "<your-second-subscription-name-in-topic-to-monitor>",
+          "topicName": "<your-topic-name>"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "noColorization": false
+  },
+  "$schema": "https://raw.githubusercontent.com/TimVinkemeier/VSServiceBusMonitor/master/TimVinkemeier.VSServiceBusMonitor/configFileSchema.json"
+}
