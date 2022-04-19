@@ -12,6 +12,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 {
     public partial class FrmNrsRND : Form
     {
+        
         public FrmNrsRND()
         {
             InitializeComponent();
@@ -212,9 +213,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                     var fila = new string[2];
                     var marcaclase = (V1[i] + V2[i]) / 2;
                     acumulada = (marcaclase - V1[i]) / (V2[i] - V1[i]);
-                    double a = Convert.ToDouble(Muestra2.Length / cantIntervalos);
+                    double fe = Convert.ToDouble(Muestra2.Length / cantIntervalos);
                     fila[0] = Math.Round((acumulada), 4).ToString();
-                    fila[1] = a.ToString();
+                    fila[1] = fe.ToString();
                     DgvSegundaGrilla.Rows.Add(fila);
                 }
             }
@@ -333,9 +334,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                     var fila = new string[2];
                     
                     acumulada = (1 - Math.Exp(-lambda* V2[i])) - (1-Math.Exp(-lambda*V1[i]));
-                    double a = Math.Round(acumulada * N,4);
+                    double fe = Math.Round(acumulada * N,4);
                     fila[0] = Math.Round((acumulada), 4).ToString();
-                    fila[1] = Math.Round(a, 4).ToString();
+                    fila[1] = Math.Round(fe, 4).ToString();
                     DgvSegundaGrilla.Rows.Add(fila);
                 }
 
@@ -350,7 +351,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                     double numero = Convert.ToDouble((row.Cells["RND1"].Value.ToString()));
                     MuestraE.Add(numero);
                 }
-                var lambda = Convert.ToDouble(TxtMedias.Text);
+
+                var lambdas = Convert.ToDouble(TxtMedias.Text);
+                double lambda = 1 / lambdas;
                 
 
 
@@ -364,8 +367,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                     double rnd1 = (Math.Sqrt(-2 * Math.Log(ex)) * Math.Cos(2 * (2 * Math.PI * ex2))) * R + lambda;
                     double rnd2 = (Math.Sqrt(-2 * Math.Log(ex)) * Math.Sin(2 * (2 * Math.PI * ex2))) * R + lambda;
 
-                    Muestra2[i] = rnd1;
-                    Muestra2[i + 1] = rnd2;
+                    Muestra2[i] = Math.Round(rnd1,4);
+                    Muestra2[i + 1] = Math.Round(rnd2,4);
                 }
 
                 for (int i = 0; i < Muestra2.Length; i++)
@@ -471,9 +474,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                     double x = Math.Exp(-0.5 * Math.Pow((marcaclase - lambda) / DesvStd, 2));
                     double y= (DesvStd* Math.Sqrt(2 * Math.PI));
                     double acumuladas = x/y * (V2[i] - V1[i]);
-                    double a = Math.Round(acumuladas * N, 4);
+                    double fe = Math.Round(acumuladas * N, 4);
                     fila[0] = Math.Round((acumuladas), 4).ToString();
-                    fila[1] = Math.Round(a, 4).ToString();
+                    fila[1] = Math.Round(fe, 4).ToString();
                     DgvSegundaGrilla.Rows.Add(fila);
                 }
 
@@ -595,11 +598,20 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void BtnPruebaBondad_Click(object sender, EventArgs e)
         {
-            int N = Convert.ToInt32(TxtTamaño.Text);
-            var k = Math.Round(Math.Sqrt(N), 0);
-            var intervalos = Convert.ToInt32(k);
-            var frecEsperada = N / k;
-            double Pfe = frecEsperada / N;
+           int N = Convert.ToInt32(TxtTamaño.Text);
+           var k = Math.Round(Math.Sqrt(N), 0);
+            double eu = Convert.ToDouble(TxtMedias.Text);
+            double lambda = 1 / eu;
+            double R = Convert.ToDouble(TxtR.Text);
+            double DesvStd = R;
+
+            List<Double> frecEsperadas = new List<Double>();
+            List<Double> PfrecEsperadas = new List<Double>();
+
+           
+
+
+            
 
             List<Double> ListaRandom = new List<Double>();
 
@@ -611,7 +623,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             var menorDeTodos = ListaRandom.Min();
             var mayorDeTodos = ListaRandom.Max();
             double increm = menorDeTodos;
-            var cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
+            var cantIntervalos = Convert.ToInt32(k);
             var incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
             var cont = new int[cantIntervalos];
 
@@ -663,24 +675,78 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 }
             }
 
-            V2[intervalos - 1] = V2[intervalos - 1] - 0.0001;
+            V2[cantIntervalos - 1] = V2[cantIntervalos - 1] - 0.0001;
 
             double acum = 0;
+
+            if (CbDistribución.SelectedItem.ToString() == "Uniforme")
+            {
+                var frecEsperada = N / k;
+                double Pfe = frecEsperada / N;
+            }
+            if (CbDistribución.SelectedItem.ToString() == "Normal")
+            {
+                for (int i = 0; i < cantIntervalos; i++)
+                {
+                    var fila = new string[2];
+                    double marcaclase = (V1[i] + V2[i]) / 2;
+                    double x = Math.Exp(-0.5 * Math.Pow((marcaclase - lambda) / DesvStd, 2));
+                    double y = (DesvStd * Math.Sqrt(2 * Math.PI));
+                    double acumuladas = x / y * (V2[i] - V1[i]);
+                    double fe = Math.Round(acumuladas * N, 4);
+                    frecEsperadas.Add(fe);
+                    PfrecEsperadas.Add(acumuladas);
+                }
+
+            }
+            if (CbDistribución.SelectedItem.ToString() == "Exponencial")
+            {
+
+            }
+            if (CbDistribución.SelectedItem.ToString() == "Poisson")
+            {
+
+            }
 
             if (N > 30)
             {
                 DgvChi.Rows.Clear();
                 DgvChi.Visible = true;
 
+                List<Double> V1chi = new List<Double>();
+                List<Double> V2chi = new List<Double>();
+                List<Double> cont2 = new List<Double>();
+                List<Double> frecEsperadas2 = new List<Double>();
 
-                for (int i = 0; i < intervalos; i++)
+                for (int i = 0; i < cantIntervalos; i++)
+                {
+                    if (frecEsperadas[i] < 5)
+                    {
+                        int pos = i;
+                        double acumulador = 0;
+                        for (int f = pos + 1; f < cantIntervalos; f++)
+                        {
+                            acumulador += frecEsperadas[f];
+                        }
+
+
+                    }
+
+                }
+
+
+
+
+
+
+                for (int i = 0; i < cantIntervalos; i++)
                 {
                     var fila = new string[5];
 
                     fila[0] = V1[i].ToString() + " - " + V2[i].ToString();
                     fila[1] = (cont[i]).ToString();
-                    fila[2] = frecEsperada.ToString();
-                    var a = Math.Round(((Math.Pow(frecEsperada- (cont[i]), 2)) / frecEsperada), 4);
+                    fila[2] = frecEsperadas[i].ToString();
+                    var a = Math.Round(((Math.Pow(frecEsperadas[i] - (cont[i]), 2)) / frecEsperadas[i]), 4);
                     fila[3] = a.ToString();
                     acum += a;
                     fila[4] = acum.ToString();
@@ -717,20 +783,21 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 double maximo = 0;
                 double n = N;
 
-                for (int i = 0; i < intervalos; i++)
+                for (int i = 0; i < cantIntervalos; i++)
                 {
                     var fila = new string[9];
 
                     double Pfo = cont[i] / n;
                     acum += Pfo;
-                    acum2 += Pfe;
+                    double pfe = 
+                    acum2 += PfrecEsperadas[i];
 
                     fila[0] = V1[i].ToString() + " - " + V2[i].ToString();
                     fila[1] = (cont[i]).ToString();
-                    fila[2] = frecEsperada.ToString();
+                    fila[2] = frecEsperadas[i].ToString();
                     fila[3] = Pfo.ToString();
 
-                    fila[4] = Pfe.ToString();
+                    fila[4] = PfrecEsperadas[i].ToString();
                     fila[5] = acum.ToString();
                     fila[6] = acum2.ToString();
                     double x = Math.Abs(acum - acum2);
