@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using TPSIM_1_2022.Interfaces;
 using TPSIM_1_2022.Interfaces.Tercer_Tp;
 
-
 namespace TPSIM_1_2022.Interfaces
 {
     public partial class MenuPrincipal : Form

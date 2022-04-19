@@ -58,8 +58,13 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             DgvDistribucion.Rows.Clear();
             DgvSegundaGrilla.Rows.Clear();
             DgvHistograma.Rows.Clear();
+            BtnGenerarDistribucion.Enabled = true;
             CBCantIntervalos.Enabled = true;
             CbDistribución.Enabled = true;
+            CBCantIntervalos.SelectedItem = "Seleccionar";
+            CbDistribución.SelectedItem = "Seleccionar";
+            PonerEnBlancoPanelDistribución();
+            ChartHistograma.Series["Frecuencias"].Points.Clear();
 
             if (TxtTamaño.Text == "")
             {
@@ -98,499 +103,537 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             }
             else
             {
+                
                 Random myObject = new Random();
                 var random = new Random();
-                double Media = Convert.ToDouble(TxtMedias.Text);
                 double acumulada = 0;
                 double varianza = 0;
                 int N = Convert.ToInt32(TxtTamaño.Text);
 
                 if (CbDistribución.SelectedItem.ToString() == "Uniforme")
                 {
-                    var Muestra2 = new double[GlobalData.Muestra.Length];
-                    double A = Convert.ToDouble(TxtA.Text);
-                    double B = Convert.ToDouble(TxtB.Text);
-                    for (int i = 0; i < Muestra2.Length; i++)
+                    if(TxtA.Text == "" || TxtB.Text == "")
                     {
-                        double RndD = A + GlobalData.Muestra[i] * (B - A);
-                        Muestra2[i] = RndD;
-
+                        MessageBox.Show("¡Primero debe seleccionar un rango para la distribución uniforme ingresando valores para A y B!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
                     }
-
-
-                    for (int i = 0; i < Muestra2.Length; i++)
+                    else
                     {
-                        var filas = new string[2];
-                        filas[0] = (i + 1).ToString();
-                        filas[1] = Muestra2[i].ToString();
-
-
-                        DgvDistribucion.Rows.Add(filas);
-
-                    }
-                    var menorDeTodos = Muestra2.Min();
-                    var mayorDeTodos = Muestra2.Max();
-                    double increm = menorDeTodos;
-                    var cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
-                    var incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
-                    var cont = new int[cantIntervalos];
-
-                    for (int i = 0; i < cantIntervalos; i++)
-
-                    {
-                        var C = increm + incrementoIntervalo;
-
-                        if (i == cantIntervalos - 1)
+                        var Muestra2 = new double[GlobalData.Muestra.Length];
+                        double A = Convert.ToDouble(TxtA.Text);
+                        double B = Convert.ToDouble(TxtB.Text);
+                        for (int i = 0; i < Muestra2.Length; i++)
                         {
-                            C = increm + incrementoIntervalo + 0.0004;
+                            double RndD = A + GlobalData.Muestra[i] * (B - A);
+                            Muestra2[i] = RndD;
+
                         }
-                        for (int f = 0; f < Muestra2.Length; f++)
-                        {
 
-                            if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                        for (int i = 0; i < Muestra2.Length; i++)
+                        {
+                            var filas = new string[2];
+                            filas[0] = (i + 1).ToString();
+                            filas[1] = Muestra2[i].ToString();
+
+
+                            DgvDistribucion.Rows.Add(filas);
+
+                        }
+                        var menorDeTodos = Muestra2.Min();
+                        var mayorDeTodos = Muestra2.Max();
+                        double increm = menorDeTodos;
+                        var cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
+                        var incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
+                        var cont = new int[cantIntervalos];
+
+                        for (int i = 0; i < cantIntervalos; i++)
+
+                        {
+                            var C = increm + incrementoIntervalo;
+
+                            if (i == cantIntervalos - 1)
                             {
-                                cont[i] += 1;
+                                C = increm + incrementoIntervalo + 0.0004;
+                            }
+                            for (int f = 0; f < Muestra2.Length; f++)
+                            {
+
+                                if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                                {
+                                    cont[i] += 1;
+                                }
+                            }
+                            if (i == cantIntervalos - 1)
+                            {
+                                increm = mayorDeTodos;
+                            }
+                            increm += incrementoIntervalo;
+                        }
+
+
+                        var V1 = new double[cantIntervalos];
+                        var V2 = new double[cantIntervalos];
+
+                        for (int i = 0; i < cantIntervalos; i++)
+                        {
+                            if (i != 0 && i != cantIntervalos - 1)
+                            {
+                                V1[i] = Math.Round(V2[i - 1], 4);
+                                V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                            }
+                            else if (i == cantIntervalos - 1)
+                            {
+                                V1[i] = Math.Round(V2[i - 1], 4);
+                                V2[i] = Math.Round(mayorDeTodos, 4);
+                            }
+                            else
+                            {
+                                V1[i] = Math.Round(menorDeTodos, 4);
+                                V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
                             }
                         }
-                        if (i == cantIntervalos - 1)
+                        double[] inter = V2;
+                        double[] inter1 = V1;
+                        int[] frec = cont;
+                        ChartHistograma.Series["Frecuencias"].Points.Clear();
+                        ChartHistograma.Titles.Clear();
+                        ChartHistograma.Titles.Add("Histograma");
+
+
+                        ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
+
+                        for (int i = 0; i < inter.Length; i++)
                         {
-                            increm = mayorDeTodos;
+                            ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
                         }
-                        increm += incrementoIntervalo;
-                    }
 
 
-                    var V1 = new double[cantIntervalos];
-                    var V2 = new double[cantIntervalos];
-
-                    for (int i = 0; i < cantIntervalos; i++)
-                    {
-                        if (i != 0 && i != cantIntervalos - 1)
+                        for (int i = 0; i < cont.Length; i++)
                         {
-                            V1[i] = Math.Round(V2[i - 1], 4);
-                            V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                            var fila = new string[6];
+                            fila[0] = V1[i].ToString();
+                            fila[1] = V2[i].ToString();
+                            fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
+                            fila[3] = (cont[i]).ToString();
+
+                            DgvHistograma.Rows.Add(fila);
+
                         }
-                        else if (i == cantIntervalos - 1)
+                        for (int i = 0; i < cantIntervalos; i++)
                         {
-                            V1[i] = Math.Round(V2[i - 1], 4);
-                            V2[i] = Math.Round(mayorDeTodos, 4);
+                            var fila = new string[2];
+                            var marcaclase = (V1[i] + V2[i]) / 2;
+                            acumulada = (marcaclase - V1[i]) / (V2[i] - V1[i]);
+                            double a = Convert.ToDouble(Muestra2.Length / cantIntervalos);
+                            fila[0] = Math.Round((acumulada), 4).ToString();
+                            fila[1] = a.ToString();
+                            DgvSegundaGrilla.Rows.Add(fila);
                         }
-                        else
-                        {
-                            V1[i] = Math.Round(menorDeTodos, 4);
-                            V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
-                        }
-                    }
-                    double[] inter = V2;
-                    double[] inter1 = V1;
-                    int[] frec = cont;
-                    ChartHistograma.Series["Frecuencias"].Points.Clear();
-                    ChartHistograma.Titles.Clear();
-                    ChartHistograma.Titles.Add("Histograma");
-
-
-                    ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
-
-                    for (int i = 0; i < inter.Length; i++)
-                    {
-                        ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
-                    }
-
-
-                    for (int i = 0; i < cont.Length; i++)
-                    {
-                        var fila = new string[6];
-                        fila[0] = V1[i].ToString();
-                        fila[1] = V2[i].ToString();
-                        fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
-                        fila[3] = (cont[i]).ToString();
-
-                        DgvHistograma.Rows.Add(fila);
-
-                    }
-                    for (int i = 0; i < cantIntervalos; i++)
-                    {
-                        var fila = new string[2];
-                        var marcaclase = (V1[i] + V2[i]) / 2;
-                        acumulada = (marcaclase - V1[i]) / (V2[i] - V1[i]);
-                        double a = Convert.ToDouble(Muestra2.Length / cantIntervalos);
-                        fila[0] = Math.Round((acumulada), 4).ToString();
-                        fila[1] = a.ToString();
-                        DgvSegundaGrilla.Rows.Add(fila);
                     }
                 }
-
+                    
                 if (CbDistribución.SelectedItem.ToString() == "Exponencial")
                 {
-                    List<Double> MuestraE = new List<Double>();
-                    foreach (DataGridViewRow row in DgvDatos.Rows)
+                    if(TxtMedias.Text == "")
                     {
-                        double numero = Convert.ToDouble((row.Cells["RND1"].Value.ToString()));
-                        MuestraE.Add(numero);
+                        MessageBox.Show("¡Primero debe ingresar un valor de la media  ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
                     }
-
-                    double lambda = 1 / Media;
-                    var Muestra2 = new double[MuestraE.Count];
-
-                    for (int i = 0; i < GlobalData.Muestra.Length; i++)
+                    else
                     {
-                        var ex = -(Math.Pow(lambda, -1));
-                        double rnd = ex * Math.Log(1 - MuestraE[i]);
-                        Muestra2[i] = Math.Round(rnd, 6);
-                    }
-
-                    for (int i = 0; i < Muestra2.Length; i++)
-                    {
-                        var fila = new string[2];
-                        fila[0] = (i + 1).ToString();
-                        fila[1] = Muestra2[i].ToString();
-
-                        DgvDistribucion.Rows.Add(fila);
-                    }
-
-
-                    var menorDeTodos = Muestra2.Min();
-                    var mayorDeTodos = Muestra2.Max();
-                    var increm = menorDeTodos;
-                    int cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
-                    double incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
-                    var cont = new int[cantIntervalos];
-
-                    for (int i = 0; i < cantIntervalos; i++)
-
-                    {
-                        var C = increm + incrementoIntervalo;
-
-                        if (i == cantIntervalos - 1)
+                        double Media = Convert.ToDouble(TxtMedias.Text);
+                        List<Double> MuestraE = new List<Double>();
+                        foreach (DataGridViewRow row in DgvDatos.Rows)
                         {
-                            C = increm + incrementoIntervalo + 0.0004;
+                            double numero = Convert.ToDouble((row.Cells["RND1"].Value.ToString()));
+                            MuestraE.Add(numero);
                         }
-                        for (int f = 0; f < Muestra2.Length; f++)
-                        {
 
-                            if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                        double lambda = 1 / Media;
+                        var Muestra2 = new double[MuestraE.Count];
+
+                        for (int i = 0; i < GlobalData.Muestra.Length; i++)
+                        {
+                            var ex = -(Math.Pow(lambda, -1));
+                            double rnd = ex * Math.Log(1 - MuestraE[i]);
+                            Muestra2[i] = Math.Round(rnd, 6);
+                        }
+
+                        for (int i = 0; i < Muestra2.Length; i++)
+                        {
+                            var fila = new string[2];
+                            fila[0] = (i + 1).ToString();
+                            fila[1] = Muestra2[i].ToString();
+
+                            DgvDistribucion.Rows.Add(fila);
+                        }
+
+
+                        var menorDeTodos = Muestra2.Min();
+                        var mayorDeTodos = Muestra2.Max();
+                        var increm = menorDeTodos;
+                        int cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
+                        double incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
+                        var cont = new int[cantIntervalos];
+
+                        for (int i = 0; i < cantIntervalos; i++)
+
+                        {
+                            var C = increm + incrementoIntervalo;
+
+                            if (i == cantIntervalos - 1)
                             {
-                                cont[i] += 1;
+                                C = increm + incrementoIntervalo + 0.0004;
+                            }
+                            for (int f = 0; f < Muestra2.Length; f++)
+                            {
+
+                                if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                                {
+                                    cont[i] += 1;
+                                }
+                            }
+                            if (i == cantIntervalos - 1)
+                            {
+                                increm = mayorDeTodos;
+                            }
+                            increm += incrementoIntervalo;
+                        }
+
+
+                        var V1 = new double[cantIntervalos];
+                        var V2 = new double[cantIntervalos];
+
+                        for (int i = 0; i < cantIntervalos; i++)
+                        {
+                            if (i != 0 && i != cantIntervalos - 1)
+                            {
+                                V1[i] = Math.Round(V2[i - 1], 4);
+                                V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                            }
+                            else if (i == cantIntervalos - 1)
+                            {
+                                V1[i] = Math.Round(V2[i - 1], 4);
+                                V2[i] = Math.Round(mayorDeTodos, 4);
+                            }
+                            else
+                            {
+                                V1[i] = Math.Round(menorDeTodos, 4);
+                                V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
                             }
                         }
-                        if (i == cantIntervalos - 1)
+
+                        var inter = V2;
+                        var inter1 = V1;
+                        var frec = cont;
+                        ChartHistograma.Series["Frecuencias"].Points.Clear();
+                        ChartHistograma.Titles.Clear();
+                        ChartHistograma.Titles.Add("Histograma");
+
+
+                        ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
+
+                        for (int i = 0; i < inter.Length; i++)
                         {
-                            increm = mayorDeTodos;
+                            ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
                         }
-                        increm += incrementoIntervalo;
-                    }
 
-
-                    var V1 = new double[cantIntervalos];
-                    var V2 = new double[cantIntervalos];
-
-                    for (int i = 0; i < cantIntervalos; i++)
-                    {
-                        if (i != 0 && i != cantIntervalos - 1)
+                        for (int i = 0; i < cont.Length; i++)
                         {
-                            V1[i] = Math.Round(V2[i - 1], 4);
-                            V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                            var fila = new string[6];
+                            fila[0] = V1[i].ToString();
+                            fila[1] = V2[i].ToString();
+                            fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
+                            fila[3] = (cont[i]).ToString();
+
+                            DgvHistograma.Rows.Add(fila);
+
                         }
-                        else if (i == cantIntervalos - 1)
+                        for (int i = 0; i < cantIntervalos; i++)
                         {
-                            V1[i] = Math.Round(V2[i - 1], 4);
-                            V2[i] = Math.Round(mayorDeTodos, 4);
+                            var fila = new string[2];
+
+                            acumulada = (1 - Math.Exp(-lambda * V2[i])) - (1 - Math.Exp(-lambda * V1[i]));
+                            double a = Math.Round(acumulada * N, 4);
+                            fila[0] = Math.Round((acumulada), 4).ToString();
+                            fila[1] = Math.Round(a, 4).ToString();
+                            DgvSegundaGrilla.Rows.Add(fila);
                         }
-                        else
-                        {
-                            V1[i] = Math.Round(menorDeTodos, 4);
-                            V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
-                        }
                     }
-
-                    var inter = V2;
-                    var inter1 = V1;
-                    var frec = cont;
-                    ChartHistograma.Series["Frecuencias"].Points.Clear();
-                    ChartHistograma.Titles.Clear();
-                    ChartHistograma.Titles.Add("Histograma");
-
-
-                    ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
-
-                    for (int i = 0; i < inter.Length; i++)
-                    {
-                        ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
-                    }
-
-                    for (int i = 0; i < cont.Length; i++)
-                    {
-                        var fila = new string[6];
-                        fila[0] = V1[i].ToString();
-                        fila[1] = V2[i].ToString();
-                        fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
-                        fila[3] = (cont[i]).ToString();
-
-                        DgvHistograma.Rows.Add(fila);
-
-                    }
-                    for (int i = 0; i < cantIntervalos; i++)
-                    {
-                        var fila = new string[2];
-
-                        acumulada = (1 - Math.Exp(-lambda * V2[i])) - (1 - Math.Exp(-lambda * V1[i]));
-                        double a = Math.Round(acumulada * N, 4);
-                        fila[0] = Math.Round((acumulada), 4).ToString();
-                        fila[1] = Math.Round(a, 4).ToString();
-                        DgvSegundaGrilla.Rows.Add(fila);
-                    }
-
-
                 }
+                    
                 if (CbDistribución.SelectedItem.ToString() == "Normal")
                 {
-                    double R = Convert.ToDouble(TxtR.Text);
-                    List<Double> MuestraE = new List<Double>();
-                    foreach (DataGridViewRow row in DgvDatos.Rows)
+                    if(TxtMedias.Text == "" || TxtR.Text == "")
                     {
-                        double numero = Convert.ToDouble((row.Cells["RND1"].Value.ToString()));
-                        MuestraE.Add(numero);
+                        MessageBox.Show("¡Primero debe ingresar un valor para la media y para la desviación estandar ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
                     }
-                    var lambda = Convert.ToDouble(TxtMedias.Text);
-
-
-
-                    // Aca transforma los NrosRND en RND con distribucion normal
-                    var Muestra2 = new double[MuestraE.Count];
-                    for (int i = 0; i < GlobalData.Muestra.Length; i = i + 2)
+                    else
                     {
-                        double ex = MuestraE[i];
-                        var ex2 = MuestraE[i + 1];
-
-                        double rnd1 = (Math.Sqrt(-2 * Math.Log(ex)) * Math.Cos(2 * (2 * Math.PI * ex2))) * R + lambda;
-                        double rnd2 = (Math.Sqrt(-2 * Math.Log(ex)) * Math.Sin(2 * (2 * Math.PI * ex2))) * R + lambda;
-
-                        Muestra2[i] = rnd1;
-                        Muestra2[i + 1] = rnd2;
-                    }
-
-                    for (int i = 0; i < Muestra2.Length; i++)
-                    {
-                        var fila = new string[2];
-                        fila[0] = (i + 1).ToString();
-                        fila[1] = Muestra2[i].ToString();
-
-                        DgvDistribucion.Rows.Add(fila);
-                    }
-                    var menorDeTodos = Muestra2.Min();
-                    var mayorDeTodos = Muestra2.Max();
-                    var increm = menorDeTodos;
-                    int cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
-                    double incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
-                    var cont = new int[cantIntervalos];
-
-                    for (int i = 0; i < cantIntervalos; i++)
-
-                    {
-                        var C = increm + incrementoIntervalo;
-
-                        if (i == cantIntervalos - 1)
+                        if ((N % 2) == 0)
                         {
-                            C = increm + incrementoIntervalo + 0.0004;
-                        }
-                        for (int f = 0; f < Muestra2.Length; f++)
-                        {
-
-                            if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                            double Media = Convert.ToDouble(TxtMedias.Text);
+                            double R = Convert.ToDouble(TxtR.Text);
+                            List<Double> MuestraE = new List<Double>();
+                            foreach (DataGridViewRow row in DgvDatos.Rows)
                             {
-                                cont[i] += 1;
+                                double numero = Convert.ToDouble((row.Cells["RND1"].Value.ToString()));
+                                MuestraE.Add(numero);
                             }
-                        }
-                        if (i == cantIntervalos - 1)
-                        {
-                            increm = mayorDeTodos;
-                        }
-                        increm += incrementoIntervalo;
-                    }
+                            var lambda = Convert.ToDouble(TxtMedias.Text);
 
 
-                    var V1 = new double[cantIntervalos];
-                    var V2 = new double[cantIntervalos];
 
-                    for (int i = 0; i < cantIntervalos; i++)
-                    {
-                        if (i != 0 && i != cantIntervalos - 1)
-                        {
-                            V1[i] = Math.Round(V2[i - 1], 4);
-                            V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
-                        }
-                        else if (i == cantIntervalos - 1)
-                        {
-                            V1[i] = Math.Round(V2[i - 1], 4);
-                            V2[i] = Math.Round(mayorDeTodos, 4);
+                            // Aca transforma los NrosRND en RND con distribucion normal
+                            var Muestra2 = new double[MuestraE.Count];
+                            for (int i = 0; i < GlobalData.Muestra.Length; i = i + 2)
+                            {
+                                double ex = MuestraE[i];
+                                var ex2 = MuestraE[i + 1];
+
+                                double rnd1 = (Math.Sqrt(-2 * Math.Log(ex)) * Math.Cos(2 * (2 * Math.PI * ex2))) * R + lambda;
+                                double rnd2 = (Math.Sqrt(-2 * Math.Log(ex)) * Math.Sin(2 * (2 * Math.PI * ex2))) * R + lambda;
+
+                                Muestra2[i] = rnd1;
+                                Muestra2[i + 1] = rnd2;
+                            }
+
+                            for (int i = 0; i < Muestra2.Length; i++)
+                            {
+                                var fila = new string[2];
+                                fila[0] = (i + 1).ToString();
+                                fila[1] = Muestra2[i].ToString();
+
+                                DgvDistribucion.Rows.Add(fila);
+                            }
+                            var menorDeTodos = Muestra2.Min();
+                            var mayorDeTodos = Muestra2.Max();
+                            var increm = menorDeTodos;
+                            int cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
+                            double incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
+                            var cont = new int[cantIntervalos];
+
+                            for (int i = 0; i < cantIntervalos; i++)
+
+                            {
+                                var C = increm + incrementoIntervalo;
+
+                                if (i == cantIntervalos - 1)
+                                {
+                                    C = increm + incrementoIntervalo + 0.0004;
+                                }
+                                for (int f = 0; f < Muestra2.Length; f++)
+                                {
+
+                                    if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                                    {
+                                        cont[i] += 1;
+                                    }
+                                }
+                                if (i == cantIntervalos - 1)
+                                {
+                                    increm = mayorDeTodos;
+                                }
+                                increm += incrementoIntervalo;
+                            }
+
+
+                            var V1 = new double[cantIntervalos];
+                            var V2 = new double[cantIntervalos];
+
+                            for (int i = 0; i < cantIntervalos; i++)
+                            {
+                                if (i != 0 && i != cantIntervalos - 1)
+                                {
+                                    V1[i] = Math.Round(V2[i - 1], 4);
+                                    V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                                }
+                                else if (i == cantIntervalos - 1)
+                                {
+                                    V1[i] = Math.Round(V2[i - 1], 4);
+                                    V2[i] = Math.Round(mayorDeTodos, 4);
+                                }
+                                else
+                                {
+                                    V1[i] = Math.Round(menorDeTodos, 4);
+                                    V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                                }
+                            }
+
+                            var inter = V2;
+                            var inter1 = V1;
+                            var frec = cont;
+                            ChartHistograma.Series["Frecuencias"].Points.Clear();
+                            ChartHistograma.Titles.Clear();
+                            ChartHistograma.Titles.Add("Histograma");
+
+
+                            ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
+
+                            for (int i = 0; i < inter.Length; i++)
+                            {
+                                ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
+                            }
+
+                            for (int i = 0; i < cont.Length; i++)
+                            {
+                                var fila = new string[6];
+                                fila[0] = V1[i].ToString();
+                                fila[1] = V2[i].ToString();
+                                fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
+                                fila[3] = (cont[i]).ToString();
+
+                                DgvHistograma.Rows.Add(fila);
+
+                            }
+                            //double ex1 = 0;
+                            //for (int i = 0; i < Muestra2.Length; i++)
+                            //{
+                            //    ex1 += Math.Pow((Muestra2[i] - lambda),2);
+                            //}
+                            //var asa = ex1 / (N - 1);
+                            double DesvStd = R;
+
+                            for (int i = 0; i < cantIntervalos; i++)
+                            {
+                                var fila = new string[2];
+                                double marcaclase = (V1[i] + V2[i]) / 2;
+                                double x = Math.Exp(-0.5 * Math.Pow((marcaclase - lambda) / DesvStd, 2));
+                                double y = (DesvStd * Math.Sqrt(2 * Math.PI));
+                                double acumuladas = x / y * (V2[i] - V1[i]);
+                                double a = Math.Round(acumuladas * N, 4);
+                                fila[0] = Math.Round((acumuladas), 4).ToString();
+                                fila[1] = Math.Round(a, 4).ToString();
+                                DgvSegundaGrilla.Rows.Add(fila);
+                            }
+
                         }
                         else
                         {
-                            V1[i] = Math.Round(menorDeTodos, 4);
-                            V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                            MessageBox.Show("¡Para poder usar esta distribución el tamaño de muestra debe ser par!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                            PonerEnBlancoTodo();
                         }
                     }
-
-                    var inter = V2;
-                    var inter1 = V1;
-                    var frec = cont;
-                    ChartHistograma.Series["Frecuencias"].Points.Clear();
-                    ChartHistograma.Titles.Clear();
-                    ChartHistograma.Titles.Add("Histograma");
-
-
-                    ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
-
-                    for (int i = 0; i < inter.Length; i++)
-                    {
-                        ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
-                    }
-
-                    for (int i = 0; i < cont.Length; i++)
-                    {
-                        var fila = new string[6];
-                        fila[0] = V1[i].ToString();
-                        fila[1] = V2[i].ToString();
-                        fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
-                        fila[3] = (cont[i]).ToString();
-
-                        DgvHistograma.Rows.Add(fila);
-
-                    }
-                    //double ex1 = 0;
-                    //for (int i = 0; i < Muestra2.Length; i++)
-                    //{
-                    //    ex1 += Math.Pow((Muestra2[i] - lambda),2);
-                    //}
-                    //var asa = ex1 / (N - 1);
-                    double DesvStd = R;
-
-                    for (int i = 0; i < cantIntervalos; i++)
-                    {
-                        var fila = new string[2];
-                        double marcaclase = (V1[i] + V2[i]) / 2;
-                        double x = Math.Exp(-0.5 * Math.Pow((marcaclase - lambda) / DesvStd, 2));
-                        double y = (DesvStd * Math.Sqrt(2 * Math.PI));
-                        double acumuladas = x / y * (V2[i] - V1[i]);
-                        double a = Math.Round(acumuladas * N, 4);
-                        fila[0] = Math.Round((acumuladas), 4).ToString();
-                        fila[1] = Math.Round(a, 4).ToString();
-                        DgvSegundaGrilla.Rows.Add(fila);
-                    }
-
                 }
+         
                 if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
-
-                    double P = 1;
-                    int X = -1;
-                    double A = Math.Exp(-Media);
-                    List<int> Muestra2 = new List<int>();
-
-                    do
+                    if(TxtMedias.Text == "")
                     {
-
-                        double U = Math.Round(random.NextDouble(), 4);
-                        P = P * U;
-                        X = X + 1;
-                        Muestra2.Add(X);
-
-                    } while (P >= A);
-
-                    for (int i = 0; i < Muestra2.Count; i++)
-                    {
-                        var fila = new string[2];
-                        fila[0] = (i + 1).ToString();
-                        fila[1] = Muestra2[i].ToString();
-
-                        DgvDistribucion.Rows.Add(fila);
+                        MessageBox.Show("¡Primero debe ingresar un valor para la media", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
                     }
-                    int menorDeTodos = Muestra2.Min();
-                    int mayorDeTodos = Muestra2.Max();
-                    int increm = menorDeTodos;
-                    int cantIntervalos = mayorDeTodos - menorDeTodos;
-                    int incrementoIntervalo = 1;
-                    var cont = new int[cantIntervalos];
-
-                    for (int i = 0; i < cantIntervalos; i++)
-
+                    else
                     {
-                        var C = increm + incrementoIntervalo;
+                        double Media = Convert.ToDouble(TxtMedias.Text);
+                        double P = 1;
+                        int X = -1;
+                        double A = Math.Exp(-Media);
+                        List<int> Muestra2 = new List<int>();
 
-                        if (i == cantIntervalos - 1)
+                        do
                         {
-                            C = increm + incrementoIntervalo;
+
+                            double U = Math.Round(random.NextDouble(), 4);
+                            P = P * U;
+                            X = X + 1;
+                            Muestra2.Add(X);
+
+                        } while (P >= A);
+
+                        for (int i = 0; i < Muestra2.Count; i++)
+                        {
+                            var fila = new string[2];
+                            fila[0] = (i + 1).ToString();
+                            fila[1] = Muestra2[i].ToString();
+
+                            DgvDistribucion.Rows.Add(fila);
                         }
-                        for (int f = 0; f < Muestra2.Count; f++)
-                        {
+                        int menorDeTodos = Muestra2.Min();
+                        int mayorDeTodos = Muestra2.Max();
+                        int increm = menorDeTodos;
+                        int cantIntervalos = mayorDeTodos - menorDeTodos;
+                        int incrementoIntervalo = 1;
+                        var cont = new int[cantIntervalos];
 
-                            if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                        for (int i = 0; i < cantIntervalos; i++)
+
+                        {
+                            var C = increm + incrementoIntervalo;
+
+                            if (i == cantIntervalos - 1)
                             {
-                                cont[i] += 1;
+                                C = increm + incrementoIntervalo;
+                            }
+                            for (int f = 0; f < Muestra2.Count; f++)
+                            {
+
+                                if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                                {
+                                    cont[i] += 1;
+                                }
+                            }
+                            if (i == cantIntervalos - 1)
+                            {
+                                increm = mayorDeTodos;
+                            }
+                            increm += incrementoIntervalo;
+                        }
+
+
+                        var V1 = new double[cantIntervalos];
+                        var V2 = new double[cantIntervalos];
+
+                        for (int i = 0; i < cantIntervalos; i++)
+                        {
+                            if (i != 0 && i != cantIntervalos - 1)
+                            {
+                                V1[i] = Math.Round(V2[i - 1], 4);
+                                V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                            }
+                            else if (i == cantIntervalos - 1)
+                            {
+                                V1[i] = Math.Round(V2[i - 1], 4);
+                                V2[i] = mayorDeTodos;
+                            }
+                            else
+                            {
+                                V1[i] = menorDeTodos;
+                                V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
                             }
                         }
-                        if (i == cantIntervalos - 1)
+
+                        var inter = V2;
+                        var inter1 = V1;
+                        var frec = cont;
+                        ChartHistograma.Series["Frecuencias"].Points.Clear();
+                        ChartHistograma.Titles.Clear();
+                        ChartHistograma.Titles.Add("Histograma");
+
+
+                        ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
+
+                        for (int i = 0; i < inter.Length; i++)
                         {
-                            increm = mayorDeTodos;
+                            ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
                         }
-                        increm += incrementoIntervalo;
-                    }
 
-
-                    var V1 = new double[cantIntervalos];
-                    var V2 = new double[cantIntervalos];
-
-                    for (int i = 0; i < cantIntervalos; i++)
-                    {
-                        if (i != 0 && i != cantIntervalos - 1)
+                        for (int i = 0; i < cont.Length; i++)
                         {
-                            V1[i] = Math.Round(V2[i - 1], 4);
-                            V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
-                        }
-                        else if (i == cantIntervalos - 1)
-                        {
-                            V1[i] = Math.Round(V2[i - 1], 4);
-                            V2[i] = mayorDeTodos;
-                        }
-                        else
-                        {
-                            V1[i] = menorDeTodos;
-                            V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
+                            var fila = new string[6];
+                            fila[0] = V1[i].ToString();
+                            fila[1] = V2[i].ToString();
+                            fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
+                            fila[3] = (cont[i]).ToString();
+
+                            DgvHistograma.Rows.Add(fila);
+
                         }
                     }
-
-                    var inter = V2;
-                    var inter1 = V1;
-                    var frec = cont;
-                    ChartHistograma.Series["Frecuencias"].Points.Clear();
-                    ChartHistograma.Titles.Clear();
-                    ChartHistograma.Titles.Add("Histograma");
-
-
-                    ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
-
-                    for (int i = 0; i < inter.Length; i++)
-                    {
-                        ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
-                    }
-
-                    for (int i = 0; i < cont.Length; i++)
-                    {
-                        var fila = new string[6];
-                        fila[0] = V1[i].ToString();
-                        fila[1] = V2[i].ToString();
-                        fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
-                        fila[3] = (cont[i]).ToString();
-
-                        DgvHistograma.Rows.Add(fila);
-
-                    }
-
                 }
-            }
-
-
-            
+            }  
         }
 
         private void BtnPruebaBondad_Click(object sender, EventArgs e)
@@ -832,6 +875,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void CbDistribución_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            PonerEnBlancoPanelDistribución();
             if (CbDistribución.SelectedItem.ToString() == "Uniforme")
             {
                 TxtA.Enabled = true;
@@ -867,6 +911,46 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 TxtMedias.Enabled = false;
                 TxtR.Enabled = false;
             }
+        }
+
+        private void PonerEnBlancoTodo()
+        {
+            DgvDatos.Rows.Clear();
+            DgvDistribucion.Rows.Clear();
+            DgvSegundaGrilla.Rows.Clear();
+            DgvHistograma.Rows.Clear();
+            BtnGenerarDistribucion.Enabled = false;
+            TxtTamaño.Text = "";
+            TxtMedia.Text = "";
+            TxtVarianza.Text = "";
+            ResultadoPruebaBondad.Text = "";
+            ChartHistograma.Series["Frecuencias"].Points.Clear();
+            CBCantIntervalos.SelectedItem = "Seleccionar";
+            CbDistribución.SelectedItem = "Seleccionar";
+            CBCantIntervalos.Enabled = false;
+            CbDistribución.Enabled = false;
+            TxtA.Enabled = false;
+            TxtB.Enabled = false;
+            TxtMedias.Enabled = false;
+            TxtR.Enabled = false;
+            TxtA.Text = "";
+            TxtB.Text = "";
+            TxtMedias.Text = "";
+            TxtR.Text = "";
+
+        }
+
+        private void BtnLimpiarGrillas_Click(object sender, EventArgs e)
+        {
+            PonerEnBlancoTodo();
+        }
+
+        private void PonerEnBlancoPanelDistribución()
+        {
+            TxtA.Text = "";
+            TxtB.Text = "";
+            TxtMedias.Text = "";
+            TxtR.Text = "";
         }
     }
 }
