@@ -600,11 +600,11 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
         {
            int N = Convert.ToInt32(TxtTamaño.Text);
            var k = Math.Round(Math.Sqrt(N), 0);
-            double eu = Convert.ToDouble(TxtMedias.Text);
-            double lambda = 1 / eu;
-            double R = Convert.ToDouble(TxtR.Text);
-            double DesvStd = R;
-
+             double eu = Convert.ToDouble(TxtMedias.Text);
+             double lambda = 1 / eu;
+             double R = Convert.ToDouble(TxtR.Text);
+             double DesvStd = R;
+            
             List<Double> frecEsperadas = new List<Double>();
             List<Double> PfrecEsperadas = new List<Double>();
 
@@ -681,14 +681,20 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
             if (CbDistribución.SelectedItem.ToString() == "Uniforme")
             {
-                var frecEsperada = N / k;
-                double Pfe = frecEsperada / N;
+                for (int i = 0; i < cantIntervalos; i++)
+                {
+                    var frecEsperada = N / k;
+                    double acumuladas = frecEsperada / N;
+                    frecEsperadas.Add(frecEsperada);
+                    PfrecEsperadas.Add(acumuladas);
+                }
+                
             }
             if (CbDistribución.SelectedItem.ToString() == "Normal")
             {
                 for (int i = 0; i < cantIntervalos; i++)
                 {
-                    var fila = new string[2];
+                    
                     double marcaclase = (V1[i] + V2[i]) / 2;
                     double x = Math.Exp(-0.5 * Math.Pow((marcaclase - lambda) / DesvStd, 2));
                     double y = (DesvStd * Math.Sqrt(2 * Math.PI));
@@ -701,6 +707,14 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             }
             if (CbDistribución.SelectedItem.ToString() == "Exponencial")
             {
+                for (int i = 0; i < cantIntervalos; i++)
+                {
+                    double acumulada = (1 - Math.Exp(-lambda * V2[i])) - (1 - Math.Exp(-lambda * V1[i]));
+                    double fe = Math.Round(acumulada * N, 4);
+                    double acumuladas = Math.Round((acumulada), 4);
+                    frecEsperadas.Add(fe);
+                    PfrecEsperadas.Add(acumuladas);
+                }
 
             }
             if (CbDistribución.SelectedItem.ToString() == "Poisson")
@@ -720,14 +734,91 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 for (int i = 0; i < cantIntervalos; i++)
                 {
+
                     if (frecEsperadas[i] < 5)
                     {
                         int pos = i;
-                        double acumulador = 0;
-                        for (int f = pos + 1; f < cantIntervalos; f++)
+                        double suma= 0;
+                        int suma2 = 0;
+                        var bandera = false;
+
+                        for (int t = pos; t < cantIntervalos; t++)
                         {
-                            acumulador += frecEsperadas[f];
+                            double fre = frecEsperadas[t] ;
+                            suma += fre;
+                            suma2 += cont[t];
+                            if (suma >= 5)
+                            {
+                                int posi = t;
+                                double acumulador = 0;
+                                if (bandera)
+                                {
+                                    break;
+                                }
+                                for (int g = posi + 1  ; g < cantIntervalos; g++)
+                                {
+                                    acumulador += frecEsperadas[g];
+                                    if (acumulador >= 5)
+                                    {
+                                        V1chi.Add(V1[g]);
+                                        V2chi.Add(V2[g]);
+                                        double x = suma;
+                                        int conta = suma2;
+                                        cont2.Add(conta);
+                                        frecEsperadas2.Add(x);
+                                        i = g;
+                                        bandera = true;
+                                        break;
+                                        
+                                    }
+                                    if (g == cantIntervalos -1)
+                                    {
+                                        frecEsperadas2[frecEsperadas2.Count - 1] += acumulador;
+                                        V1chi.Add(V1[t]);
+                                        V2chi.Add(V2[cantIntervalos - 1]);
+                                        break;
+                                    }
+                                }
+                                
+                                
+
+
+                            }
+                            
+
                         }
+
+                       
+
+                        
+                       
+                    }
+                    if (frecEsperadas[i] >= 5)
+                    {
+                        double acumulador = 0;
+                        for (int g = i + 1; g < cantIntervalos; g++)
+                        {
+                            acumulador += frecEsperadas[g];
+                            if (acumulador >= 5)
+                            {
+                                V1chi.Add(V1[i]);
+                                V2chi.Add(V2[i]);
+                                double x = frecEsperadas[i];
+                                int conta = cont[i];
+                                cont2.Add(conta);
+                                frecEsperadas2.Add(x);
+                                break;
+                            }
+                            if (g == cantIntervalos - 1)
+                            {
+                                frecEsperadas2[frecEsperadas2.Count - 1] += acumulador;
+                                V1chi.Add(V1[i]);
+                                V2chi.Add(V2[cantIntervalos - 1]);
+                            }
+
+                        }
+                        
+
 
 
                     }
@@ -739,14 +830,14 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
 
 
-                for (int i = 0; i < cantIntervalos; i++)
+                for (int i = 0; i < frecEsperadas2.Count; i++)
                 {
                     var fila = new string[5];
 
-                    fila[0] = V1[i].ToString() + " - " + V2[i].ToString();
-                    fila[1] = (cont[i]).ToString();
-                    fila[2] = frecEsperadas[i].ToString();
-                    var a = Math.Round(((Math.Pow(frecEsperadas[i] - (cont[i]), 2)) / frecEsperadas[i]), 4);
+                    fila[0] = V1chi[i].ToString() + " - " + V2chi[i].ToString();
+                    fila[1] = (cont2[i]).ToString();
+                    fila[2] = frecEsperadas2[i].ToString();
+                    var a = Math.Round(((Math.Pow(frecEsperadas2[i] - (cont2[i]), 2)) / frecEsperadas2[i]), 4);
                     fila[3] = a.ToString();
                     acum += a;
                     fila[4] = acum.ToString();
