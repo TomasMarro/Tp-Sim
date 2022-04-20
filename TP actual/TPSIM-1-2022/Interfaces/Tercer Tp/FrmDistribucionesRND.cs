@@ -744,39 +744,66 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         conta += cont[i];
                         if (acumulador >= 5)
                         {
-                            for (int f = pos + 1; f < cantIntervalos; f++)
+                            if (i != cantIntervalos - 1)
                             {
-                                double pos2 = f;
-                                if (f != cantIntervalos)
+                                for (int f = pos + 1; f < cantIntervalos; f++)
                                 {
-                                    acumulador2 += frecEsperadas[f];
-                                    contaa += cont[f];
-                                    if (acumulador2 >= 5)
+                                    double pos2 = f;
+                                    if (f != cantIntervalos)
                                     {
-                                        V1chi.Add(i - f);
-                                        V2chi.Add(pos2 - 1);
-                                        frecEsperadas2.Add(acumulador);
-                                        cont2.Add(conta + contaa);
-                                        acumulador = 0;
-                                        acumulador2 = 0;
-                                        break;
+                                        acumulador2 += frecEsperadas[f];
+                                        contaa += cont[f];
+                                        if (acumulador2 >= 5)
+                                        {
+                                            V1chi.Add(i - f);
+                                            V2chi.Add(pos2 - 1);
+                                            frecEsperadas2.Add(acumulador);
+                                            cont2.Add(conta);
+                                            acumulador = 0;
+                                            acumulador2 = 0;
+                                            conta = 0;
+                                            contaa = 0;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            if (f == cantIntervalos - 1)
+                                            {
+                                                V1chi.Add(i - f);
+                                                V2chi.Add(pos2);
+                                                frecEsperadas2.Add(acumulador + acumulador2);
+                                                cont2.Add(conta + contaa);
+                                                acumulador = 0;
+                                                acumulador2 = 0;
+                                                conta = 0;
+                                                contaa = 0;
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                continue;
+                                            }
+                                        }
                                     }
                                     else
                                     {
-                                        V1chi.Add(i - f);
-                                        V2chi.Add(pos2);
-                                        frecEsperadas2.Add(acumulador + acumulador2);
-                                        cont2.Add(conta + contaa);
-                                        acumulador = 0;
-                                        acumulador2 = 0;
                                         break;
                                     }
                                 }
-                                else
-                                {
-                                    break;
-                                }
                             }
+                            else
+                            {
+                                V1chi.Add(i);
+                                V2chi.Add(pos);
+                                frecEsperadas2.Add(acumulador);
+                                cont2.Add(conta);
+                                acumulador = 0;
+                                acumulador2 = 0;
+                                conta = 0;
+                                contaa = 0;
+                                break;
+                            }
+                            
                         }
                         else
                         {
@@ -789,49 +816,69 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         int pos = i;
                         acumulador += frecEsperadas[i];
                         conta += cont[i];
-                        for (int f = pos + 1; f < cantIntervalos; f++)
+                        if (i != cantIntervalos - 1)
                         {
-                            double pos2 = f;
-         
-                            acumulador2 += frecEsperadas[f];
-                            contaa += cont[f];
-                            if (acumulador2 >= 5)
+                            for (int f = pos + 1; f < cantIntervalos; f++)
                             {
-                                if (f == cantIntervalos - 1)
+                                double pos2 = f;
+
+                                acumulador2 += frecEsperadas[f];
+                                contaa += cont[f];
+                                if (acumulador2 >= 5)
                                 {
-                                    V1chi.Add(i - f);
-                                    V2chi.Add(pos2 - 1);
-                                    frecEsperadas2.Add(acumulador);
-                                    cont2.Add(conta + contaa);
-                                    acumulador = 0;
-                                    acumulador2 = 0;
-                                    break;
+                                    if (f == cantIntervalos - 1)
+                                    {
+                                        V1chi.Add(i - f);
+                                        V2chi.Add(pos2 - 1);
+                                        frecEsperadas2.Add(acumulador);
+                                        cont2.Add(conta);
+                                        acumulador = 0;
+                                        acumulador2 = 0;
+                                        conta = 0;
+                                        contaa = 0;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
                                 }
                                 else
                                 {
-                                    continue;
+                                    if (f == cantIntervalos - 1)
+                                    {
+                                        V1chi.Add(i - f);
+                                        V2chi.Add(pos2);
+                                        frecEsperadas2.Add(acumulador + acumulador2);
+                                        cont2.Add(conta + contaa);
+                                        acumulador = 0;
+                                        acumulador2 = 0;
+                                        conta = 0;
+                                        contaa = 0;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
                                 }
-                                
+
                             }
-                            else
-                            {
-                                if (f == cantIntervalos - 1)
-                                {
-                                    V1chi.Add(i - f);
-                                    V2chi.Add(pos2);
-                                    frecEsperadas2.Add(acumulador + acumulador2);
-                                    cont2.Add(conta + contaa);
-                                    acumulador = 0;
-                                    acumulador2 = 0;
-                                    break;
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-                            }
-                            
                         }
+                        else
+                        {
+                            V1chi.Add(i);
+                            V2chi.Add(pos);
+                            frecEsperadas2.Add(acumulador);
+                            cont2.Add(conta);
+                            acumulador = 0;
+                            acumulador2 = 0;
+                            conta = 0;
+                            contaa = 0;
+                            break;
+                        }
+                        
                     }
 
                 }
