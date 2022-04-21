@@ -792,7 +792,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                         if (acumulador2 >= 5)
                                         {
                                             V1chi.Add(V1[posInicial[0]]);
-                                            V2chi.Add(V2[posFin[0]]);
+                                            V2chi.Add(V2[pos2Ini[0]]);
                                             frecEsperadas2.Add(acumulador);
                                             cont2.Add(conta);
                                             acumulador = 0;
