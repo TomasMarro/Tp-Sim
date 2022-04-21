@@ -54,11 +54,11 @@
     <Compile Include="Interfaces\MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Tercer Tp\FrmGenerarNumerosAleatorios.cs">
+    <Compile Include="Interfaces\Tercer Tp\FrmGeneradorNumerosAleatorios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interfaces\Tercer Tp\FrmGenerarNumerosAleatorios.Designer.cs">
-      <DependentUpon>FrmGenerarNumerosAleatorios.cs</DependentUpon>
+    <Compile Include="Interfaces\Tercer Tp\FrmGeneradorNumerosAleatorios.Designer.cs">
+      <DependentUpon>FrmGeneradorNumerosAleatorios.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Tercer Tp\FrmDistribucionesRND.cs">
       <SubType>Form</SubType>
@@ -71,8 +71,8 @@
     <EmbeddedResource Include="Interfaces\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interfaces\Tercer Tp\FrmGenerarNumerosAleatorios.resx">
-      <DependentUpon>FrmGenerarNumerosAleatorios.cs</DependentUpon>
+    <EmbeddedResource Include="Interfaces\Tercer Tp\FrmGeneradorNumerosAleatorios.resx">
+      <DependentUpon>FrmGeneradorNumerosAleatorios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaces\Tercer Tp\FrmDistribucionesRND.resx">
       <DependentUpon>FrmDistribucionesRND.cs</DependentUpon>

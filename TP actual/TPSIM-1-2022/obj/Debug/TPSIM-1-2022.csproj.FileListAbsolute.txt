@@ -134,10 +134,10 @@ C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.SuggestedBindingRedirects.cache
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.ResolveComReference.cache
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Interfaces.MenuPrincipal.resources
-C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TP_SIM_1.Interfaces.Principal.FrmGeneradorNrosRamdom.resources
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Interfaces.Tercer_Tp.FrmNrsRND.resources
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Properties.Resources.resources
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.GenerateResource.cache
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.CoreCompileInputs.cache
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.exe
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.pdb
+C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Interfaces.Tercer_Tp.FrmGeneradorNumerosAleatorios.resources

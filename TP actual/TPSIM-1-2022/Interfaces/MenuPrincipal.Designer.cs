@@ -50,12 +50,11 @@
             this.PanelPrincipal.Controls.Add(this.LblSeleccionGenerador);
             this.PanelPrincipal.Controls.Add(this.BtnGeneradorDeNumeros);
             this.PanelPrincipal.Location = new System.Drawing.Point(4, 6);
-            this.PanelPrincipal.MaximumSize = new System.Drawing.Size(3310, 4070);
-            this.PanelPrincipal.MinimumSize = new System.Drawing.Size(331, 407);
+            this.PanelPrincipal.MaximumSize = new System.Drawing.Size(331, 438);
+            this.PanelPrincipal.MinimumSize = new System.Drawing.Size(331, 438);
             this.PanelPrincipal.Name = "PanelPrincipal";
             this.PanelPrincipal.Size = new System.Drawing.Size(331, 438);
             this.PanelPrincipal.TabIndex = 1;
-            this.PanelPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelPrincipal_Paint);
             // 
             // button4
             // 
@@ -65,9 +64,9 @@
             this.button4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button4.Location = new System.Drawing.Point(71, 301);
+            this.button4.Location = new System.Drawing.Point(57, 301);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(187, 57);
+            this.button4.Size = new System.Drawing.Size(217, 57);
             this.button4.TabIndex = 122;
             this.button4.Text = "Proximamente";
             this.button4.UseVisualStyleBackColor = false;
@@ -80,9 +79,9 @@
             this.button3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(71, 364);
+            this.button3.Location = new System.Drawing.Point(57, 364);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(187, 57);
+            this.button3.Size = new System.Drawing.Size(217, 57);
             this.button3.TabIndex = 121;
             this.button3.Text = "Proximamente";
             this.button3.UseVisualStyleBackColor = false;
@@ -95,9 +94,9 @@
             this.BtnNrosRND.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.BtnNrosRND.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnNrosRND.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.BtnNrosRND.Location = new System.Drawing.Point(71, 142);
+            this.BtnNrosRND.Location = new System.Drawing.Point(57, 142);
             this.BtnNrosRND.Name = "BtnNrosRND";
-            this.BtnNrosRND.Size = new System.Drawing.Size(187, 90);
+            this.BtnNrosRND.Size = new System.Drawing.Size(217, 90);
             this.BtnNrosRND.TabIndex = 119;
             this.BtnNrosRND.Text = "Generador de numeros aleatorios con distribución";
             this.BtnNrosRND.UseVisualStyleBackColor = false;
@@ -111,9 +110,9 @@
             this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button2.Location = new System.Drawing.Point(71, 238);
+            this.button2.Location = new System.Drawing.Point(57, 238);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(187, 57);
+            this.button2.Size = new System.Drawing.Size(217, 57);
             this.button2.TabIndex = 120;
             this.button2.Text = "Proximamente";
             this.button2.UseVisualStyleBackColor = false;
@@ -138,19 +137,20 @@
             this.BtnGeneradorDeNumeros.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.BtnGeneradorDeNumeros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnGeneradorDeNumeros.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.BtnGeneradorDeNumeros.Location = new System.Drawing.Point(71, 79);
+            this.BtnGeneradorDeNumeros.Location = new System.Drawing.Point(57, 79);
             this.BtnGeneradorDeNumeros.Name = "BtnGeneradorDeNumeros";
-            this.BtnGeneradorDeNumeros.Size = new System.Drawing.Size(187, 57);
+            this.BtnGeneradorDeNumeros.Size = new System.Drawing.Size(217, 57);
             this.BtnGeneradorDeNumeros.TabIndex = 7;
             this.BtnGeneradorDeNumeros.Text = "Generador de numeros aleatorios";
             this.BtnGeneradorDeNumeros.UseVisualStyleBackColor = false;
+            this.BtnGeneradorDeNumeros.Click += new System.EventHandler(this.BtnGeneradorDeNumeros_Click_1);
             // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(349, 446);
+            this.ClientSize = new System.Drawing.Size(338, 446);
             this.Controls.Add(this.PanelPrincipal);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuPrincipal";

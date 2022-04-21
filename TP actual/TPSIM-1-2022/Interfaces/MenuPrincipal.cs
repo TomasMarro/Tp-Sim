@@ -26,14 +26,9 @@ namespace TPSIM_1_2022.Interfaces
                this.Hide();
         }
 
-        private void PanelPrincipal_Paint(object sender, PaintEventArgs e)
+        private void BtnGeneradorDeNumeros_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void BtnGeneradorDeNumeros_Click(object sender, EventArgs e)
-        {
-            var frmGeneradorDeNumeros = new FrmGeneradorNumerosAleatorios(this);
+            var frmGeneradorDeNumeros = new FrmGeneradorNumerosAleatorios();
             frmGeneradorDeNumeros.Show();
             this.Hide();
         }

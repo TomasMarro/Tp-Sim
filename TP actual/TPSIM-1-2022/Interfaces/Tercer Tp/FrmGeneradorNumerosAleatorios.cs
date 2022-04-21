@@ -8,80 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-
-namespace TP_SIM_1.Interfaces.Principal
+namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 {
-    public partial class FrmGeneradorNrosRamdom : Form
+    public partial class FrmGeneradorNumerosAleatorios : Form
     {
-
-        public FrmGeneradorNrosRamdom()
+        public FrmGeneradorNumerosAleatorios()
         {
             InitializeComponent();
         }
-
-        // Carga de los ComboBox cuando se inicia la ejecución de la aplicación //
-
-        private void FrmGeneradorNrosRamdom_Load(object sender, EventArgs e)
-        {
-            CargarMetodos();
-            CargarCantIntervalos();
-            CargarTipoGenerador();
-        }
-
-        // Validación en los campos NroSemilla, Multiplicador, Módulo, Incremento e Iteraciones donde solo se ingresen números enteros //
-
-        private void TxtNroSemilla_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
-            {
-                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
-        }
-
-        private void TxtMultiplicador_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
-            {
-                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
-        }
-
-        private void TxtModulo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
-            {
-                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
-        }
-
-        private void TxtIncremento_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
-            {
-                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
-        }
-
-        private void TxtIteraciones_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
-            {
-                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
-        }
-
-        // Comportamiento principal al clickear el boton generar números // 
 
         private void BtnGenerarNumeros_Click(object sender, EventArgs e)
         {
@@ -316,13 +250,11 @@ namespace TP_SIM_1.Interfaces.Principal
             TxtVarianza.Text = (Math.Round(Varianza, 4).ToString());
         }
 
-        private static double Truncate(double value,int decimales)
+        private static double Truncate(double value, int decimales)
         {
             double aux_value = Math.Pow(10, decimales);
             return (Math.Truncate(value * aux_value) / aux_value);
         }
-
-        // Cambio de estado de los text box al interactuar con el combo box de seleccionar método //
 
         private void CBMetodos_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -357,8 +289,6 @@ namespace TP_SIM_1.Interfaces.Principal
                 }
             }
         }
-
-        // Limpiar grillas tanto de generación de numeros random como histograma. 
 
         private void BtnLimpiarGrillas_Click(object sender, EventArgs e)
         {
@@ -407,6 +337,63 @@ namespace TP_SIM_1.Interfaces.Principal
             CBTipoGenerador.Items.Add("Lineal congruencial");
         }
 
+        private void FrmGeneradorNumerosAleatorios_Load(object sender, EventArgs e)
+        {
+            CargarMetodos();
+            CargarCantIntervalos();
+            CargarTipoGenerador();
+        }
+
+        private void TxtNroSemilla_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TxtMultiplicador_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        
+        private void TxtModulo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        
+        private void TxtIncremento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        
+        private void TxtIteraciones_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo se permite ingresar números enteros positivos.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
         // Desabilitar C en caso de seleccionar el método lineal congruencial multiplicativo //
 
         public void DesabilitarIncremento()
@@ -451,14 +438,11 @@ namespace TP_SIM_1.Interfaces.Principal
         }
 
         // Sugerencia dependiendo del método seleccionado // 
-
         private void SugerenciaMetodo(string sugerencia)
         {
             MessageBox.Show(sugerencia, "Sugerencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
-
-        // Cambio de estado de los text box al interactuar con el combo box de seleccionar método //
 
         private void CBTipoGenerador_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -479,8 +463,6 @@ namespace TP_SIM_1.Interfaces.Principal
                 }
             }
         }
-
-        // 
 
         private void BtnPruebaBondad_Click(object sender, EventArgs e)
         {
@@ -608,7 +590,7 @@ namespace TP_SIM_1.Interfaces.Principal
                         fila[3] = Truncate(Pfo, 4).ToString();
                         fila[4] = Truncate(Pfe, 4).ToString();
                         fila[5] = Truncate(acum, 4).ToString();
-                        fila[6] = Truncate(acum2,4).ToString();
+                        fila[6] = Truncate(acum2, 4).ToString();
                         double x = Math.Abs(acum - acum2);
                         fila[7] = Truncate(x, 4).ToString();
                         if (i == 0)
@@ -638,10 +620,8 @@ namespace TP_SIM_1.Interfaces.Principal
                     {
                         ResultadoPruebaBondad.Text = "Se rechaza";
                     }
-
-
                 }
             }
-            }
+        }
     }
 }
