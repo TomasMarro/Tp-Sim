@@ -735,10 +735,13 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 double acumulador2 = 0;
                 double conta = 0;
                 double contaa = 0;
+
                 for (int i = 0; i < cantIntervalos; i++)
                 {
+                    
                     if (frecEsperadas[i] < 5)
                     {
+
                         int pos = i;
                         acumulador += frecEsperadas[i];
                         conta += cont[i];
@@ -748,15 +751,15 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             {
                                 for (int f = pos + 1; f < cantIntervalos; f++)
                                 {
-                                    double pos2 = f;
+                                    int pos2 = f;
                                     if (f != cantIntervalos)
                                     {
                                         acumulador2 += frecEsperadas[f];
                                         contaa += cont[f];
                                         if (acumulador2 >= 5)
                                         {
-                                            V1chi.Add(i - f);
-                                            V2chi.Add(pos2 - 1);
+                                            V1chi.Add(V1[psi]);
+                                            V2chi.Add(V2[pos2 - 1]);
                                             frecEsperadas2.Add(acumulador);
                                             cont2.Add(conta);
                                             acumulador = 0;
@@ -769,8 +772,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                         {
                                             if (f == cantIntervalos - 1)
                                             {
-                                                V1chi.Add(i - f);
-                                                V2chi.Add(pos2);
+                                                V1chi.Add(V1[i] );
+                                                V2chi.Add(V2[pos2]);
                                                 frecEsperadas2.Add(acumulador + acumulador2);
                                                 cont2.Add(conta + contaa);
                                                 acumulador = 0;
@@ -793,8 +796,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             }
                             else
                             {
-                                V1chi.Add(i);
-                                V2chi.Add(pos);
+                                V1chi.Add(V1[i]);
+                                V2chi.Add(V2[pos]);
                                 frecEsperadas2.Add(acumulador);
                                 cont2.Add(conta);
                                 acumulador = 0;
@@ -820,7 +823,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         {
                             for (int f = pos + 1; f < cantIntervalos; f++)
                             {
-                                double pos2 = f;
+                                int pos2 = f;
 
                                 acumulador2 += frecEsperadas[f];
                                 contaa += cont[f];
@@ -828,8 +831,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                 {
                                     if (f == cantIntervalos - 1)
                                     {
-                                        V1chi.Add(i - f);
-                                        V2chi.Add(pos2 - 1);
+                                        V1chi.Add(V1[i ]);
+                                        V2chi.Add(V2[pos2]);
                                         frecEsperadas2.Add(acumulador);
                                         cont2.Add(conta);
                                         acumulador = 0;
@@ -848,8 +851,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                 {
                                     if (f == cantIntervalos - 1)
                                     {
-                                        V1chi.Add(i - f);
-                                        V2chi.Add(pos2);
+                                        V1chi.Add(V1[i]);
+                                        V2chi.Add(V2[pos2]);
                                         frecEsperadas2.Add(acumulador + acumulador2);
                                         cont2.Add(conta + contaa);
                                         acumulador = 0;
@@ -868,8 +871,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         }
                         else
                         {
-                            V1chi.Add(i);
-                            V2chi.Add(pos);
+                            V1chi.Add(V1[i]);
+                            V2chi.Add(V2[pos]);
                             frecEsperadas2.Add(acumulador);
                             cont2.Add(conta);
                             acumulador = 0;
