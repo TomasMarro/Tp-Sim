@@ -757,6 +757,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 List<int> posInicial = new List<int>();
                 List<int> pos2Ini = new List<int>();
+                List<int> posFin = new List<int>();
                 List<Double> V1chi = new List<Double>();
                 List<Double> V2chi = new List<Double>();
                 List<Double> cont2 = new List<Double>();
@@ -777,6 +778,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         conta += cont[i];
                         if (acumulador >= 5)
                         {
+                            posFin.Add(i);
                             if (i != cantIntervalos - 1)
                             {
                                 for (int f = pos + 1; f < cantIntervalos; f++)
@@ -790,7 +792,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                         if (acumulador2 >= 5)
                                         {
                                             V1chi.Add(V1[posInicial[0]]);
-                                            V2chi.Add(V2[pos2Ini[0]]);
+                                            V2chi.Add(V2[posFin[0]]);
                                             frecEsperadas2.Add(acumulador);
                                             cont2.Add(conta);
                                             acumulador = 0;
@@ -815,6 +817,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                                 contaa = 0;
                                                 posInicial.Clear();
                                                 pos2Ini.Clear();
+                                                posFin.Clear();
                                                 break;
                                             }
                                             else
@@ -890,7 +893,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                     if (f == cantIntervalos - 1)
                                     {
                                         V1chi.Add(V1[posInicial[0]]);
-                                        V2chi.Add(V2[pos2 - 1]);
+                                        V2chi.Add(V2[cantIntervalos - 1]);
                                         frecEsperadas2.Add(acumulador + acumulador2);
                                         cont2.Add(conta + contaa);
                                         acumulador = 0;
