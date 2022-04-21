@@ -31,11 +31,11 @@ namespace TPSIM_1_2022.Interfaces
 
         }
 
-        //private void BtnGeneradorDeNumeros_Click(object sender, EventArgs e)
-        //{
-        //    var frmGeneradorDeNumeros = new FrmGeneradorNumerosAleatorios(this);
-        //    frmGeneradorDeNumeros.Show();
-        //    this.Hide();
-        //}
+        private void BtnGeneradorDeNumeros_Click(object sender, EventArgs e)
+        {
+            var frmGeneradorDeNumeros = new FrmGeneradorNumerosAleatorios(this);
+            frmGeneradorDeNumeros.Show();
+            this.Hide();
+        }
     }
 }
