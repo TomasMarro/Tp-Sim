@@ -93,12 +93,8 @@
             this.RND = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ResultadoPruebaBondad = new System.Windows.Forms.TextBox();
             this.ResultadoBondad = new System.Windows.Forms.Label();
-            this.LblVarianza = new System.Windows.Forms.Label();
-            this.LblMedia = new System.Windows.Forms.Label();
             this.BtnPruebaBondad = new System.Windows.Forms.Button();
             this.ChartHistograma = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.TxtVarianza = new System.Windows.Forms.TextBox();
-            this.TxtMedia = new System.Windows.Forms.TextBox();
             this.DgvKs = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -123,6 +119,7 @@
             this.DgvDatos = new System.Windows.Forms.DataGridView();
             this.Iteraciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RND1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSegundaGrilla)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -133,6 +130,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvChi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvHistograma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDatos)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DgvSegundaGrilla
@@ -206,7 +204,7 @@
             this.panel3.Controls.Add(this.CbDistribución);
             this.panel3.Controls.Add(this.LblDistribucion);
             this.panel3.Controls.Add(this.BtnLimpiarGrillas);
-            this.panel3.Location = new System.Drawing.Point(239, 127);
+            this.panel3.Location = new System.Drawing.Point(8, 127);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(379, 234);
             this.panel3.TabIndex = 130;
@@ -220,7 +218,7 @@
             this.BtnGenerarDistribucion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.BtnGenerarDistribucion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnGenerarDistribucion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.BtnGenerarDistribucion.Location = new System.Drawing.Point(190, 174);
+            this.BtnGenerarDistribucion.Location = new System.Drawing.Point(192, 174);
             this.BtnGenerarDistribucion.Name = "BtnGenerarDistribucion";
             this.BtnGenerarDistribucion.Size = new System.Drawing.Size(183, 52);
             this.BtnGenerarDistribucion.TabIndex = 134;
@@ -367,9 +365,9 @@
             this.BtnLimpiarGrillas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.BtnLimpiarGrillas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnLimpiarGrillas.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.BtnLimpiarGrillas.Location = new System.Drawing.Point(6, 174);
+            this.BtnLimpiarGrillas.Location = new System.Drawing.Point(3, 174);
             this.BtnLimpiarGrillas.Name = "BtnLimpiarGrillas";
-            this.BtnLimpiarGrillas.Size = new System.Drawing.Size(166, 52);
+            this.BtnLimpiarGrillas.Size = new System.Drawing.Size(183, 52);
             this.BtnLimpiarGrillas.TabIndex = 118;
             this.BtnLimpiarGrillas.Text = "Limpiar datos";
             this.BtnLimpiarGrillas.UseVisualStyleBackColor = false;
@@ -418,29 +416,19 @@
             this.panel4.Controls.Add(this.LblTamaño);
             this.panel4.Controls.Add(this.BtnGenerarNros);
             this.panel4.Controls.Add(this.TxtTamaño);
-            this.panel4.Location = new System.Drawing.Point(239, 13);
+            this.panel4.Location = new System.Drawing.Point(8, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(379, 108);
+            this.panel4.Size = new System.Drawing.Size(379, 109);
             this.panel4.TabIndex = 129;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.SkyBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.DgvDistribucion);
-            this.panel2.Controls.Add(this.ResultadoPruebaBondad);
-            this.panel2.Controls.Add(this.ResultadoBondad);
-            this.panel2.Controls.Add(this.LblVarianza);
-            this.panel2.Controls.Add(this.LblMedia);
-            this.panel2.Controls.Add(this.BtnPruebaBondad);
             this.panel2.Controls.Add(this.ChartHistograma);
-            this.panel2.Controls.Add(this.TxtVarianza);
-            this.panel2.Controls.Add(this.TxtMedia);
-            this.panel2.Controls.Add(this.DgvKs);
-            this.panel2.Controls.Add(this.DgvChi);
-            this.panel2.Location = new System.Drawing.Point(624, 13);
+            this.panel2.Location = new System.Drawing.Point(872, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(847, 660);
+            this.panel2.Size = new System.Drawing.Size(599, 349);
             this.panel2.TabIndex = 128;
             // 
             // DgvDistribucion
@@ -461,7 +449,7 @@
             this.DgvDistribucion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.RND});
-            this.DgvDistribucion.Location = new System.Drawing.Point(3, 9);
+            this.DgvDistribucion.Location = new System.Drawing.Point(624, 12);
             this.DgvDistribucion.Name = "DgvDistribucion";
             this.DgvDistribucion.ReadOnly = true;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -472,7 +460,7 @@
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DgvDistribucion.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.DgvDistribucion.Size = new System.Drawing.Size(235, 338);
+            this.DgvDistribucion.Size = new System.Drawing.Size(246, 349);
             this.DgvDistribucion.TabIndex = 132;
             // 
             // dataGridViewTextBoxColumn3
@@ -495,9 +483,9 @@
             // 
             this.ResultadoPruebaBondad.Enabled = false;
             this.ResultadoPruebaBondad.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.ResultadoPruebaBondad.Location = new System.Drawing.Point(667, 368);
+            this.ResultadoPruebaBondad.Location = new System.Drawing.Point(654, 24);
             this.ResultadoPruebaBondad.Name = "ResultadoPruebaBondad";
-            this.ResultadoPruebaBondad.Size = new System.Drawing.Size(153, 27);
+            this.ResultadoPruebaBondad.Size = new System.Drawing.Size(183, 27);
             this.ResultadoPruebaBondad.TabIndex = 125;
             this.ResultadoPruebaBondad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -506,33 +494,11 @@
             this.ResultadoBondad.AutoSize = true;
             this.ResultadoBondad.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.ResultadoBondad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ResultadoBondad.Location = new System.Drawing.Point(463, 360);
+            this.ResultadoBondad.Location = new System.Drawing.Point(306, 24);
             this.ResultadoBondad.Name = "ResultadoBondad";
-            this.ResultadoBondad.Size = new System.Drawing.Size(198, 46);
+            this.ResultadoBondad.Size = new System.Drawing.Size(347, 23);
             this.ResultadoBondad.TabIndex = 126;
-            this.ResultadoBondad.Text = "Resultado de la\r\nprueba de bondad: ";
-            // 
-            // LblVarianza
-            // 
-            this.LblVarianza.AutoSize = true;
-            this.LblVarianza.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.LblVarianza.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.LblVarianza.Location = new System.Drawing.Point(3, 387);
-            this.LblVarianza.Name = "LblVarianza";
-            this.LblVarianza.Size = new System.Drawing.Size(149, 23);
-            this.LblVarianza.TabIndex = 118;
-            this.LblVarianza.Text = "Varianza(S^2): ";
-            // 
-            // LblMedia
-            // 
-            this.LblMedia.AutoSize = true;
-            this.LblMedia.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.LblMedia.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.LblMedia.Location = new System.Drawing.Point(3, 353);
-            this.LblMedia.Name = "LblMedia";
-            this.LblMedia.Size = new System.Drawing.Size(100, 23);
-            this.LblMedia.TabIndex = 117;
-            this.LblMedia.Text = "Media(x):";
+            this.ResultadoBondad.Text = "Resultado de la prueba de bondad: ";
             // 
             // BtnPruebaBondad
             // 
@@ -542,9 +508,9 @@
             this.BtnPruebaBondad.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.BtnPruebaBondad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnPruebaBondad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.BtnPruebaBondad.Location = new System.Drawing.Point(297, 354);
+            this.BtnPruebaBondad.Location = new System.Drawing.Point(34, 10);
             this.BtnPruebaBondad.Name = "BtnPruebaBondad";
-            this.BtnPruebaBondad.Size = new System.Drawing.Size(144, 52);
+            this.BtnPruebaBondad.Size = new System.Drawing.Size(183, 52);
             this.BtnPruebaBondad.TabIndex = 122;
             this.BtnPruebaBondad.Text = "Prueba de bondad";
             this.BtnPruebaBondad.UseVisualStyleBackColor = false;
@@ -565,7 +531,7 @@
             this.ChartHistograma.ImeMode = System.Windows.Forms.ImeMode.Katakana;
             legend1.Name = "Legend1";
             this.ChartHistograma.Legends.Add(legend1);
-            this.ChartHistograma.Location = new System.Drawing.Point(244, 8);
+            this.ChartHistograma.Location = new System.Drawing.Point(3, 3);
             this.ChartHistograma.Name = "ChartHistograma";
             this.ChartHistograma.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series1.ChartArea = "ChartArea1";
@@ -581,24 +547,6 @@
             this.ChartHistograma.Text = "ChartHistograma";
             title1.Name = "adsda";
             this.ChartHistograma.Titles.Add(title1);
-            // 
-            // TxtVarianza
-            // 
-            this.TxtVarianza.Enabled = false;
-            this.TxtVarianza.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.TxtVarianza.Location = new System.Drawing.Point(158, 387);
-            this.TxtVarianza.Name = "TxtVarianza";
-            this.TxtVarianza.Size = new System.Drawing.Size(117, 27);
-            this.TxtVarianza.TabIndex = 118;
-            // 
-            // TxtMedia
-            // 
-            this.TxtMedia.Enabled = false;
-            this.TxtMedia.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.TxtMedia.Location = new System.Drawing.Point(158, 352);
-            this.TxtMedia.Name = "TxtMedia";
-            this.TxtMedia.Size = new System.Drawing.Size(117, 27);
-            this.TxtMedia.TabIndex = 117;
             // 
             // DgvKs
             // 
@@ -623,9 +571,9 @@
             this.C1,
             this.MaxC});
             this.DgvKs.Enabled = false;
-            this.DgvKs.Location = new System.Drawing.Point(7, 422);
+            this.DgvKs.Location = new System.Drawing.Point(624, 441);
             this.DgvKs.Name = "DgvKs";
-            this.DgvKs.Size = new System.Drawing.Size(826, 227);
+            this.DgvKs.Size = new System.Drawing.Size(847, 232);
             this.DgvKs.TabIndex = 133;
             this.DgvKs.Visible = false;
             // 
@@ -732,9 +680,9 @@
             this.FrecEsperada,
             this.C,
             this.Cacum});
-            this.DgvChi.Location = new System.Drawing.Point(7, 422);
+            this.DgvChi.Location = new System.Drawing.Point(624, 441);
             this.DgvChi.Name = "DgvChi";
-            this.DgvChi.Size = new System.Drawing.Size(826, 227);
+            this.DgvChi.Size = new System.Drawing.Size(847, 232);
             this.DgvChi.TabIndex = 123;
             this.DgvChi.Visible = false;
             // 
@@ -801,7 +749,7 @@
             this.Frec});
             this.DgvHistograma.Location = new System.Drawing.Point(12, 367);
             this.DgvHistograma.Name = "DgvHistograma";
-            this.DgvHistograma.Size = new System.Drawing.Size(375, 305);
+            this.DgvHistograma.Size = new System.Drawing.Size(375, 306);
             this.DgvHistograma.TabIndex = 127;
             // 
             // Desde
@@ -858,7 +806,7 @@
             this.DgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Iteraciones,
             this.RND1});
-            this.DgvDatos.Location = new System.Drawing.Point(12, 13);
+            this.DgvDatos.Location = new System.Drawing.Point(393, 11);
             this.DgvDatos.Name = "DgvDatos";
             this.DgvDatos.ReadOnly = true;
             dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -869,7 +817,7 @@
             dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DgvDatos.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
-            this.DgvDatos.Size = new System.Drawing.Size(221, 348);
+            this.DgvDatos.Size = new System.Drawing.Size(225, 349);
             this.DgvDatos.TabIndex = 126;
             // 
             // Iteraciones
@@ -891,18 +839,34 @@
             this.RND1.Name = "RND1";
             this.RND1.ReadOnly = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.SkyBlue;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ResultadoPruebaBondad);
+            this.panel1.Controls.Add(this.BtnPruebaBondad);
+            this.panel1.Controls.Add(this.ResultadoBondad);
+            this.panel1.Location = new System.Drawing.Point(624, 367);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(847, 72);
+            this.panel1.TabIndex = 134;
+            // 
             // FrmNrsRND
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1474, 679);
+            this.Controls.Add(this.DgvDatos);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.DgvDistribucion);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.DgvSegundaGrilla);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.DgvHistograma);
-            this.Controls.Add(this.DgvDatos);
+            this.Controls.Add(this.DgvChi);
+            this.Controls.Add(this.DgvKs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmNrsRND";
             this.Text = "Generador de numeros aleatorios con distribución";
@@ -913,13 +877,14 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDistribucion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChartHistograma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvKs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvChi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvHistograma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDatos)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -940,12 +905,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox ResultadoPruebaBondad;
         private System.Windows.Forms.Label ResultadoBondad;
-        private System.Windows.Forms.Label LblVarianza;
-        private System.Windows.Forms.Label LblMedia;
         private System.Windows.Forms.Button BtnPruebaBondad;
         private System.Windows.Forms.DataVisualization.Charting.Chart ChartHistograma;
-        private System.Windows.Forms.TextBox TxtVarianza;
-        private System.Windows.Forms.TextBox TxtMedia;
         private System.Windows.Forms.DataGridView DgvChi;
         private System.Windows.Forms.DataGridViewTextBoxColumn Intervalos;
         private System.Windows.Forms.DataGridViewTextBoxColumn FrecObtenida;
@@ -984,5 +945,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RND;
         private System.Windows.Forms.DataGridViewTextBoxColumn Iteraciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn RND1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
