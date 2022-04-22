@@ -75,7 +75,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 GlobalData.Muestra = new double[N];
                 for (int i = 0; i < N; i++)
                 {
-
                     GlobalData.Muestra[i] = Math.Round(random.NextDouble(), 4);
                 }
                 for (int i = 0; i < GlobalData.Muestra.Length; i++)
@@ -95,8 +94,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
         {
             LimpiarGrillas();
             ResultadoPruebaBondad.Text = "";
-
-
             if (CbDistribución.SelectedItem.ToString() == "Seleccionar")
             {
                 MessageBox.Show("¡Primero debe seleccionar  el tipo de distribución a utilizar!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -109,10 +106,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 MessageBox.Show("¡Primero debe seleccionar  cantidad de intervalos a utilizar!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
             else
             {
-
                 Random myObject = new Random();
                 var random = new Random();
                 double acumulada = 0;
@@ -207,15 +202,12 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         ChartHistograma.Series["Frecuencias"].Points.Clear();
                         ChartHistograma.Titles.Clear();
                         ChartHistograma.Titles.Add("Histograma");
-
-
                         ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
 
                         for (int i = 0; i < inter.Length; i++)
                         {
                             ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
                         }
-
 
                         for (int i = 0; i < cont.Length; i++)
                         {
@@ -228,6 +220,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             DgvHistograma.Rows.Add(fila);
 
                         }
+
                         for (int i = 0; i < cantIntervalos; i++)
                         {
                             var fila = new string[2];
@@ -524,6 +517,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
+                    DgvPo.Visible = true;
                     if (TxtMedias.Text == "")
                     {
                         MessageBox.Show("¡Primero debe ingresar un valor para la media", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -837,8 +831,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                         if (f == cantIntervalosPo - 1)
                                         {
 
-                                            V1chi.Add(valor[i]);
-                                            V2chi.Add(valor[i]);
+                                            //V1chi.Add(valor[i]);
+                                            //V2chi.Add(valor[i]);
                                             V1chi.Add(valor[posInicial[0]]);
                                             V2chi.Add(valor[pos2Ini[0]]);
 
@@ -1009,8 +1003,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                         if (f == cantIntervalos - 1)
                                         {
 
-                                            V1chi.Add(V1[i]);
-                                            V2chi.Add(V2[i]);
+                                            //V1chi.Add(V1[i]);
+                                            //V2chi.Add(V2[i]);
                                             V1chi.Add(V1[posInicial[0]]);
                                             V2chi.Add(V2[pos2Ini[0]]);
 
@@ -1075,8 +1069,14 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 for (int i = 0; i < frecEsperadas2.Count; i++)
                 {
                     var fila = new string[5];
-
-                    fila[0] = V1chi[i].ToString() + " - " + V2chi[i].ToString();
+                    if (V1chi[i] == V2chi[i] )
+                    {
+                        fila[0] = V1chi[i].ToString();
+                    }
+                    else
+                    {
+                        fila[0] = V1chi[i].ToString() + " - " + V2chi[i].ToString();
+                    } 
                     fila[1] = (cont2[i]).ToString();
                     fila[2] = frecEsperadas2[i].ToString();
                     var a = Math.Round(((Math.Pow(frecEsperadas2[i] - (cont2[i]), 2)) / frecEsperadas2[i]), 4);
@@ -1116,7 +1116,44 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
+                    int mayorDeTodos = valor.Max();
+                    int menorDeTodos = valor.Min();
+                    int cantIntervalosPo = (mayorDeTodos - menorDeTodos) + 1;
 
+                    for (int i = 0; i < cantIntervalosPo; i++)
+                    {
+                        var fila = new string[9];
+
+                        double Pfo = cont[i] / n;
+                        acum += Pfo;
+                        double pfe = PfrecEsperadas[i] / n;
+                        acum2 += PfrecEsperadas[i];
+
+                        fila[0] = valor[i].ToString();
+                        fila[1] = (cont[i]).ToString();
+                        fila[2] = frecEsperadas[i].ToString();
+                        fila[3] = Pfo.ToString();
+
+                        fila[4] = PfrecEsperadas[i].ToString();
+                        fila[5] = acum.ToString();
+                        fila[6] = acum2.ToString();
+                        double x = Math.Abs(acum - acum2);
+                        fila[7] = Math.Round(x, 4).ToString();
+                        if (i == 0)
+                        {
+                            maximo = x;
+                        }
+                        else
+                        {
+                            if (maximo < x)
+                            {
+                                maximo = x;
+                            }
+                        }
+                        fila[8] = maximo.ToString();
+
+                        DgvKs.Rows.Add(fila);
+                    }
                 }
                 else
                 {
@@ -1156,18 +1193,19 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                         DgvKs.Rows.Add(fila);
                     }
-                    int[] vector = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
-                    double[] ks2 = new double[] { 0.97500, 0.84189, 0.70760, 0.62394, 0.56328, 0.51926, 0.48342, 0.45427, 0.43001, 0.40925, 0.39122, 0.37543, 0.36143, 0.34890, 0.33750, 0.32733, 0.31796, 0.30936, 0.30143, 0.29408, 0.28724, 0.28087, 0.27491, 0.26931, 0.26404, 0.25908, 0.25438, 0.24993, 0.24571, 0.24170 };
+                    
+                }
+                int[] vector = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
+                double[] ks2 = new double[] { 0.97500, 0.84189, 0.70760, 0.62394, 0.56328, 0.51926, 0.48342, 0.45427, 0.43001, 0.40925, 0.39122, 0.37543, 0.36143, 0.34890, 0.33750, 0.32733, 0.31796, 0.30936, 0.30143, 0.29408, 0.28724, 0.28087, 0.27491, 0.26931, 0.26404, 0.25908, 0.25438, 0.24993, 0.24571, 0.24170 };
 
-                    int indiceks1 = Array.IndexOf(vector, Convert.ToInt32(n));
-                    if (ks2[indiceks1] >= maximo)
-                    {
-                        ResultadoPruebaBondad.Text = "No se rechaza";
-                    }
-                    else
-                    {
-                        ResultadoPruebaBondad.Text = "Se rechaza";
-                    }
+                int indiceks1 = Array.IndexOf(vector, Convert.ToInt32(n));
+                if (ks2[indiceks1] >= maximo)
+                {
+                    ResultadoPruebaBondad.Text = "No se rechaza";
+                }
+                else
+                {
+                    ResultadoPruebaBondad.Text = "Se rechaza";
                 }
             }
         }
@@ -1281,6 +1319,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void PonerEnBlancoTodo()
         {
+            DgvPo.Rows.Clear();
             DgvDatos.Rows.Clear();
             DgvDistribucion.Rows.Clear();
             DgvSegundaGrilla.Rows.Clear();
@@ -1303,16 +1342,18 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             TxtR.Text = "";
             DgvChi.Rows.Clear();
             DgvKs.Rows.Clear();
+            DgvPo.Visible = false;
         }
 
         private void LimpiarGrillas()
         {
             DgvDistribucion.Rows.Clear();
-
+            DgvPo.Rows.Clear();
             DgvSegundaGrilla.Rows.Clear();
             DgvHistograma.Rows.Clear();
             DgvChi.Visible = false;
             DgvKs.Visible = false;
+            DgvPo.Visible = false;
             DgvChi.Rows.Clear();
             DgvKs.Rows.Clear();
         }

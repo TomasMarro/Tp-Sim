@@ -30,6 +30,8 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -50,25 +52,22 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNrsRND));
             this.DgvSegundaGrilla = new System.Windows.Forms.DataGridView();
+            this.Pfe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.BtnGenerarDistribucion = new System.Windows.Forms.Button();
             this.LblIntervalos = new System.Windows.Forms.Label();
@@ -96,16 +95,6 @@
             this.ResultadoPruebaBondad = new System.Windows.Forms.TextBox();
             this.ResultadoBondad = new System.Windows.Forms.Label();
             this.BtnPruebaBondad = new System.Windows.Forms.Button();
-            this.DgvKs = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProbabilidadFo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProbabilidadFe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DgvChi = new System.Windows.Forms.DataGridView();
             this.Intervalos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FrecObtenida = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -122,22 +111,30 @@
             this.RND1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DgvPo = new System.Windows.Forms.DataGridView();
-            this.Pfe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvKs = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProbabilidadFo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProbabilidadFe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSegundaGrilla)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChartHistograma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDistribucion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvKs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvChi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvHistograma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDatos)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvKs)).BeginInit();
             this.SuspendLayout();
             // 
             // DgvSegundaGrilla
@@ -172,6 +169,27 @@
             this.DgvSegundaGrilla.Size = new System.Drawing.Size(225, 307);
             this.DgvSegundaGrilla.TabIndex = 131;
             // 
+            // Pfe
+            // 
+            this.Pfe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Pfe.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Pfe.HeaderText = "P() c/Pac";
+            this.Pfe.Name = "Pfe";
+            this.Pfe.ReadOnly = true;
+            // 
+            // Fe
+            // 
+            this.Fe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Fe.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Fe.FillWeight = 80F;
+            this.Fe.HeaderText = "Fe";
+            this.Fe.Name = "Fe";
+            this.Fe.ReadOnly = true;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.SkyBlue;
@@ -187,8 +205,8 @@
             this.panel3.Controls.Add(this.LblB);
             this.panel3.Controls.Add(this.LblMedias);
             this.panel3.Controls.Add(this.LblA);
-            this.panel3.Controls.Add(this.CbDistribución);
             this.panel3.Controls.Add(this.LblDistribucion);
+            this.panel3.Controls.Add(this.CbDistribución);
             this.panel3.Controls.Add(this.BtnLimpiarGrillas);
             this.panel3.Location = new System.Drawing.Point(8, 127);
             this.panel3.Name = "panel3";
@@ -217,7 +235,7 @@
             this.LblIntervalos.AutoSize = true;
             this.LblIntervalos.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.LblIntervalos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.LblIntervalos.Location = new System.Drawing.Point(3, 10);
+            this.LblIntervalos.Location = new System.Drawing.Point(4, 40);
             this.LblIntervalos.Name = "LblIntervalos";
             this.LblIntervalos.Size = new System.Drawing.Size(228, 23);
             this.LblIntervalos.TabIndex = 119;
@@ -232,7 +250,7 @@
             this.CBCantIntervalos.Items.AddRange(new object[] {
             "Método congruencial lineal",
             "Método congruencial multiplicativo"});
-            this.CBCantIntervalos.Location = new System.Drawing.Point(237, 4);
+            this.CBCantIntervalos.Location = new System.Drawing.Point(238, 39);
             this.CBCantIntervalos.Name = "CBCantIntervalos";
             this.CBCantIntervalos.Size = new System.Drawing.Size(136, 29);
             this.CBCantIntervalos.TabIndex = 120;
@@ -326,7 +344,7 @@
             this.CbDistribución.Items.AddRange(new object[] {
             "Método congruencial lineal",
             "Método congruencial multiplicativo"});
-            this.CbDistribución.Location = new System.Drawing.Point(237, 39);
+            this.CbDistribución.Location = new System.Drawing.Point(238, 4);
             this.CbDistribución.Name = "CbDistribución";
             this.CbDistribución.Size = new System.Drawing.Size(136, 29);
             this.CbDistribución.TabIndex = 122;
@@ -337,7 +355,7 @@
             this.LblDistribucion.AutoSize = true;
             this.LblDistribucion.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.LblDistribucion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.LblDistribucion.Location = new System.Drawing.Point(3, 40);
+            this.LblDistribucion.Location = new System.Drawing.Point(9, 9);
             this.LblDistribucion.Name = "LblDistribucion";
             this.LblDistribucion.Size = new System.Drawing.Size(195, 23);
             this.LblDistribucion.TabIndex = 121;
@@ -534,131 +552,21 @@
             this.BtnPruebaBondad.UseVisualStyleBackColor = false;
             this.BtnPruebaBondad.Click += new System.EventHandler(this.BtnPruebaBondad_Click);
             // 
-            // DgvKs
-            // 
-            this.DgvKs.BackgroundColor = System.Drawing.Color.SkyBlue;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvKs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.DgvKs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvKs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.ProbabilidadFo,
-            this.ProbabilidadFe,
-            this.C1,
-            this.MaxC});
-            this.DgvKs.Enabled = false;
-            this.DgvKs.Location = new System.Drawing.Point(624, 441);
-            this.DgvKs.Name = "DgvKs";
-            this.DgvKs.Size = new System.Drawing.Size(847, 232);
-            this.DgvKs.TabIndex = 133;
-            this.DgvKs.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn5.FillWeight = 159.8984F;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Intérvalos";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn6.FillWeight = 42.67138F;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Fo";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridViewTextBoxColumn7.FillWeight = 94.28139F;
-            this.dataGridViewTextBoxColumn7.HeaderText = "Fe";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxColumn8.FillWeight = 100.5248F;
-            this.dataGridViewTextBoxColumn8.HeaderText = "P(Fo)";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxColumn9.FillWeight = 100.5248F;
-            this.dataGridViewTextBoxColumn9.HeaderText = "P(Fe)";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // ProbabilidadFo
-            // 
-            this.ProbabilidadFo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.ProbabilidadFo.DefaultCellStyle = dataGridViewCellStyle14;
-            this.ProbabilidadFo.FillWeight = 100.5248F;
-            this.ProbabilidadFo.HeaderText = "P(Fo)(ac)";
-            this.ProbabilidadFo.Name = "ProbabilidadFo";
-            // 
-            // ProbabilidadFe
-            // 
-            this.ProbabilidadFe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.ProbabilidadFe.DefaultCellStyle = dataGridViewCellStyle15;
-            this.ProbabilidadFe.FillWeight = 100.5248F;
-            this.ProbabilidadFe.HeaderText = "P(Fe)(ac)";
-            this.ProbabilidadFe.Name = "ProbabilidadFe";
-            // 
-            // C1
-            // 
-            this.C1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.C1.DefaultCellStyle = dataGridViewCellStyle16;
-            this.C1.FillWeight = 100.5248F;
-            this.C1.HeaderText = "C";
-            this.C1.Name = "C1";
-            // 
-            // MaxC
-            // 
-            this.MaxC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.MaxC.DefaultCellStyle = dataGridViewCellStyle17;
-            this.MaxC.FillWeight = 100.5248F;
-            this.MaxC.HeaderText = "MAX(c)";
-            this.MaxC.Name = "MaxC";
-            // 
             // DgvChi
             // 
             this.DgvChi.AllowUserToAddRows = false;
             this.DgvChi.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvChi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvChi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DgvChi.BackgroundColor = System.Drawing.Color.SkyBlue;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvChi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvChi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.DgvChi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvChi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Intervalos,
@@ -675,40 +583,40 @@
             // Intervalos
             // 
             this.Intervalos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Intervalos.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Intervalos.DefaultCellStyle = dataGridViewCellStyle10;
             this.Intervalos.HeaderText = "Intérvalos";
             this.Intervalos.Name = "Intervalos";
             // 
             // FrecObtenida
             // 
             this.FrecObtenida.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.FrecObtenida.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.FrecObtenida.DefaultCellStyle = dataGridViewCellStyle11;
             this.FrecObtenida.HeaderText = "Frecuencia obtenida";
             this.FrecObtenida.Name = "FrecObtenida";
             // 
             // FrecEsperada
             // 
             this.FrecEsperada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.FrecEsperada.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.FrecEsperada.DefaultCellStyle = dataGridViewCellStyle12;
             this.FrecEsperada.HeaderText = "Frecuencia esperada";
             this.FrecEsperada.Name = "FrecEsperada";
             // 
             // C
             // 
             this.C.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.C.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.C.DefaultCellStyle = dataGridViewCellStyle13;
             this.C.HeaderText = "C";
             this.C.Name = "C";
             // 
             // Cacum
             // 
             this.Cacum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Cacum.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Cacum.DefaultCellStyle = dataGridViewCellStyle14;
             this.Cacum.HeaderText = "C(acum)";
             this.Cacum.Name = "Cacum";
             // 
@@ -719,14 +627,14 @@
             this.DgvHistograma.AllowUserToResizeColumns = false;
             this.DgvHistograma.AllowUserToResizeRows = false;
             this.DgvHistograma.BackgroundColor = System.Drawing.Color.SkyBlue;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvHistograma.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvHistograma.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.DgvHistograma.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvHistograma.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Desde,
@@ -741,8 +649,8 @@
             // Desde
             // 
             this.Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Desde.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Desde.DefaultCellStyle = dataGridViewCellStyle16;
             this.Desde.FillWeight = 100.132F;
             this.Desde.HeaderText = "Desde";
             this.Desde.Name = "Desde";
@@ -750,8 +658,8 @@
             // Hasta
             // 
             this.Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Hasta.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Hasta.DefaultCellStyle = dataGridViewCellStyle17;
             this.Hasta.FillWeight = 100.8512F;
             this.Hasta.HeaderText = "Hasta";
             this.Hasta.Name = "Hasta";
@@ -759,8 +667,8 @@
             // MarcasDC
             // 
             this.MarcasDC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.MarcasDC.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.MarcasDC.DefaultCellStyle = dataGridViewCellStyle18;
             this.MarcasDC.FillWeight = 95.00337F;
             this.MarcasDC.HeaderText = "Mc";
             this.MarcasDC.Name = "MarcasDC";
@@ -768,8 +676,8 @@
             // Frec
             // 
             this.Frec.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Frec.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Frec.DefaultCellStyle = dataGridViewCellStyle19;
             this.Frec.FillWeight = 81.00337F;
             this.Frec.HeaderText = "Fo";
             this.Frec.Name = "Frec";
@@ -780,38 +688,38 @@
             this.DgvDatos.AllowUserToDeleteRows = false;
             this.DgvDatos.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DgvDatos.BackgroundColor = System.Drawing.Color.SkyBlue;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.DgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Iteraciones,
             this.RND1});
-            this.DgvDatos.Location = new System.Drawing.Point(393, 11);
+            this.DgvDatos.Location = new System.Drawing.Point(393, 12);
             this.DgvDatos.Name = "DgvDatos";
             this.DgvDatos.ReadOnly = true;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvDatos.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvDatos.RowHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.DgvDatos.Size = new System.Drawing.Size(225, 349);
             this.DgvDatos.TabIndex = 126;
             // 
             // Iteraciones
             // 
             this.Iteraciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Iteraciones.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Iteraciones.DefaultCellStyle = dataGridViewCellStyle21;
             this.Iteraciones.FillWeight = 110F;
             this.Iteraciones.HeaderText = "Iteraciones";
             this.Iteraciones.Name = "Iteraciones";
@@ -843,59 +751,39 @@
             this.DgvPo.AllowUserToDeleteRows = false;
             this.DgvPo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DgvPo.BackgroundColor = System.Drawing.Color.SkyBlue;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvPo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvPo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.DgvPo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvPo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Valor,
             this.Fo});
-            this.DgvPo.Location = new System.Drawing.Point(163, 367);
+            this.DgvPo.Location = new System.Drawing.Point(8, 367);
             this.DgvPo.Name = "DgvPo";
             this.DgvPo.ReadOnly = true;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvPo.RowHeadersDefaultCellStyle = dataGridViewCellStyle35;
-            this.DgvPo.Size = new System.Drawing.Size(225, 306);
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvPo.RowHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            this.DgvPo.Size = new System.Drawing.Size(380, 306);
             this.DgvPo.TabIndex = 135;
-            // 
-            // Pfe
-            // 
-            this.Pfe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Pfe.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Pfe.HeaderText = "P() c/Pac";
-            this.Pfe.Name = "Pfe";
-            this.Pfe.ReadOnly = true;
-            // 
-            // Fe
-            // 
-            this.Fe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Fe.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Fe.FillWeight = 80F;
-            this.Fe.HeaderText = "Fe";
-            this.Fe.Name = "Fe";
-            this.Fe.ReadOnly = true;
+            this.DgvPo.Visible = false;
             // 
             // Valor
             // 
             this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Valor.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Valor.DefaultCellStyle = dataGridViewCellStyle24;
             this.Valor.FillWeight = 110F;
             this.Valor.HeaderText = "Valor";
             this.Valor.Name = "Valor";
@@ -909,12 +797,105 @@
             this.Fo.Name = "Fo";
             this.Fo.ReadOnly = true;
             // 
+            // DgvKs
+            // 
+            this.DgvKs.AllowUserToAddRows = false;
+            this.DgvKs.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvKs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle26;
+            this.DgvKs.BackgroundColor = System.Drawing.Color.SkyBlue;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvKs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.DgvKs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvKs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.ProbabilidadFo,
+            this.ProbabilidadFe,
+            this.C1,
+            this.MaxC});
+            this.DgvKs.Location = new System.Drawing.Point(624, 441);
+            this.DgvKs.Name = "DgvKs";
+            this.DgvKs.Size = new System.Drawing.Size(847, 232);
+            this.DgvKs.TabIndex = 136;
+            this.DgvKs.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle28;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Intérvalos";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle29;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Fo";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle30;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Fe";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle31;
+            this.dataGridViewTextBoxColumn5.HeaderText = "P(Fo)";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle32;
+            this.dataGridViewTextBoxColumn6.HeaderText = "P(Fe)";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // ProbabilidadFo
+            // 
+            this.ProbabilidadFo.HeaderText = "P(Fo)(ac)";
+            this.ProbabilidadFo.Name = "ProbabilidadFo";
+            // 
+            // ProbabilidadFe
+            // 
+            this.ProbabilidadFe.HeaderText = "P(Fe)(ac)";
+            this.ProbabilidadFe.Name = "ProbabilidadFe";
+            // 
+            // C1
+            // 
+            this.C1.HeaderText = "C";
+            this.C1.Name = "C1";
+            // 
+            // MaxC
+            // 
+            this.MaxC.HeaderText = "MAX(c)";
+            this.MaxC.Name = "MaxC";
+            // 
             // FrmNrsRND
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1474, 679);
+            this.Controls.Add(this.DgvKs);
             this.Controls.Add(this.DgvPo);
             this.Controls.Add(this.DgvDatos);
             this.Controls.Add(this.panel1);
@@ -925,7 +906,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.DgvHistograma);
             this.Controls.Add(this.DgvChi);
-            this.Controls.Add(this.DgvKs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmNrsRND";
             this.Text = "Generador de numeros aleatorios con distribución";
@@ -938,13 +918,13 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ChartHistograma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDistribucion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvKs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvChi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvHistograma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDatos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvKs)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -989,25 +969,25 @@
         private System.Windows.Forms.Label LblA;
         private System.Windows.Forms.DataGridView DgvDistribucion;
         private System.Windows.Forms.Button BtnGenerarDistribucion;
-        private System.Windows.Forms.DataGridView DgvKs;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn RND;
         private System.Windows.Forms.DataGridViewTextBoxColumn Iteraciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn RND1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProbabilidadFo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProbabilidadFe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxC;
         private System.Windows.Forms.DataGridView DgvPo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pfe;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fe;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fo;
+        private System.Windows.Forms.DataGridView DgvKs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProbabilidadFo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProbabilidadFe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxC;
     }
 }
