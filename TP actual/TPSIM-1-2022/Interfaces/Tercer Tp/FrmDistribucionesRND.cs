@@ -62,6 +62,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             CbDistribución.SelectedItem = "Seleccionar";
             PonerEnBlancoPanelDistribución();
             ChartHistograma.Series["Frecuencias"].Points.Clear();
+            DgvDatos.Rows.Clear();
 
             if (TxtTamaño.Text == "")
             {
@@ -993,16 +994,16 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                     double pfe = PfrecEsperadas[i] / n;
                     acum2 += PfrecEsperadas[i];
 
-                    fila[0] = V1[i].ToString() + " - " + V2[i].ToString();
+                    fila[0] = Math.Round(V1[i], 4).ToString() + " - " + Math.Round(V2[i], 4).ToString();
                     fila[1] = (cont[i]).ToString();
-                    fila[2] = frecEsperadas[i].ToString();
-                    fila[3] = Pfo.ToString();
+                    fila[2] = Math.Round(frecEsperadas[i],4).ToString();
+                    fila[3] = Math.Round(Pfo,4).ToString();
 
-                    fila[4] = PfrecEsperadas[i].ToString();
-                    fila[5] = acum.ToString();
-                    fila[6] = acum2.ToString();
+                    fila[4] = Math.Round(PfrecEsperadas[i], 4).ToString();
+                    fila[5] = Math.Round(acum, 4).ToString();
+                    fila[6] = Math.Round(acum2,4).ToString();
                     double x = Math.Abs(acum - acum2);
-                    fila[7] = x.ToString();
+                    fila[7] = Math.Round(x, 4).ToString();
                     if (i == 0)
                     {
                         maximo = x;
@@ -1014,7 +1015,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             maximo = x;
                         }
                     }
-                    fila[8] = maximo.ToString();
+                    fila[8] = Math.Round(maximo, 4).ToString();
 
                     DgvKs.Rows.Add(fila);
                 }
@@ -1126,6 +1127,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             }
             else if(CbDistribución.SelectedItem.ToString() == "Poisson")
             {
+                CBCantIntervalos.Enabled = false;
                 TxtA.Enabled = false;
                 TxtB.Enabled = false;
                 TxtMedias.Enabled = true;
@@ -1168,6 +1170,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void LimpiarGrillas()
         {
+            
             DgvDistribucion.Rows.Clear();
             DgvSegundaGrilla.Rows.Clear();
             DgvHistograma.Rows.Clear();
