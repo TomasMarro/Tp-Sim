@@ -639,12 +639,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
         {
             int N = Convert.ToInt32(TxtTamaño.Text);
             var k = Math.Round(Math.Sqrt(N), 0);
-<<<<<<< HEAD
-            
-            
-            
-=======
->>>>>>> b3f9df803e7c76d8c568f7fef8ada539d01d0158
 
             List<Double> frecEsperadas = new List<Double>();
             List<Double> PfrecEsperadas = new List<Double>();
@@ -725,18 +719,13 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             }
             if (CbDistribución.SelectedItem.ToString() == "Normal")
             {
-<<<<<<< HEAD
-                double R = Convert.ToDouble(TxtR.Text);
-                double DesvStd = R;
-                double eu = Convert.ToDouble(TxtMedias.Text);
-                double lambda = 1 / eu;
-=======
+
                 double eu = Convert.ToDouble(TxtMedias.Text);
                 double lambda = eu;
                 double R = Convert.ToDouble(TxtR.Text);
                 double DesvStd = R;
 
->>>>>>> b3f9df803e7c76d8c568f7fef8ada539d01d0158
+
                 for (int i = 0; i < cantIntervalos; i++)
                 {
                     double marcaclase = (V1[i] + V2[i]) / 2;
@@ -753,10 +742,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             {
                 double eu = Convert.ToDouble(TxtMedias.Text);
                 double lambda = 1 / eu;
-<<<<<<< HEAD
-=======
 
->>>>>>> b3f9df803e7c76d8c568f7fef8ada539d01d0158
                 for (int i = 0; i < cantIntervalos; i++)
                 {
                     double acumulada = (1 - Math.Exp(-lambda * V2[i])) - (1 - Math.Exp(-lambda * V1[i]));
@@ -892,13 +878,13 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                 {
                                     if (f == cantIntervalos - 1)
                                     {
-<<<<<<< HEAD
+
                                         V1chi.Add(V1[i]);
                                         V2chi.Add(V2[i]);
-=======
+
                                         V1chi.Add(V1[posInicial[0]]);
                                         V2chi.Add(V2[pos2Ini[0]]);
->>>>>>> b3f9df803e7c76d8c568f7fef8ada539d01d0158
+
                                         frecEsperadas2.Add(acumulador);
                                         cont2.Add(conta);
                                         acumulador = 0;
@@ -1080,16 +1066,16 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void TxtMedias_KeyPress(object sender, KeyPressEventArgs e)
         {
-<<<<<<< HEAD
+
            
-=======
+
             if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 45))
             {
                 MessageBox.Show("¡Solo se permite ingresar números enteros positivos!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }
->>>>>>> b3f9df803e7c76d8c568f7fef8ada539d01d0158
+
         }
 
         private void TxtR_KeyPress(object sender, KeyPressEventArgs e)
