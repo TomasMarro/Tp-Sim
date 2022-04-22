@@ -19,9 +19,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         // Creacion de una clase global para tratar la muestra inicial de los numeros random generados
 
-         public static class GlobalData
+        public static class GlobalData
         {
-            public static double[] Muestra = new double[] {};
+            public static double[] Muestra = new double[] { };
         }
 
         // Carga de los combo box de los intervalos y los tipo de distribuciones 
@@ -52,6 +52,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         public void BtnGenerarNros_Click(object sender, EventArgs e)
         {
+            DgvDatos.Rows.Clear();
             Random myObject = new Random();
             var random = new Random();
             LimpiarGrillas();
@@ -62,7 +63,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             CbDistribución.SelectedItem = "Seleccionar";
             PonerEnBlancoPanelDistribución();
             ChartHistograma.Series["Frecuencias"].Points.Clear();
-            DgvDatos.Rows.Clear();
 
             if (TxtTamaño.Text == "")
             {
@@ -95,14 +95,24 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
         {
             LimpiarGrillas();
             ResultadoPruebaBondad.Text = "";
-            if (CBCantIntervalos.SelectedItem.ToString() == "Seleccionar" || CbDistribución.SelectedItem.ToString() == "Seleccionar")
+
+
+            if (CbDistribución.SelectedItem.ToString() == "Seleccionar")
             {
-                MessageBox.Show("¡Primero debe seleccionar la cantidad de invertalos y el tipo de distribución a utilizar!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("¡Primero debe seleccionar  el tipo de distribución a utilizar!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            else if (CbDistribución.SelectedItem.ToString() != "Poisson" && CBCantIntervalos.SelectedItem.ToString() == "Seleccionar")
+            {
+
+
+                MessageBox.Show("¡Primero debe seleccionar  cantidad de intervalos a utilizar!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             else
             {
-                
+
                 Random myObject = new Random();
                 var random = new Random();
                 double acumulada = 0;
@@ -111,7 +121,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 if (CbDistribución.SelectedItem.ToString() == "Uniforme")
                 {
-                    if(TxtA.Text == "" || TxtB.Text == "")
+                    if (TxtA.Text == "" || TxtB.Text == "")
                     {
                         MessageBox.Show("¡Primero debe seleccionar un rango para la distribución uniforme ingresando valores para A y B!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
@@ -230,10 +240,10 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         }
                     }
                 }
-                    
+
                 if (CbDistribución.SelectedItem.ToString() == "Exponencial")
                 {
-                    if(TxtMedias.Text == "")
+                    if (TxtMedias.Text == "")
                     {
                         MessageBox.Show("¡Primero debe ingresar un valor de la media  ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
@@ -360,10 +370,10 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         }
                     }
                 }
-                    
+
                 if (CbDistribución.SelectedItem.ToString() == "Normal")
                 {
-                    if(TxtMedias.Text == "" || TxtR.Text == "")
+                    if (TxtMedias.Text == "" || TxtR.Text == "")
                     {
                         MessageBox.Show("¡Primero debe ingresar un valor para la media y para la desviación estandar ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
@@ -543,6 +553,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             Muestra2.Add(x);
                         }
 
+
                         for (int i = 0; i < Muestra2.Count; i++)
                         {
                             var fila = new string[2];
@@ -605,9 +616,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             fila[0] = V1[i].ToString();
 
                             //fila[2] = Math.Round((V1[i] / 2), 4).ToString();
-                            fila[3] = (cont[i]).ToString();
+                            fila[1] = (cont[i]).ToString();
 
-                            DgvHistograma.Rows.Add(fila);
+                            DgvPo.Rows.Add(fila);
 
                         }
                         for (int i = 0; i < cantIntervalos; i++)
@@ -616,148 +627,88 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             double x = Math.Pow(Media, V1[i]);
                             double y = Math.Exp(-Media);
                             double factorial = V1[i];
-                            for (int j = V1[i]-1; j > 0; j--)
+                            for (int j = V1[i] - 1; j > 0; j--)
                             {
-                                factorial = factorial * (j );
+                                factorial = factorial * (j);
                             }
-                        
-                        double acumuladas = ( x * y ) / factorial;
-                        double a = Math.Round(acumuladas * N, 4);
-                        fila[0] = Math.Round((acumuladas), 4).ToString();
-                        fila[1] = a.ToString();
-                        DgvSegundaGrilla.Rows.Add(fila);
+
+                            double acumuladas = (x * y) / factorial;
+                            double a = Math.Round(acumuladas * N, 0);
+                            fila[0] = Math.Round((acumuladas), 4).ToString();
+                            fila[1] = a.ToString();
+                            DgvSegundaGrilla.Rows.Add(fila);
                         }
                     }
 
 
 
-                    }
                 }
-            }  
-        
+            }
+        }
+
 
         private void BtnPruebaBondad_Click(object sender, EventArgs e)
         {
             int N = Convert.ToInt32(TxtTamaño.Text);
             var k = Math.Round(Math.Sqrt(N), 0);
 
+
             List<Double> frecEsperadas = new List<Double>();
             List<Double> PfrecEsperadas = new List<Double>();
             List<Double> ListaRandom = new List<Double>();
+            List<Double> cont = new List<Double>();
+
+
 
             foreach (DataGridViewRow row in DgvDistribucion.Rows)
             {
                 double numero = Convert.ToDouble((row.Cells["RND"].Value.ToString()));
                 ListaRandom.Add(numero);
             }
-            var menorDeTodos = ListaRandom.Min();
-            var mayorDeTodos = ListaRandom.Max();
-            double increm = menorDeTodos;
-            var cantIntervalos = Convert.ToInt32(k);
-            var incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
-            var cont = new int[cantIntervalos];
 
-            for (int i = 0; i < cantIntervalos; i++)
 
+
+
+
+
+            foreach (DataGridViewRow row in DgvSegundaGrilla.Rows)
             {
-                var C = increm + incrementoIntervalo;
-
-                if (i == cantIntervalos - 1)
-                {
-                    C = increm + incrementoIntervalo + 0.0004;
-                }
-                for (int f = 0; f < ListaRandom.Count; f++)
-                {
-
-                    if (increm <= ListaRandom[f] && ListaRandom[f] <= C)
-                    {
-                        cont[i] += 1;
-                    }
-                }
-                if (i == cantIntervalos - 1)
-                {
-                    increm = mayorDeTodos;
-                }
-                increm += incrementoIntervalo;
+                double numero = Convert.ToDouble((row.Cells["Fe"].Value.ToString()));
+                double numero2 = Convert.ToDouble((row.Cells["Pfe"].Value.ToString()));
+                frecEsperadas.Add(numero);
+                PfrecEsperadas.Add(numero2);
             }
 
-            var V1 = new double[cantIntervalos];
-            var V2 = new double[cantIntervalos];
 
-            for (int i = 0; i < cantIntervalos; i++)
+            List<Double> V1 = new List<Double>();
+            List<Double> V2 = new List<Double>();
+            foreach (DataGridViewRow row in DgvHistograma.Rows)
             {
-                if (i != 0 && i != cantIntervalos - 1)
-                {
-                    V1[i] = Math.Round(V2[i - 1], 4);
-                    V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
-                }
-                else if (i == cantIntervalos - 1)
-                {
-                    V1[i] = Math.Round(V2[i - 1], 4);
-                    V2[i] = Math.Round(mayorDeTodos, 4);
-                }
-                else
-                {
-                    V1[i] = Math.Round(menorDeTodos, 4);
-                    V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
-                }
+                double numero = Convert.ToDouble((row.Cells["Desde"].Value.ToString()));
+                double numero2 = Convert.ToDouble((row.Cells["Hasta"].Value.ToString()));
+                double numeros = Convert.ToDouble((row.Cells["Frec"].Value.ToString()));
+                cont.Add(numeros);
+                V1.Add(numero);
+                V2.Add(numero2);
             }
 
-            V2[cantIntervalos - 1] = V2[cantIntervalos - 1] - 0.0001;
 
-            double acum = 0;
 
-            if (CbDistribución.SelectedItem.ToString() == "Uniforme")
+            List<int> valor = new List<int>();
+            foreach (DataGridViewRow row in DgvPo.Rows)
             {
-                for (int i = 0; i < cantIntervalos; i++)
-                {
-                    var frecEsperada = N / k;
-                    double acumuladas = frecEsperada / N;
-                    frecEsperadas.Add(frecEsperada);
-                    PfrecEsperadas.Add(acumuladas);
-                }
-
+                int numero = Convert.ToInt32((row.Cells["Valor"].Value.ToString()));
+                int numero2 = Convert.ToInt32((row.Cells["Fo"].Value.ToString()));
+                valor.Add(numero);
+                cont.Add(numero2);
             }
-            if (CbDistribución.SelectedItem.ToString() == "Normal")
-            {
 
-                double eu = Convert.ToDouble(TxtMedias.Text);
-                double lambda = eu;
-                double R = Convert.ToDouble(TxtR.Text);
-                double DesvStd = R;
+            int mayorDeTodos = valor.Max();
+            int menorDeTodos = valor.Min();
+            int cantIntervalosPo = (mayorDeTodos - menorDeTodos) + 1;
 
 
-                for (int i = 0; i < cantIntervalos; i++)
-                {
-                    double marcaclase = (V1[i] + V2[i]) / 2;
-                    double x = Math.Exp(-0.5 * Math.Pow((marcaclase - lambda) / DesvStd, 2));
-                    double y = (DesvStd * Math.Sqrt(2 * Math.PI));
-                    double acumuladas = x / y * (V2[i] - V1[i]);
-                    double fe = Math.Round(acumuladas * N, 4);
-                    frecEsperadas.Add(fe);
-                    PfrecEsperadas.Add(acumuladas);
-                }
 
-            }
-            if (CbDistribución.SelectedItem.ToString() == "Exponencial")
-            {
-                double eu = Convert.ToDouble(TxtMedias.Text);
-                double lambda = 1 / eu;
-
-                for (int i = 0; i < cantIntervalos; i++)
-                {
-                    double acumulada = (1 - Math.Exp(-lambda * V2[i])) - (1 - Math.Exp(-lambda * V1[i]));
-                    double fe = Math.Round(acumulada * N, 4);
-                    double acumuladas = Math.Round((acumulada), 4);
-                    frecEsperadas.Add(fe);
-                    PfrecEsperadas.Add(acumuladas);
-                }
-
-            }
-            if (CbDistribución.SelectedItem.ToString() == "Poisson")
-            {
-
-            }
 
             if (N > 30)
             {
@@ -775,33 +726,121 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 double acumulador2 = 0;
                 double conta = 0;
                 double contaa = 0;
-
-                for (int i = 0; i < cantIntervalos; i++)
+                double acum = 0;
+                if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
-                    posInicial.Add(i);
-                    if (frecEsperadas[i] < 5)
-                    {
 
-                        int pos = i;
-                        acumulador += frecEsperadas[i];
-                        conta += cont[i];
-                        if (acumulador >= 5)
+                    for (int i = 0; i < cantIntervalosPo; i++)
+                    {
+                        posInicial.Add(i);
+                        if (frecEsperadas[i] < 5)
                         {
-                            posFin.Add(i);
-                            if (i != cantIntervalos - 1)
+
+                            int pos = i;
+                            acumulador += frecEsperadas[i];
+                            conta += cont[i];
+                            if (acumulador >= 5)
                             {
-                                for (int f = pos + 1; f < cantIntervalos; f++)
+                                posFin.Add(i);
+                                if (i != cantIntervalosPo - 1)
+                                {
+                                    for (int f = pos + 1; f < cantIntervalosPo; f++)
+                                    {
+                                        int pos2 = f - 1;
+                                        pos2Ini.Add(pos2);
+                                        if (f != cantIntervalosPo)
+                                        {
+                                            acumulador2 += frecEsperadas[f];
+                                            contaa += cont[f];
+                                            if (acumulador2 >= 5)
+                                            {
+                                                V1chi.Add(valor[posInicial[0]]);
+                                                V2chi.Add(valor[pos2Ini[0]]);
+                                                frecEsperadas2.Add(acumulador);
+                                                cont2.Add(conta);
+                                                acumulador = 0;
+                                                acumulador2 = 0;
+                                                conta = 0;
+                                                contaa = 0;
+                                                posInicial.Clear();
+                                                pos2Ini.Clear();
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                if (f == cantIntervalosPo - 1)
+                                                {
+                                                    V1chi.Add(valor[posInicial[0]]);
+                                                    V2chi.Add(valor[cantIntervalosPo - 1]);
+                                                    frecEsperadas2.Add(acumulador + acumulador2);
+                                                    cont2.Add(conta + contaa);
+                                                    acumulador = 0;
+                                                    acumulador2 = 0;
+                                                    conta = 0;
+                                                    contaa = 0;
+                                                    posInicial.Clear();
+                                                    pos2Ini.Clear();
+                                                    posFin.Clear();
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    continue;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    V1chi.Add(valor[posInicial[0]]);
+                                    V2chi.Add(valor[posInicial[0]]);
+                                    frecEsperadas2.Add(acumulador);
+                                    cont2.Add(conta);
+                                    acumulador = 0;
+                                    acumulador2 = 0;
+                                    conta = 0;
+                                    contaa = 0;
+                                    posInicial.Clear();
+                                    break;
+                                }
+
+                            }
+                            else
+                            {
+                                continue;
+                            }
+
+                        }
+                        else
+                        {
+
+
+                            int pos = i;
+                            acumulador += frecEsperadas[i];
+                            conta += cont[i];
+                            if (i != cantIntervalosPo - 1)
+                            {
+                                for (int f = pos + 1; f < cantIntervalosPo; f++)
                                 {
                                     int pos2 = f - 1;
                                     pos2Ini.Add(pos2);
-                                    if (f != cantIntervalos)
+                                    acumulador2 += frecEsperadas[f];
+                                    contaa += cont[f];
+                                    if (acumulador2 >= 5)
                                     {
-                                        acumulador2 += frecEsperadas[f];
-                                        contaa += cont[f];
-                                        if (acumulador2 >= 5)
+                                        if (f == cantIntervalosPo - 1)
                                         {
-                                            V1chi.Add(V1[posInicial[0]]);
-                                            V2chi.Add(V2[pos2Ini[0]]);
+
+                                            V1chi.Add(valor[i]);
+                                            V2chi.Add(valor[i]);
+                                            V1chi.Add(valor[posInicial[0]]);
+                                            V2chi.Add(valor[pos2Ini[0]]);
+
                                             frecEsperadas2.Add(acumulador);
                                             cont2.Add(conta);
                                             acumulador = 0;
@@ -814,31 +853,203 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                         }
                                         else
                                         {
-                                            if (f == cantIntervalos - 1)
+                                            continue;
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        if (f == cantIntervalosPo - 1)
+                                        {
+                                            V1chi.Add(valor[posInicial[0]]);
+                                            V2chi.Add(valor[cantIntervalosPo - 1]);
+                                            frecEsperadas2.Add(acumulador + acumulador2);
+                                            cont2.Add(conta + contaa);
+                                            acumulador = 0;
+                                            acumulador2 = 0;
+                                            conta = 0;
+                                            contaa = 0;
+                                            posInicial.Clear();
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            continue;
+                                        }
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                V1chi.Add(valor[posInicial[0]]);
+                                V2chi.Add(valor[posInicial[0]]);
+                                frecEsperadas2.Add(acumulador);
+                                cont2.Add(conta);
+                                acumulador = 0;
+                                acumulador2 = 0;
+                                conta = 0;
+                                contaa = 0;
+                                posInicial.Clear();
+                                break;
+                            }
+
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    var cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
+
+
+                    for (int i = 0; i < cantIntervalos; i++)
+                    {
+                        posInicial.Add(i);
+                        if (frecEsperadas[i] < 5)
+                        {
+
+                            int pos = i;
+                            acumulador += frecEsperadas[i];
+                            conta += cont[i];
+                            if (acumulador >= 5)
+                            {
+                                posFin.Add(i);
+                                if (i != cantIntervalos - 1)
+                                {
+                                    for (int f = pos + 1; f < cantIntervalos; f++)
+                                    {
+                                        int pos2 = f - 1;
+                                        pos2Ini.Add(pos2);
+                                        if (f != cantIntervalos)
+                                        {
+                                            acumulador2 += frecEsperadas[f];
+                                            contaa += cont[f];
+                                            if (acumulador2 >= 5)
                                             {
                                                 V1chi.Add(V1[posInicial[0]]);
-                                                V2chi.Add(V2[cantIntervalos - 1]);
-                                                frecEsperadas2.Add(acumulador + acumulador2);
-                                                cont2.Add(conta + contaa);
+                                                V2chi.Add(V2[pos2Ini[0]]);
+                                                frecEsperadas2.Add(acumulador);
+                                                cont2.Add(conta);
                                                 acumulador = 0;
                                                 acumulador2 = 0;
                                                 conta = 0;
                                                 contaa = 0;
                                                 posInicial.Clear();
                                                 pos2Ini.Clear();
-                                                posFin.Clear();
                                                 break;
                                             }
                                             else
                                             {
-                                                continue;
+                                                if (f == cantIntervalos - 1)
+                                                {
+                                                    V1chi.Add(V1[posInicial[0]]);
+                                                    V2chi.Add(V2[cantIntervalos - 1]);
+                                                    frecEsperadas2.Add(acumulador + acumulador2);
+                                                    cont2.Add(conta + contaa);
+                                                    acumulador = 0;
+                                                    acumulador2 = 0;
+                                                    conta = 0;
+                                                    contaa = 0;
+                                                    posInicial.Clear();
+                                                    pos2Ini.Clear();
+                                                    posFin.Clear();
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    continue;
+                                                }
                                             }
                                         }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    V1chi.Add(V1[posInicial[0]]);
+                                    V2chi.Add(V2[posInicial[0]]);
+                                    frecEsperadas2.Add(acumulador);
+                                    cont2.Add(conta);
+                                    acumulador = 0;
+                                    acumulador2 = 0;
+                                    conta = 0;
+                                    contaa = 0;
+                                    posInicial.Clear();
+                                    break;
+                                }
+
+                            }
+                            else
+                            {
+                                continue;
+                            }
+
+                        }
+                        else
+                        {
+                            int pos = i;
+                            acumulador += frecEsperadas[i];
+                            conta += cont[i];
+                            if (i != cantIntervalos - 1)
+                            {
+                                for (int f = pos + 1; f < cantIntervalos; f++)
+                                {
+                                    int pos2 = f - 1;
+                                    pos2Ini.Add(pos2);
+                                    acumulador2 += frecEsperadas[f];
+                                    contaa += cont[f];
+                                    if (acumulador2 >= 5)
+                                    {
+                                        if (f == cantIntervalos - 1)
+                                        {
+
+                                            V1chi.Add(V1[i]);
+                                            V2chi.Add(V2[i]);
+                                            V1chi.Add(V1[posInicial[0]]);
+                                            V2chi.Add(V2[pos2Ini[0]]);
+
+                                            frecEsperadas2.Add(acumulador);
+                                            cont2.Add(conta);
+                                            acumulador = 0;
+                                            acumulador2 = 0;
+                                            conta = 0;
+                                            contaa = 0;
+                                            posInicial.Clear();
+                                            pos2Ini.Clear();
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            continue;
+                                        }
+
                                     }
                                     else
                                     {
-                                        break;
+                                        if (f == cantIntervalos - 1)
+                                        {
+                                            V1chi.Add(V1[posInicial[0]]);
+                                            V2chi.Add(V2[cantIntervalos - 1]);
+                                            frecEsperadas2.Add(acumulador + acumulador2);
+                                            cont2.Add(conta + contaa);
+                                            acumulador = 0;
+                                            acumulador2 = 0;
+                                            conta = 0;
+                                            contaa = 0;
+                                            posInicial.Clear();
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            continue;
+                                        }
                                     }
+
                                 }
                             }
                             else
@@ -856,91 +1067,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             }
 
                         }
-                        else
-                        {
-                            continue;
-                        }
 
                     }
-                    else
-                    {
-                        int pos = i;
-                        acumulador += frecEsperadas[i];
-                        conta += cont[i];
-                        if (i != cantIntervalos - 1)
-                        {
-                            for (int f = pos + 1; f < cantIntervalos; f++)
-                            {
-                                int pos2 = f - 1;
-                                pos2Ini.Add(pos2);
-                                acumulador2 += frecEsperadas[f];
-                                contaa += cont[f];
-                                if (acumulador2 >= 5)
-                                {
-                                    if (f == cantIntervalos - 1)
-                                    {
-
-                                        V1chi.Add(V1[i]);
-                                        V2chi.Add(V2[i]);
-
-                                        V1chi.Add(V1[posInicial[0]]);
-                                        V2chi.Add(V2[pos2Ini[0]]);
-
-                                        frecEsperadas2.Add(acumulador);
-                                        cont2.Add(conta);
-                                        acumulador = 0;
-                                        acumulador2 = 0;
-                                        conta = 0;
-                                        contaa = 0;
-                                        posInicial.Clear();
-                                        pos2Ini.Clear();
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        continue;
-                                    }
-
-                                }
-                                else
-                                {
-                                    if (f == cantIntervalos - 1)
-                                    {
-                                        V1chi.Add(V1[posInicial[0]]);
-                                        V2chi.Add(V2[cantIntervalos - 1]);
-                                        frecEsperadas2.Add(acumulador + acumulador2);
-                                        cont2.Add(conta + contaa);
-                                        acumulador = 0;
-                                        acumulador2 = 0;
-                                        conta = 0;
-                                        contaa = 0;
-                                        posInicial.Clear();
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                            }
-                        }
-                        else
-                        {
-                            V1chi.Add(V1[posInicial[0]]);
-                            V2chi.Add(V2[posInicial[0]]);
-                            frecEsperadas2.Add(acumulador);
-                            cont2.Add(conta);
-                            acumulador = 0;
-                            acumulador2 = 0;
-                            conta = 0;
-                            contaa = 0;
-                            posInicial.Clear();
-                            break;
-                        }
-
-                    }
-
                 }
 
                 for (int i = 0; i < frecEsperadas2.Count; i++)
@@ -980,58 +1108,66 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             {
                 DgvKs.Rows.Clear();
                 DgvKs.Visible = true;
-                acum = 0;
+                double acum = 0;
                 double acum2 = 0;
                 double maximo = 0;
                 double n = N;
 
-                for (int i = 0; i < cantIntervalos; i++)
+                if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
-                    var fila = new string[9];
 
-                    double Pfo = cont[i] / n;
-                    acum += Pfo;
-                    double pfe = PfrecEsperadas[i] / n;
-                    acum2 += PfrecEsperadas[i];
-
-                    fila[0] = Math.Round(V1[i], 4).ToString() + " - " + Math.Round(V2[i], 4).ToString();
-                    fila[1] = (cont[i]).ToString();
-                    fila[2] = Math.Round(frecEsperadas[i],4).ToString();
-                    fila[3] = Math.Round(Pfo,4).ToString();
-
-                    fila[4] = Math.Round(PfrecEsperadas[i], 4).ToString();
-                    fila[5] = Math.Round(acum, 4).ToString();
-                    fila[6] = Math.Round(acum2,4).ToString();
-                    double x = Math.Abs(acum - acum2);
-                    fila[7] = Math.Round(x, 4).ToString();
-                    if (i == 0)
-                    {
-                        maximo = x;
-                    }
-                    else
-                    {
-                        if (maximo < x)
-                        {
-                            maximo = x;
-                        }
-                    }
-                    fila[8] = Math.Round(maximo, 4).ToString();
-
-                    DgvKs.Rows.Add(fila);
-                }
-                int[] vector = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
-                double[] ks2 = new double[] { 0.97500, 0.84189, 0.70760, 0.62394, 0.56328, 0.51926, 0.48342, 0.45427, 0.43001, 0.40925, 0.39122, 0.37543, 0.36143, 0.34890, 0.33750, 0.32733, 0.31796, 0.30936, 0.30143, 0.29408, 0.28724, 0.28087, 0.27491, 0.26931, 0.26404, 0.25908, 0.25438, 0.24993, 0.24571, 0.24170 };
-
-                int indiceks1 = Array.IndexOf(vector, Convert.ToInt32(n));
-                if (ks2[indiceks1] >= maximo)
-                {
-                    ResultadoPruebaBondad.Text = "No se rechaza";
                 }
                 else
                 {
-                    ResultadoPruebaBondad.Text = "Se rechaza";
-                }
+                    var cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
 
+                    for (int i = 0; i < cantIntervalos; i++)
+                    {
+                        var fila = new string[9];
+
+                        double Pfo = cont[i] / n;
+                        acum += Pfo;
+                        double pfe = PfrecEsperadas[i] / n;
+                        acum2 += PfrecEsperadas[i];
+
+                        fila[0] = V1[i].ToString() + " - " + V2[i].ToString();
+                        fila[1] = (cont[i]).ToString();
+                        fila[2] = frecEsperadas[i].ToString();
+                        fila[3] = Pfo.ToString();
+
+                        fila[4] = PfrecEsperadas[i].ToString();
+                        fila[5] = acum.ToString();
+                        fila[6] = acum2.ToString();
+                        double x = Math.Abs(acum - acum2);
+                        fila[7] = x.ToString();
+                        if (i == 0)
+                        {
+                            maximo = x;
+                        }
+                        else
+                        {
+                            if (maximo < x)
+                            {
+                                maximo = x;
+                            }
+                        }
+                        fila[8] = maximo.ToString();
+
+                        DgvKs.Rows.Add(fila);
+                    }
+                    int[] vector = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
+                    double[] ks2 = new double[] { 0.97500, 0.84189, 0.70760, 0.62394, 0.56328, 0.51926, 0.48342, 0.45427, 0.43001, 0.40925, 0.39122, 0.37543, 0.36143, 0.34890, 0.33750, 0.32733, 0.31796, 0.30936, 0.30143, 0.29408, 0.28724, 0.28087, 0.27491, 0.26931, 0.26404, 0.25908, 0.25438, 0.24993, 0.24571, 0.24170 };
+
+                    int indiceks1 = Array.IndexOf(vector, Convert.ToInt32(n));
+                    if (ks2[indiceks1] >= maximo)
+                    {
+                        ResultadoPruebaBondad.Text = "No se rechaza";
+                    }
+                    else
+                    {
+                        ResultadoPruebaBondad.Text = "Se rechaza";
+                    }
+                }
             }
         }
 
@@ -1051,7 +1187,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             {
                 MessageBox.Show("¡Solo se permite ingresar números enteros positivos!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
-                return; 
+                return;
             }
         }
 
@@ -1068,7 +1204,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
         private void TxtMedias_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-           
+
 
             if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 45))
             {
@@ -1125,7 +1261,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 TxtMedias.Enabled = true;
                 TxtR.Enabled = true;
             }
-            else if(CbDistribución.SelectedItem.ToString() == "Poisson")
+            else if (CbDistribución.SelectedItem.ToString() == "Poisson")
             {
                 CBCantIntervalos.Enabled = false;
                 TxtA.Enabled = false;
@@ -1170,8 +1306,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void LimpiarGrillas()
         {
-            
             DgvDistribucion.Rows.Clear();
+
             DgvSegundaGrilla.Rows.Clear();
             DgvHistograma.Rows.Clear();
             DgvChi.Visible = false;
