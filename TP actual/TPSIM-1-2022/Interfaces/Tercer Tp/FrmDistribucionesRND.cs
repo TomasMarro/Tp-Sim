@@ -703,9 +703,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 cont.Add(numero2);
             }
 
-            int mayorDeTodos = valor.Max();
-            int menorDeTodos = valor.Min();
-            int cantIntervalosPo = (mayorDeTodos - menorDeTodos) + 1;
+            
 
 
 
@@ -729,6 +727,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 double acum = 0;
                 if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
+                    int mayorDeTodos = valor.Max();
+                    int menorDeTodos = valor.Min();
+                    int cantIntervalosPo = (mayorDeTodos - menorDeTodos) + 1;
 
                     for (int i = 0; i < cantIntervalosPo; i++)
                     {
