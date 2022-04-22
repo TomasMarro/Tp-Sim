@@ -517,10 +517,10 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         }
                     }
                 }
-         
+
                 if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
-                    if(TxtMedias.Text == "")
+                    if (TxtMedias.Text == "")
                     {
                         MessageBox.Show("¡Primero debe ingresar un valor para la media", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
@@ -532,16 +532,22 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         int X = -1;
                         double A = Math.Exp(-Media);
                         List<int> Muestra2 = new List<int>();
-
-                        do
+                        var n = N;
+                        double es = Math.E;
+                        for (int i = 0; i < n; i++)
                         {
-
-                            double U = Math.Round(random.NextDouble(), 4);
-                            P = P * U;
-                            X = X + 1;
-                            Muestra2.Add(X);
-
-                        } while (P >= A);
+                            double p = 1;
+                            int x = -1;
+                            double a = Math.Pow(es, -Media);
+                            do
+                            {
+                                //double u = generarRandom(random);
+                                double u = Math.Round(random.NextDouble(), 4);
+                                p *= u;
+                                x += 1;
+                            } while (p >= a);
+                            Muestra2.Add(x);
+                        }
 
                         for (int i = 0; i < Muestra2.Count; i++)
                         {
@@ -554,58 +560,37 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         int menorDeTodos = Muestra2.Min();
                         int mayorDeTodos = Muestra2.Max();
                         int increm = menorDeTodos;
-                        int cantIntervalos = mayorDeTodos - menorDeTodos;
+                        int cantIntervalos = (mayorDeTodos - menorDeTodos) + 1;
                         int incrementoIntervalo = 1;
                         var cont = new int[cantIntervalos];
 
-                        for (int i = 0; i < cantIntervalos; i++)
-
+                        for (int i = menorDeTodos; i < mayorDeTodos + 1; i++)
                         {
-                            var C = increm + incrementoIntervalo;
-
-                            if (i == cantIntervalos - 1)
-                            {
-                                C = increm + incrementoIntervalo;
-                            }
                             for (int f = 0; f < Muestra2.Count; f++)
                             {
-
-                                if (increm <= Muestra2[f] && Muestra2[f] <= C)
+                                if (Muestra2[f] == i)
                                 {
-                                    cont[i] += 1;
+                                    cont[i - menorDeTodos] += 1;
+
                                 }
+
+
+
                             }
-                            if (i == cantIntervalos - 1)
-                            {
-                                increm = mayorDeTodos;
-                            }
-                            increm += incrementoIntervalo;
+
+
                         }
 
 
-                        var V1 = new double[cantIntervalos];
-                        var V2 = new double[cantIntervalos];
+                        var V1 = new int[cantIntervalos];
+
 
                         for (int i = 0; i < cantIntervalos; i++)
                         {
-                            if (i != 0 && i != cantIntervalos - 1)
-                            {
-                                V1[i] = Math.Round(V2[i - 1], 4);
-                                V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
-                            }
-                            else if (i == cantIntervalos - 1)
-                            {
-                                V1[i] = Math.Round(V2[i - 1], 4);
-                                V2[i] = mayorDeTodos;
-                            }
-                            else
-                            {
-                                V1[i] = menorDeTodos;
-                                V2[i] = Math.Round((V1[i] + incrementoIntervalo), 4);
-                            }
+                            V1[i] = menorDeTodos + i;
                         }
 
-                        var inter = V2;
+
                         var inter1 = V1;
                         var frec = cont;
                         ChartHistograma.Series["Frecuencias"].Points.Clear();
@@ -615,35 +600,55 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                         ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
 
-                        for (int i = 0; i < inter.Length; i++)
+                        for (int i = 0; i < inter1.Length; i++)
                         {
-                            ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter[i].ToString(), frec[i]);
+                            ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter1[i].ToString(), frec[i]);
                         }
 
                         for (int i = 0; i < cont.Length; i++)
                         {
                             var fila = new string[6];
                             fila[0] = V1[i].ToString();
-                            fila[1] = V2[i].ToString();
-                            fila[2] = Math.Round(((V2[i] + V1[i]) / 2), 4).ToString();
+
+                            //fila[2] = Math.Round((V1[i] / 2), 4).ToString();
                             fila[3] = (cont[i]).ToString();
 
                             DgvHistograma.Rows.Add(fila);
 
                         }
+                        for (int i = 0; i < cantIntervalos; i++)
+                        {
+                            var fila = new string[2];
+                            double x = Math.Pow(Media, V1[i]);
+                            double y = Math.Exp(-Media);
+                            double factorial = V1[i];
+                            for (int j = V1[i]-1; j > 0; j--)
+                            {
+                                factorial = factorial * (j );
+                            }
+                        
+                        double acumuladas = ( x * y ) / factorial;
+                        double a = Math.Round(acumuladas * N, 4);
+                        fila[0] = Math.Round((acumuladas), 4).ToString();
+                        fila[1] = a.ToString();
+                        DgvSegundaGrilla.Rows.Add(fila);
+                        }
+                    }
+
+
+
                     }
                 }
             }  
-        }
+        
 
         private void BtnPruebaBondad_Click(object sender, EventArgs e)
         {
             int N = Convert.ToInt32(TxtTamaño.Text);
             var k = Math.Round(Math.Sqrt(N), 0);
-            double eu = Convert.ToDouble(TxtMedias.Text);
-            double lambda = 1 / eu;
-            double R = Convert.ToDouble(TxtR.Text);
-            double DesvStd = R;
+            
+            
+            
 
             List<Double> frecEsperadas = new List<Double>();
             List<Double> PfrecEsperadas = new List<Double>();
@@ -724,6 +729,10 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             }
             if (CbDistribución.SelectedItem.ToString() == "Normal")
             {
+                double R = Convert.ToDouble(TxtR.Text);
+                double DesvStd = R;
+                double eu = Convert.ToDouble(TxtMedias.Text);
+                double lambda = 1 / eu;
                 for (int i = 0; i < cantIntervalos; i++)
                 {
                     double marcaclase = (V1[i] + V2[i]) / 2;
@@ -738,6 +747,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             }
             if (CbDistribución.SelectedItem.ToString() == "Exponencial")
             {
+                double eu = Convert.ToDouble(TxtMedias.Text);
+                double lambda = 1 / eu;
                 for (int i = 0; i < cantIntervalos; i++)
                 {
                     double acumulada = (1 - Math.Exp(-lambda * V2[i])) - (1 - Math.Exp(-lambda * V1[i]));
@@ -863,7 +874,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                     if (f == cantIntervalos - 1)
                                     {
                                         V1chi.Add(V1[i]);
-                                        V2chi.Add(V2[pos2]);
+                                        V2chi.Add(V2[i]);
                                         frecEsperadas2.Add(acumulador);
                                         cont2.Add(conta);
                                         acumulador = 0;
@@ -967,7 +978,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                     double Pfo = cont[i] / n;
                     acum += Pfo;
-                    double pfe =
+                    double pfe = PfrecEsperadas[i] / n;
                     acum2 += PfrecEsperadas[i];
 
                     fila[0] = V1[i].ToString() + " - " + V2[i].ToString();
@@ -1045,12 +1056,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void TxtMedias_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
-            {
-                MessageBox.Show("¡Solo se permite ingresar números enteros positivos!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
+           
         }
 
         private void TxtR_KeyPress(object sender, KeyPressEventArgs e)
