@@ -141,6 +141,7 @@ C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.exe
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.pdb
 C:\Users\maxi1\OneDrive\Escritorio\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Interfaces.Tercer_Tp.FrmGeneradorNumerosAleatorios.resources
+<<<<<<< HEAD
 C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\Tp-Sim\TP actual\TPSIM-1-2022\bin\Debug\TPSIM-1-2022.exe.config
 C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\Tp-Sim\TP actual\TPSIM-1-2022\bin\Debug\TPSIM-1-2022.exe
 C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\Tp-Sim\TP actual\TPSIM-1-2022\bin\Debug\TPSIM-1-2022.pdb
@@ -155,3 +156,18 @@ C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\Tp-Sim\TP actual\TPSIM-1-2022
 C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.CoreCompileInputs.cache
 C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.exe
 C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.pdb
+=======
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\bin\Debug\TPSIM-1-2022.exe.config
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\bin\Debug\TPSIM-1-2022.exe
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\bin\Debug\TPSIM-1-2022.pdb
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.AssemblyReference.cache
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.ResolveComReference.cache
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Interfaces.MenuPrincipal.resources
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Interfaces.Tercer_Tp.FrmGeneradorNumerosAleatorios.resources
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Interfaces.Tercer_Tp.FrmNrsRND.resources
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM_1_2022.Properties.Resources.resources
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.GenerateResource.cache
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.csproj.CoreCompileInputs.cache
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.exe
+C:\Users\santi\OneDrive\Desktop\SIM\TP SIM\Tp-Sim\TP actual\TPSIM-1-2022\obj\Debug\TPSIM-1-2022.pdb
+>>>>>>> b3f9df803e7c76d8c568f7fef8ada539d01d0158
