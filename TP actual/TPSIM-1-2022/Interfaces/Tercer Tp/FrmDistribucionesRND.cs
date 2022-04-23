@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -73,6 +74,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             {
                 int N = Convert.ToInt32(TxtTamaño.Text);
                 GlobalData.Muestra = new double[N];
+                
                 for (int i = 0; i < N; i++)
                 {
                     GlobalData.Muestra[i] = Math.Round(random.NextDouble(), 4);
@@ -83,7 +85,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                     fila[0] = (i + 1).ToString();
                     fila[1] = GlobalData.Muestra[i].ToString();
 
-
                     DgvDatos.Rows.Add(fila);
 
                 }
@@ -93,6 +94,33 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
         private void BtnGenerarDistribucion_Click(object sender, EventArgs e)
         {
             LimpiarGrillas();
+            string txtMedia = TxtMedias.Text;
+            string txtA = TxtA.Text;
+            string txtB = TxtB.Text;
+            string txtR = TxtR.Text;
+            List<string> txts = new List<string>();
+            txts.Add(txtMedia);
+            txts.Add(txtA);
+            txts.Add(txtB);
+            txts.Add(txtR);
+            int acumuladorComas = 0;
+            for (int i = 0; i < txts.Count; i++)
+            {
+                for (int j = 0; j < txts[i].Length; j++)
+                {
+                    if (txts[i].Substring(j, 1) == ",")
+                    {
+                        acumuladorComas += 1;
+                        if (acumuladorComas > 1)
+                        {
+                            MessageBox.Show("Debe ingresar solo una coma", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
+                acumuladorComas = 0;
+            }
+                
             ResultadoPruebaBondad.Text = "";
             if (CbDistribución.SelectedItem.ToString() == "Seleccionar")
             {
@@ -116,6 +144,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 if (CbDistribución.SelectedItem.ToString() == "Uniforme")
                 {
+                    DgvPo.Visible = false;
+                    DgvHistograma.Visible = true;
                     if (TxtA.Text == "" || TxtB.Text == "")
                     {
                         MessageBox.Show("¡Primero debe seleccionar un rango para la distribución uniforme ingresando valores para A y B!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -137,18 +167,21 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         {
                             var filas = new string[2];
                             filas[0] = (i + 1).ToString();
-                            filas[1] = Muestra2[i].ToString();
+                            filas[1] = Math.Round(Muestra2[i], 4).ToString();
 
 
                             DgvDistribucion.Rows.Add(filas);
 
                         }
+
                         var menorDeTodos = Muestra2.Min();
                         var mayorDeTodos = Muestra2.Max();
                         double increm = menorDeTodos;
                         var cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
                         var incrementoIntervalo = Math.Round((mayorDeTodos - menorDeTodos) / cantIntervalos, 4);
                         var cont = new int[cantIntervalos];
+
+                        // Contar las frecuencias obtenidas
 
                         for (int i = 0; i < cantIntervalos; i++)
 
@@ -174,7 +207,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             increm += incrementoIntervalo;
                         }
 
-
                         var V1 = new double[cantIntervalos];
                         var V2 = new double[cantIntervalos];
 
@@ -199,6 +231,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         double[] inter = V2;
                         double[] inter1 = V1;
                         int[] frec = cont;
+
                         ChartHistograma.Series["Frecuencias"].Points.Clear();
                         ChartHistograma.Titles.Clear();
                         ChartHistograma.Titles.Add("Histograma");
@@ -236,6 +269,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 if (CbDistribución.SelectedItem.ToString() == "Exponencial")
                 {
+                    DgvPo.Visible = false;
+                    DgvHistograma.Visible = true;
                     if (TxtMedias.Text == "")
                     {
                         MessageBox.Show("¡Primero debe ingresar un valor de la media  ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -265,7 +300,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         {
                             var fila = new string[2];
                             fila[0] = (i + 1).ToString();
-                            fila[1] = Muestra2[i].ToString();
+                            fila[1] = Math.Round(Muestra2[i], 4).ToString();
 
                             DgvDistribucion.Rows.Add(fila);
                         }
@@ -351,10 +386,10 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             DgvHistograma.Rows.Add(fila);
 
                         }
+
                         for (int i = 0; i < cantIntervalos; i++)
                         {
                             var fila = new string[2];
-
                             acumulada = (1 - Math.Exp(-lambda * V2[i])) - (1 - Math.Exp(-lambda * V1[i]));
                             double a = Math.Round(acumulada * N, 4);
                             fila[0] = Math.Round((acumulada), 4).ToString();
@@ -366,6 +401,8 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 if (CbDistribución.SelectedItem.ToString() == "Normal")
                 {
+                    DgvPo.Visible = false;
+                    DgvHistograma.Visible = true;
                     if (TxtMedias.Text == "" || TxtR.Text == "")
                     {
                         MessageBox.Show("¡Primero debe ingresar un valor para la media y para la desviación estandar ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -385,8 +422,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             }
                             var lambda = Convert.ToDouble(TxtMedias.Text);
 
-
-
                             // Aca transforma los NrosRND en RND con distribucion normal
                             var Muestra2 = new double[MuestraE.Count];
                             for (int i = 0; i < GlobalData.Muestra.Length; i = i + 2)
@@ -405,7 +440,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             {
                                 var fila = new string[2];
                                 fila[0] = (i + 1).ToString();
-                                fila[1] = Muestra2[i].ToString();
+                                fila[1] = Math.Round(Muestra2[i], 4).ToString();
 
                                 DgvDistribucion.Rows.Add(fila);
                             }
@@ -517,8 +552,10 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
+                    DgvHistograma.Visible = false;
                     DgvPo.Visible = true;
-                    if (TxtMedias.Text == "")
+                   
+                    if (TxtMedias.Text == "" )
                     {
                         MessageBox.Show("¡Primero debe ingresar un valor para la media", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
@@ -547,7 +584,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             Muestra2.Add(x);
                         }
 
-
                         for (int i = 0; i < Muestra2.Count; i++)
                         {
                             var fila = new string[2];
@@ -556,6 +592,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                             DgvDistribucion.Rows.Add(fila);
                         }
+
                         int menorDeTodos = Muestra2.Min();
                         int mayorDeTodos = Muestra2.Max();
                         int increm = menorDeTodos;
@@ -570,38 +607,27 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                                 if (Muestra2[f] == i)
                                 {
                                     cont[i - menorDeTodos] += 1;
-
                                 }
-
-
-
                             }
-
-
                         }
 
-
                         var V1 = new int[cantIntervalos];
-
 
                         for (int i = 0; i < cantIntervalos; i++)
                         {
                             V1[i] = menorDeTodos + i;
                         }
 
-
                         var inter1 = V1;
                         var frec = cont;
                         ChartHistograma.Series["Frecuencias"].Points.Clear();
                         ChartHistograma.Titles.Clear();
                         ChartHistograma.Titles.Add("Histograma");
-
-
                         ChartHistograma.Series["Frecuencias"]["PointWidth"] = "0.5";
 
                         for (int i = 0; i < inter1.Length; i++)
                         {
-                            ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString() + " - " + inter1[i].ToString(), frec[i]);
+                            ChartHistograma.Series["Frecuencias"].Points.AddXY(inter1[i].ToString(), frec[i]);
                         }
 
                         for (int i = 0; i < cont.Length; i++)
@@ -615,15 +641,23 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             DgvPo.Rows.Add(fila);
 
                         }
+                     
                         for (int i = 0; i < cantIntervalos; i++)
                         {
                             var fila = new string[2];
                             double x = Math.Pow(Media, V1[i]);
                             double y = Math.Exp(-Media);
                             double factorial = V1[i];
-                            for (int j = V1[i] - 1; j > 0; j--)
+                            if (V1[i] == 0)
                             {
-                                factorial = factorial * (j);
+                                factorial = 1;
+                            }
+                            else
+                            {
+                                for (int j = V1[i] - 1; j > 0; j--)
+                                {
+                                    factorial = factorial * (j);
+                                }
                             }
 
                             double acumuladas = (x * y) / factorial;
@@ -633,18 +667,32 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                             DgvSegundaGrilla.Rows.Add(fila);
                         }
                     }
-
-
-
                 }
             }
         }
-
 
         private void BtnPruebaBondad_Click(object sender, EventArgs e)
         {
             int N = Convert.ToInt32(TxtTamaño.Text);
             var k = Math.Round(Math.Sqrt(N), 0);
+            int m = 0;
+
+            if(CbDistribución.SelectedItem.ToString() == "Poisson")
+            {
+                m = 1;
+            }
+            else if(CbDistribución.SelectedItem.ToString() == "Normal")
+            {
+                m = 2;
+            }
+            else if(CbDistribución.SelectedItem.ToString() == "Uniforme")
+            {
+                m = 0;
+            }
+            else if(CbDistribución.SelectedItem.ToString() == "Exponencial")
+            {
+                m = 1;
+            }
 
 
             List<Double> frecEsperadas = new List<Double>();
@@ -652,18 +700,11 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             List<Double> ListaRandom = new List<Double>();
             List<Double> cont = new List<Double>();
 
-
-
             foreach (DataGridViewRow row in DgvDistribucion.Rows)
             {
                 double numero = Convert.ToDouble((row.Cells["RND"].Value.ToString()));
                 ListaRandom.Add(numero);
             }
-
-
-
-
-
 
             foreach (DataGridViewRow row in DgvSegundaGrilla.Rows)
             {
@@ -672,7 +713,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 frecEsperadas.Add(numero);
                 PfrecEsperadas.Add(numero2);
             }
-
 
             List<Double> V1 = new List<Double>();
             List<Double> V2 = new List<Double>();
@@ -686,8 +726,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 V2.Add(numero2);
             }
 
-
-
             List<int> valor = new List<int>();
             foreach (DataGridViewRow row in DgvPo.Rows)
             {
@@ -696,11 +734,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 valor.Add(numero);
                 cont.Add(numero2);
             }
-
-            
-
-
-
 
             if (N > 30)
             {
@@ -898,7 +931,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 {
                     var cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
 
-
                     for (int i = 0; i < cantIntervalos; i++)
                     {
                         posInicial.Add(i);
@@ -1086,7 +1118,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                     DgvChi.Rows.Add(fila);
                 }
-                int v = Convert.ToInt32(k) - 1;
+                int v = Convert.ToInt32(k) - 1 - m;
                 int[] chi1 = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 40, 50, 60, 70, 80, 90, 100 };
                 double[] chi2 = new double[] { 3.84, 5.99, 7.81, 9.49, 11.1, 12.6, 14.1, 15.5, 16.9, 18.3, 19.7, 21, 22.4, 23.7, 25, 26.3, 27.6, 28.9, 30.1, 31.4, 32.7, 33.9, 35.2, 36.4, 37.7, 38.9, 40.1, 41.3, 42.6, 43.8, 55.8, 67.5, 79.1, 90.5, 101.9, 113.1, 124.3 };
                 int indicechi1 = Array.IndexOf(chi1, v);
@@ -1103,7 +1135,6 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 {
                     ResultadoPruebaBondad.Text = "Se rechaza";
                 }
-
             }
             else
             {
@@ -1116,6 +1147,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
                 if (CbDistribución.SelectedItem.ToString() == "Poisson")
                 {
+                    DgvKs.Columns[0].HeaderText = "Valores";
                     int mayorDeTodos = valor.Max();
                     int menorDeTodos = valor.Min();
                     int cantIntervalosPo = (mayorDeTodos - menorDeTodos) + 1;
@@ -1132,12 +1164,11 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         fila[0] = valor[i].ToString();
                         fila[1] = (cont[i]).ToString();
                         fila[2] = frecEsperadas[i].ToString();
-                        fila[3] = Pfo.ToString();
-
+                        fila[3] = Math.Round(Pfo, 4).ToString();
                         fila[4] = PfrecEsperadas[i].ToString();
-                        fila[5] = acum.ToString();
+                        fila[5] = Math.Round(acum, 4).ToString();
                         fila[6] = acum2.ToString();
-                        double x = Math.Abs(acum - acum2);
+                        double x = Math.Round(Math.Abs(acum - acum2),4);
                         fila[7] = Math.Round(x, 4).ToString();
                         if (i == 0)
                         {
@@ -1157,6 +1188,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                 }
                 else
                 {
+                    DgvKs.Columns[0].HeaderText = "Intérvalos";
                     var cantIntervalos = Convert.ToInt32(CBCantIntervalos.SelectedItem);
 
                     for (int i = 0; i < cantIntervalos; i++)
@@ -1171,13 +1203,12 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                         fila[0] = V1[i].ToString() + " - " + V2[i].ToString();
                         fila[1] = (cont[i]).ToString();
                         fila[2] = frecEsperadas[i].ToString();
-                        fila[3] = Pfo.ToString();
-
+                        fila[3] = Math.Round(Pfo, 4).ToString();
                         fila[4] = PfrecEsperadas[i].ToString();
-                        fila[5] = acum.ToString();
+                        fila[5] = Math.Round(acum, 4).ToString();
                         fila[6] = acum2.ToString();
-                        double x = Math.Abs(acum - acum2);
-                        fila[7] = x.ToString();
+                        double x = Math.Round(Math.Abs(acum - acum2), 4);
+                        fila[7] = Math.Round(x, 4).ToString();
                         if (i == 0)
                         {
                             maximo = x;
@@ -1195,6 +1226,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
                     }
                     
                 }
+                
                 int[] vector = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
                 double[] ks2 = new double[] { 0.97500, 0.84189, 0.70760, 0.62394, 0.56328, 0.51926, 0.48342, 0.45427, 0.43001, 0.40925, 0.39122, 0.37543, 0.36143, 0.34890, 0.33750, 0.32733, 0.31796, 0.30936, 0.30143, 0.29408, 0.28724, 0.28087, 0.27491, 0.26931, 0.26404, 0.25908, 0.25438, 0.24993, 0.24571, 0.24170 };
 
@@ -1232,9 +1264,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void TxtA_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 45))
+            if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 46))
             {
-                MessageBox.Show("¡Solo se permite ingresar números enteros positivos!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("¡Solo se permite ingresar números enteros!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }
@@ -1242,21 +1274,29 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void TxtMedias_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-
-
-            if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 45))
+            if (CbDistribución.SelectedItem.ToString() == "Poisson" || CbDistribución.SelectedItem.ToString() == "Exponencial")
             {
-                MessageBox.Show("¡Solo se permite ingresar números enteros positivos!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
+                if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 45) || (e.KeyChar == 46))
+                {
+                    MessageBox.Show("¡Solo se permite ingresar números enteros positivos!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    e.Handled = true;
+                    return;
+                }
             }
-
+            else
+            {
+                if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255 ) || (e.KeyChar == 46))
+                {
+                    MessageBox.Show("¡Solo se permite ingresar números enteros!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    e.Handled = true;
+                    return;
+                }
+            }
         }
 
         private void TxtR_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 45))
+            if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 45) || (e.KeyChar == 46))
             {
                 MessageBox.Show("¡Solo se permite ingresar números enteros positivos!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
@@ -1266,9 +1306,9 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
 
         private void TxtB_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 45))
+            if ((e.KeyChar >= 32 && e.KeyChar <= 43) || (e.KeyChar >= 58 && e.KeyChar <= 255) || (e.KeyChar == 46))
             {
-                MessageBox.Show("¡Solo se permite ingresar números enteros positivos!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("¡Solo se permite ingresar números enteros!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }
@@ -1281,6 +1321,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             PonerEnBlancoPanelDistribución();
             if (CbDistribución.SelectedItem.ToString() == "Uniforme")
             {
+                CBCantIntervalos.Enabled = true;
                 TxtA.Enabled = true;
                 TxtB.Enabled = true;
                 TxtMedias.Enabled = false;
@@ -1288,6 +1329,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             }
             else if (CbDistribución.SelectedItem.ToString() == "Exponencial")
             {
+                CBCantIntervalos.Enabled = true;
                 TxtA.Enabled = false;
                 TxtB.Enabled = false;
                 TxtMedias.Enabled = true;
@@ -1295,6 +1337,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             }
             else if (CbDistribución.SelectedItem.ToString() == "Normal")
             {
+                CBCantIntervalos.Enabled = true;
                 TxtA.Enabled = false;
                 TxtB.Enabled = false;
                 TxtMedias.Enabled = true;
@@ -1303,6 +1346,7 @@ namespace TPSIM_1_2022.Interfaces.Tercer_Tp
             else if (CbDistribución.SelectedItem.ToString() == "Poisson")
             {
                 CBCantIntervalos.Enabled = false;
+                CBCantIntervalos.SelectedItem = "Seleccionar";
                 TxtA.Enabled = false;
                 TxtB.Enabled = false;
                 TxtMedias.Enabled = true;

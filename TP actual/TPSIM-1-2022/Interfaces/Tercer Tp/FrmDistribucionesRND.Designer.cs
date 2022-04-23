@@ -80,8 +80,8 @@
             this.LblB = new System.Windows.Forms.Label();
             this.LblMedias = new System.Windows.Forms.Label();
             this.LblA = new System.Windows.Forms.Label();
-            this.CbDistribución = new System.Windows.Forms.ComboBox();
             this.LblDistribucion = new System.Windows.Forms.Label();
+            this.CbDistribución = new System.Windows.Forms.ComboBox();
             this.BtnLimpiarGrillas = new System.Windows.Forms.Button();
             this.LblTamaño = new System.Windows.Forms.Label();
             this.TxtTamaño = new System.Windows.Forms.TextBox();
@@ -335,6 +335,17 @@
             this.LblA.TabIndex = 125;
             this.LblA.Text = "A:";
             // 
+            // LblDistribucion
+            // 
+            this.LblDistribucion.AutoSize = true;
+            this.LblDistribucion.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.LblDistribucion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.LblDistribucion.Location = new System.Drawing.Point(9, 9);
+            this.LblDistribucion.Name = "LblDistribucion";
+            this.LblDistribucion.Size = new System.Drawing.Size(195, 23);
+            this.LblDistribucion.TabIndex = 121;
+            this.LblDistribucion.Text = "Tipo de distribución:";
+            // 
             // CbDistribución
             // 
             this.CbDistribución.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -349,17 +360,6 @@
             this.CbDistribución.Size = new System.Drawing.Size(136, 29);
             this.CbDistribución.TabIndex = 122;
             this.CbDistribución.SelectionChangeCommitted += new System.EventHandler(this.CbDistribución_SelectionChangeCommitted);
-            // 
-            // LblDistribucion
-            // 
-            this.LblDistribucion.AutoSize = true;
-            this.LblDistribucion.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.LblDistribucion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.LblDistribucion.Location = new System.Drawing.Point(9, 9);
-            this.LblDistribucion.Name = "LblDistribucion";
-            this.LblDistribucion.Size = new System.Drawing.Size(195, 23);
-            this.LblDistribucion.TabIndex = 121;
-            this.LblDistribucion.Text = "Tipo de distribución:";
             // 
             // BtnLimpiarGrillas
             // 
@@ -641,10 +641,11 @@
             this.Hasta,
             this.MarcasDC,
             this.Frec});
-            this.DgvHistograma.Location = new System.Drawing.Point(12, 367);
+            this.DgvHistograma.Location = new System.Drawing.Point(8, 367);
             this.DgvHistograma.Name = "DgvHistograma";
-            this.DgvHistograma.Size = new System.Drawing.Size(375, 306);
+            this.DgvHistograma.Size = new System.Drawing.Size(379, 306);
             this.DgvHistograma.TabIndex = 127;
+            this.DgvHistograma.Visible = false;
             // 
             // Desde
             // 
@@ -896,7 +897,6 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1474, 679);
             this.Controls.Add(this.DgvKs);
-            this.Controls.Add(this.DgvPo);
             this.Controls.Add(this.DgvDatos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.DgvDistribucion);
@@ -906,6 +906,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.DgvHistograma);
             this.Controls.Add(this.DgvChi);
+            this.Controls.Add(this.DgvPo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmNrsRND";
             this.Text = "Generador de numeros aleatorios con distribución";
