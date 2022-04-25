@@ -1,0 +1,11 @@
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\bin\Debug\TP4.exe.config
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\bin\Debug\TP4.exe
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\bin\Debug\TP4.pdb
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.csproj.AssemblyReference.cache
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.csproj.SuggestedBindingRedirects.cache
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.Principal.resources
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.Properties.Resources.resources
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.csproj.GenerateResource.cache
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.csproj.CoreCompileInputs.cache
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.exe
+C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.pdb
