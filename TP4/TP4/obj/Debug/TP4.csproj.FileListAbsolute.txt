@@ -9,3 +9,14 @@ C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.csproj.GenerateResource
 C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.csproj.CoreCompileInputs.cache
 C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.exe
 C:\Users\maxi1\OneDrive\Escritorio\TP4\TP4\obj\Debug\TP4.pdb
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\obj\Debug\TP4.csproj.AssemblyReference.cache
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\obj\Debug\TP4.csproj.SuggestedBindingRedirects.cache
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\obj\Debug\TP4.Principal.resources
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\obj\Debug\TP4.Properties.Resources.resources
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\obj\Debug\TP4.csproj.GenerateResource.cache
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\obj\Debug\TP4.csproj.CoreCompileInputs.cache
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\obj\Debug\TP4.exe
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\obj\Debug\TP4.pdb
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\bin\Debug\TP4.exe.config
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\bin\Debug\TP4.exe
+C:\Users\tomas\Downloads\SIM\Tp actualisimo\Tp-Sim\TP4\TP4\bin\Debug\TP4.pdb

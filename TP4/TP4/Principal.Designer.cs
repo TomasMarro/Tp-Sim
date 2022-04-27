@@ -78,7 +78,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.TxtHasta = new System.Windows.Forms.TextBox();
             this.LblHasta = new System.Windows.Forms.Label();
-            this.BtnVer = new System.Windows.Forms.Button();
             this.LblVisualización = new System.Windows.Forms.Label();
             this.DgvTabla2Filas = new System.Windows.Forms.DataGridView();
             this.Iteracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,6 +110,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.TxtResultado = new System.Windows.Forms.TextBox();
             this.LblResultado = new System.Windows.Forms.Label();
+            this.BtnVer = new System.Windows.Forms.Button();
             this.PanelEntry.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2Filas)).BeginInit();
@@ -296,6 +296,7 @@
             this.TxtIteraciones.Size = new System.Drawing.Size(74, 27);
             this.TxtIteraciones.TabIndex = 0;
             this.TxtIteraciones.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtIteraciones.TextChanged += new System.EventHandler(this.TxtIteraciones_TextChanged);
             this.TxtIteraciones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIteraciones_KeyPress);
             // 
             // LblDesde
@@ -350,18 +351,6 @@
             this.LblHasta.Size = new System.Drawing.Size(68, 23);
             this.LblHasta.TabIndex = 18;
             this.LblHasta.Text = "Hasta:";
-            // 
-            // BtnVer
-            // 
-            this.BtnVer.BackColor = System.Drawing.SystemColors.Window;
-            this.BtnVer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnVer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVer.Location = new System.Drawing.Point(74, 122);
-            this.BtnVer.Name = "BtnVer";
-            this.BtnVer.Size = new System.Drawing.Size(135, 39);
-            this.BtnVer.TabIndex = 17;
-            this.BtnVer.Text = "Ver";
-            this.BtnVer.UseVisualStyleBackColor = false;
             // 
             // LblVisualización
             // 
@@ -733,6 +722,18 @@
             this.LblResultado.TabIndex = 17;
             this.LblResultado.Text = "Costo promedio por mes:";
             // 
+            // BtnVer
+            // 
+            this.BtnVer.BackColor = System.Drawing.SystemColors.Window;
+            this.BtnVer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVer.Location = new System.Drawing.Point(74, 122);
+            this.BtnVer.Name = "BtnVer";
+            this.BtnVer.Size = new System.Drawing.Size(135, 39);
+            this.BtnVer.TabIndex = 17;
+            this.BtnVer.Text = "Ver";
+            this.BtnVer.UseVisualStyleBackColor = false;
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -782,7 +783,6 @@
         private System.Windows.Forms.TextBox TxtIteraciones;
         private System.Windows.Forms.Label LblParametros;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button BtnVer;
         private System.Windows.Forms.Label LblVisualización;
         private System.Windows.Forms.TextBox TxtHasta;
         private System.Windows.Forms.Label LblHasta;
@@ -817,6 +817,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox TxtResultado;
         private System.Windows.Forms.Label LblResultado;
+        private System.Windows.Forms.Button BtnVer;
     }
 }
 
