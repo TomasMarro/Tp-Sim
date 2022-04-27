@@ -93,6 +93,11 @@ namespace TP4
             bool BanderaPedido = false;
             int stock = Convert.ToInt32(L1[7]);
 
+            int Demora = 0;
+            double RND2 = 0;
+            int LlegadaPedidos = 0;
+            bool banderaDemora = false;
+
 
 
 
@@ -142,13 +147,16 @@ namespace TP4
                     DgvTabla2Filas.Rows.Add(filass);
                 }
 
+                if (i == (LlegadaPedidos - 1) && i != 0)
+                {
+                    stock += Q;
+                    BanderaPedido = false;
+                    banderaDemora = false;
+                }
 
-                
                 if (stock - Demandas <= 0)
                 {
                     stock = 0;
-
-
                 }
                 else
                 {
@@ -156,39 +164,46 @@ namespace TP4
                 }
                 
                 bool ReposiciondeStock = ControlStock(stock);
-                
 
 
-                if (ReposiciondeStock)
-                {
-                    double RND2 = Math.Round(random.NextDouble(), 4);
-                    int Demora = PlazoDeEntrega(V1Plazo, V2Plazo,PlazoEntrega, RND2);
-                    int LlegadaPedidos = Iteracion + Demora;
-                    if (BanderaPedido)
-                    {
-                        BanderaStock = true;
-                    }
-                    
-                    BanderaPedido = true;
-                }
 
-                if (i == LlegadaPedidos)
-                {
-                    stock += Q;
-                }
 
 
                 var filas = new string[13];
+                if (ReposiciondeStock && BanderaPedido == false && banderaDemora == false)
+                {
+                    RND2 = Math.Round(random.NextDouble(), 4);
+                    Demora = PlazoDeEntrega(V1Plazo, V2Plazo, PlazoEntrega, RND2);
+                    LlegadaPedidos = Iteracion + Demora;
+                    banderaDemora = true;
+                    BanderaPedido = true;
+                    BanderaStock = true;
+
+
+                    
+                }
+                if (BanderaPedido == true)
+                {
+                    filas[3] = RND2.ToString();
+                    filas[4] = Demora.ToString();
+                    BanderaPedido = false;
+                }
+                else
+                {
+                    filas[3] = "-";
+                    filas[4] = "-";
+                }
                 filas[0] = Iteracion.ToString();
                 filas[1] = RND.ToString();
                 filas[2] = Demandas.ToString();
+                filas[6] = LlegadaPedidos.ToString();
                 filas[7] = stock.ToString();
 
                 if (BanderaStock)
                   {
                          
                    filas[8] = Ko.ToString();
-                    BanderaStock = false;
+                   BanderaStock = false;
 
                 }
 
