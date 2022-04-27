@@ -59,10 +59,8 @@ namespace TP4
             DgvTabla400Filas.Rows.Clear();
         }
 
-        private void BtnGenerar_Click(object sender, EventArgs e)
+        private void Calculador()
         {
-            
-
             Random myObject = new Random();
             var random = new Random();
 
@@ -77,7 +75,7 @@ namespace TP4
 
             var V1Ventas = new double[] { 0, 0.0833, 0.1944, 0.3611, 0.6944, 0.9444, 0.9722 };
             var V2Ventas = new double[] { 0.0832, 0.1943, 0.3610, 0.6943, 0.9443, 0.9721, 0.9999 };
-            var NrosVentas = new int[]  { 6, 7, 8, 9, 10, 11, 12 };
+            var NrosVentas = new int[] { 6, 7, 8, 9, 10, 11, 12 };
 
 
 
@@ -97,7 +95,18 @@ namespace TP4
             double RND2 = 0;
             int LlegadaPedidos = 0;
             bool banderaDemora = false;
+            int costoAC = 0;
 
+            int desde = 0;
+            if (TxtDesde.Text == "")
+            {
+                desde = 0;
+            }
+            else
+            {
+                desde = Convert.ToInt32(TxtDesde.Text);
+            }
+            TxtHasta.Text = (desde + 400).ToString();
 
 
 
@@ -105,47 +114,22 @@ namespace TP4
             for (int i = 0; i < N; i++)
             {
                 double RND = Math.Round(random.NextDouble(), 4);
-                int Iteracion = i+1;
-                int Demandas = Demanda(V1Ventas,V2Ventas,NrosVentas,RND);
-
-                
-                
+                int Iteracion = i + 1;
+                int Demandas = Demanda(V1Ventas, V2Ventas, NrosVentas, RND);
 
 
 
-                if (i == 0)
+                if (i == (N - 1) || i == (N - 2))
                 {
-                    string fil = "";
-                    var filasas = new string[13];
-                    for (int j = 0; j < L1.Length; j++)
-                    {
-
-                        if (L1[j] == 0)
-                        {
-                            fil = "-";
-                        }
-                        else
-                        {
-                            fil = L1[j].ToString();
-                        }
-                        
-                        filasas[j] = fil;
-                    }
-                    DgvTabla400Filas.Rows.Add(filasas);
-
-                }
-
-
-
-                if (i == (N - 1) || i == (N - 2 ))
-                {
-                     var filass = new string[13];
+                    var filass = new string[13];
                     filass[0] = Iteracion.ToString();
                     filass[1] = RND.ToString();
                     filass[2] = Demandas.ToString();
 
                     DgvTabla2Filas.Rows.Add(filass);
                 }
+
+
 
                 if (i == (LlegadaPedidos - 1) && i != 0)
                 {
@@ -162,12 +146,8 @@ namespace TP4
                 {
                     stock -= Demandas;
                 }
-                
+
                 bool ReposiciondeStock = ControlStock(stock);
-
-
-
-
 
                 var filas = new string[13];
                 if (ReposiciondeStock && BanderaPedido == false && banderaDemora == false)
@@ -180,45 +160,89 @@ namespace TP4
                     BanderaStock = true;
 
 
-                    
+
                 }
                 if (BanderaPedido == true)
                 {
                     filas[3] = RND2.ToString();
                     filas[4] = Demora.ToString();
+                    filas[5] = 20.ToString();
                     BanderaPedido = false;
                 }
                 else
                 {
                     filas[3] = "-";
                     filas[4] = "-";
+                    filas[5] = "-";
                 }
                 filas[0] = Iteracion.ToString();
                 filas[1] = RND.ToString();
                 filas[2] = Demandas.ToString();
                 filas[6] = LlegadaPedidos.ToString();
                 filas[7] = stock.ToString();
+                if (stock == 0)
+                {
+                    filas[10] = Ks.ToString();
+                    filas[9] = 0.ToString();
+                }
+                else
+                {
+                    filas[10] = 0.ToString();
+                    filas[9] = (Km * stock).ToString();
+                }
+
 
                 if (BanderaStock)
-                  {
-                         
-                   filas[8] = Ko.ToString();
-                   BanderaStock = false;
+                {
+
+                    filas[8] = Ko.ToString();
+                    BanderaStock = false;
+                }
+                else
+                {
+                    filas[8] = 0.ToString();
+                }
+                filas[11] = (Convert.ToInt32(filas[8]) + Convert.ToInt32(filas[9]) + Convert.ToInt32(filas[10])).ToString();
+                costoAC += Convert.ToInt32(filas[11]);
+                filas[12] = costoAC.ToString();
+
+                if (Iteracion >= desde && Iteracion <= desde + 400)
+                {
+                    if (desde == 0 && Iteracion == 1)
+                    {
+                        string fil = "";
+                        var filasas = new string[13];
+                        for (int j = 0; j < L1.Length; j++)
+                        {
+
+                            if (L1[j] == 0)
+                            {
+                                fil = "-";
+                            }
+                            else
+                            {
+                                fil = L1[j].ToString();
+                            }
+
+                            filasas[j] = fil;
+                        }
+                        DgvTabla400Filas.Rows.Add(filasas);
+                        DgvTabla400Filas.Rows.Add(filas);
+
+                    }
+                    else
+                    {
+                        DgvTabla400Filas.Rows.Add(filas);
+                    }
 
                 }
 
-                    DgvTabla400Filas.Rows.Add(filas);
 
-                
 
 
             }
-
-
-
-
-            int Demanda(double[] V1, double[] V2, int[] Ventas, double Ramdoms )
-             {
+            int Demanda(double[] V1, double[] V2, int[] Ventas, double Ramdoms)
+            {
                 int NroVentas = 0;
                 for (int i = 0; i < Ventas.Length; i++)
                 {
@@ -228,7 +252,7 @@ namespace TP4
                     }
                 }
                 return NroVentas;
-             }
+            }
 
             int PlazoDeEntrega(double[] V1, double[] V2, int[] Plazos, double Ramdoms)
             {
@@ -251,11 +275,11 @@ namespace TP4
                 }
                 return false;
             }
-
-
-
-
-
+        }
+        private void BtnGenerar_Click(object sender, EventArgs e)
+        {
+            
+            Calculador();
 
 
         }
