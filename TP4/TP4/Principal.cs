@@ -87,6 +87,11 @@ namespace TP4
             var L1 = new double[] { 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0 };
             var L2 = new double[13];
 
+            List<double[]> listaDeVectores = new List<double[]>();
+
+            listaDeVectores.Add(L1);
+            listaDeVectores.Add(L2);
+
             bool BanderaStock = false;
             bool BanderaPedido = false;
             int stock = Convert.ToInt32(L1[7]);
@@ -119,15 +124,7 @@ namespace TP4
 
 
 
-                if (i == (N - 1) || i == (N - 2))
-                {
-                    var filass = new string[13];
-                    filass[0] = Iteracion.ToString();
-                    filass[1] = RND.ToString();
-                    filass[2] = Demandas.ToString();
-
-                    DgvTabla2Filas.Rows.Add(filass);
-                }
+                
 
 
 
@@ -150,6 +147,9 @@ namespace TP4
                 bool ReposiciondeStock = ControlStock(stock);
 
                 var filas = new string[13];
+
+                
+
                 if (ReposiciondeStock && BanderaPedido == false && banderaDemora == false)
                 {
                     RND2 = Math.Round(random.NextDouble(), 4);
@@ -161,6 +161,37 @@ namespace TP4
 
 
 
+                }
+                if (i == (N - 1) || i == (N - 2))
+                {
+                    var filass = new string[13];
+                    filass[0] = Iteracion.ToString();
+                    filass[1] = RND.ToString();
+                    filass[2] = Demandas.ToString();
+
+                    if (BanderaPedido == true)
+                    {
+                        filass[3] = RND2.ToString();
+                        filass[4] = Demora.ToString();
+                        filass[5] = 20.ToString();
+                        BanderaPedido = false;
+                    }
+                    filass[6] = LlegadaPedidos.ToString();
+                    filass[7] = stock.ToString();
+                    if (stock == 0)
+                    {
+                        filass[10] = Ks.ToString();
+                        filass[9] = 0.ToString();
+                    }
+                    else
+                    {
+                        filass[10] = 0.ToString();
+                        filass[9] = (Km * stock).ToString();
+                    }
+                    filass[11] = (Convert.ToInt32(filas[8]) + Convert.ToInt32(filas[9]) + Convert.ToInt32(filas[10])).ToString();
+                    costoAC += Convert.ToInt32(filas[11]);
+                    filass[12] = costoAC.ToString();
+                    DgvTabla2Filas.Rows.Add(filass);
                 }
                 if (BanderaPedido == true)
                 {
