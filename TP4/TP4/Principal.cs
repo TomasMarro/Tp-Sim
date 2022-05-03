@@ -94,15 +94,21 @@ namespace TP4
 
             bool BanderaStock = false;
             bool BanderaPedido = false;
-            int stock = Convert.ToInt32(L1[7]);
+            double stock = Convert.ToDouble(L1[7]);
 
             int Demora = 0;
             double RND2 = 0;
             int LlegadaPedidos = 0;
             bool banderaDemora = false;
             int costoAC = 0;
-
+            double stockNegativo = 0;
             int desde = 0;
+            int contador = 1;
+            double CostosTotales = 0;
+            double CostoTotalAcum = 0;
+
+
+
             if (TxtDesde.Text == "")
             {
                 desde = 0;
@@ -118,155 +124,199 @@ namespace TP4
 
             for (int i = 0; i < N; i++)
             {
-                double RND = Math.Round(random.NextDouble(), 4);
+                
                 int Iteracion = i + 1;
-                int Demandas = Demanda(V1Ventas, V2Ventas, NrosVentas, RND);
-
-
-
                 
 
 
-
-                if (i == (LlegadaPedidos - 1) && i != 0)
+                if (contador == 0)
                 {
-                    stock += Q;
-                    BanderaPedido = false;
-                    banderaDemora = false;
+                    contador = 1;
+                    
                 }
-
-                if (stock - Demandas <= 0)
-                {
-                    stock = 0;
-                }
-                else
-                {
-                    stock -= Demandas;
-                }
-
-                bool ReposiciondeStock = ControlStock(stock);
-
-                var filas = new string[13];
-
                 
 
-                if (ReposiciondeStock && BanderaPedido == false && banderaDemora == false)
+                
+                if (contador == 1)
                 {
-                    RND2 = Math.Round(random.NextDouble(), 4);
-                    Demora = PlazoDeEntrega(V1Plazo, V2Plazo, PlazoEntrega, RND2);
-                    LlegadaPedidos = Iteracion + Demora;
-                    banderaDemora = true;
-                    BanderaPedido = true;
-                    BanderaStock = true;
+                    contador = 0;
+                    Iteracion = Iteracion;
+                    double RND = Math.Round(random.NextDouble(), 4);
+                    int Demandas = Demanda(V1Ventas, V2Ventas, NrosVentas, RND);
+                    stock = listaDeVectores[0][7];
+                    CostosTotales = listaDeVectores[0][11];
+                    CostoTotalAcum = listaDeVectores[0][12];
 
 
 
-                }
-                if (i == (N - 1) || i == (N - 2))
-                {
-                    var filass = new string[13];
-                    filass[0] = Iteracion.ToString();
-                    filass[1] = RND.ToString();
-                    filass[2] = Demandas.ToString();
-
-                    if (BanderaPedido == true)
+                    if (i == (LlegadaPedidos - 1) && i != 0)
                     {
-                        filass[3] = RND2.ToString();
-                        filass[4] = Demora.ToString();
-                        filass[5] = 20.ToString();
+                        stock += Q;
                         BanderaPedido = false;
+                        banderaDemora = false;
                     }
-                    filass[6] = LlegadaPedidos.ToString();
-                    filass[7] = stock.ToString();
-                    if (stock == 0)
+
+                    if (stock - Demandas <= 0)
                     {
-                        filass[10] = Ks.ToString();
-                        filass[9] = 0.ToString();
+                        stockNegativo = (stock - Demandas) * -1;
+                        stock = 0;
+
                     }
                     else
                     {
-                        filass[10] = 0.ToString();
-                        filass[9] = (Km * stock).ToString();
+                        stock -= Demandas;
                     }
-                    filass[11] = (Convert.ToInt32(filas[8]) + Convert.ToInt32(filas[9]) + Convert.ToInt32(filas[10])).ToString();
-                    costoAC += Convert.ToInt32(filas[11]);
-                    filass[12] = costoAC.ToString();
-                    DgvTabla2Filas.Rows.Add(filass);
-                }
-                if (BanderaPedido == true)
-                {
-                    filas[3] = RND2.ToString();
-                    filas[4] = Demora.ToString();
-                    filas[5] = 20.ToString();
-                    BanderaPedido = false;
-                }
-                else
-                {
-                    filas[3] = "-";
-                    filas[4] = "-";
-                    filas[5] = "-";
-                }
-                filas[0] = Iteracion.ToString();
-                filas[1] = RND.ToString();
-                filas[2] = Demandas.ToString();
-                filas[6] = LlegadaPedidos.ToString();
-                filas[7] = stock.ToString();
-                if (stock == 0)
-                {
-                    filas[10] = Ks.ToString();
-                    filas[9] = 0.ToString();
-                }
-                else
-                {
-                    filas[10] = 0.ToString();
-                    filas[9] = (Km * stock).ToString();
-                }
+
+                    bool ReposiciondeStock = ControlStock(stock);
+
+                    var filas = new string[13];
 
 
-                if (BanderaStock)
-                {
 
-                    filas[8] = Ko.ToString();
-                    BanderaStock = false;
-                }
-                else
-                {
-                    filas[8] = 0.ToString();
-                }
-                filas[11] = (Convert.ToInt32(filas[8]) + Convert.ToInt32(filas[9]) + Convert.ToInt32(filas[10])).ToString();
-                costoAC += Convert.ToInt32(filas[11]);
-                filas[12] = costoAC.ToString();
-
-                if (Iteracion >= desde && Iteracion <= desde + 400)
-                {
-                    if (desde == 0 && Iteracion == 1)
+                    if (ReposiciondeStock && BanderaPedido == false && banderaDemora == false)
                     {
-                        string fil = "";
-                        var filasas = new string[13];
-                        for (int j = 0; j < L1.Length; j++)
+                        RND2 = Math.Round(random.NextDouble(), 4);
+                        Demora = PlazoDeEntrega(V1Plazo, V2Plazo, PlazoEntrega, RND2);
+                        LlegadaPedidos = Iteracion + Demora;
+                        banderaDemora = true;
+                        BanderaPedido = true;
+                        BanderaStock = true;
+
+
+
+                    }
+                    if (i == (N - 1) || i == (N - 2))
+                    {
+                        var filass = new string[13];
+                        filass[0] = Iteracion.ToString();
+                        listaDeVectores[0][0] = Iteracion;
+                        listaDeVectores[0][1] = RND;
+                        listaDeVectores[0][2] = Demandas;
+                        filass[1] = RND.ToString();
+
+                        filass[2] = Demandas.ToString();
+
+                        if (BanderaPedido == true)
+                        {
+                            filass[3] = RND2.ToString();
+                            filass[4] = Demora.ToString();
+                            filass[5] = Q.ToString();
+                            listaDeVectores[0][3] = RND2;
+                            listaDeVectores[0][4] = Demora;
+                            listaDeVectores[0][5] = Q;
+                            BanderaPedido = false;
+                        }
+                        listaDeVectores[0][6] = LlegadaPedidos;
+                        listaDeVectores[0][7] = stock;
+                        filass[6] = LlegadaPedidos.ToString();
+                        filass[7] = stock.ToString();
+                        if (stock == 0)
+                        {
+                            filass[10] = (Ks * stockNegativo).ToString();
+                            filass[9] = 0.ToString();
+                            listaDeVectores[0][9] = 0;
+                            listaDeVectores[0][10] = (Ks * stockNegativo);
+
+                        }
+                        else
                         {
 
-                            if (L1[j] == 0)
-                            {
-                                fil = "-";
-                            }
-                            else
-                            {
-                                fil = L1[j].ToString();
-                            }
-
-                            filasas[j] = fil;
+                            filass[10] = 0.ToString();
+                            filass[9] = (Km * stock).ToString();
+                            listaDeVectores[0][9] = (Km * stock);
+                            listaDeVectores[0][10] = 0;
                         }
-                        DgvTabla400Filas.Rows.Add(filasas);
-                        DgvTabla400Filas.Rows.Add(filas);
-
+                        filass[11] = (Convert.ToInt32(filas[8]) + Convert.ToInt32(filas[9]) + Convert.ToInt32(filas[10])).ToString();
+                        listaDeVectores[0][11] =Convert.ToInt32(filas[8]) + Convert.ToInt32(filas[9]) + Convert.ToInt32(filas[10]) ;
+                        costoAC += Convert.ToInt32(filas[11]);
+                        filass[12] = costoAC.ToString();
+                        listaDeVectores[0][12] = costoAC;
+                        DgvTabla2Filas.Rows.Add(filass);
+                    }
+                    if (BanderaPedido == true)
+                    {
+                        filas[3] = RND2.ToString();
+                        filas[4] = Demora.ToString();
+                        filas[5] = 20.ToString();
+                        BanderaPedido = false;
                     }
                     else
                     {
-                        DgvTabla400Filas.Rows.Add(filas);
+                        filas[3] = "-";
+                        filas[4] = "-";
+                        filas[5] = "-";
+                    }
+                    filas[0] = Iteracion.ToString();
+                    filas[1] = RND.ToString();
+                    filas[2] = Demandas.ToString();
+                    filas[6] = LlegadaPedidos.ToString();
+                    filas[7] = stock.ToString();
+                    if (stock == 0)
+                    {
+                        filas[10] = (Ks * stockNegativo).ToString();
+                        filas[9] = 0.ToString();
+                    }
+                    else
+                    {
+                        filas[10] = 0.ToString();
+                        filas[9] = (Km * stock).ToString();
                     }
 
+
+                    if (BanderaStock)
+                    {
+
+                        filas[8] = Ko.ToString();
+                        BanderaStock = false;
+                    }
+                    else
+                    {
+                        filas[8] = 0.ToString();
+                    }
+                    filas[11] = (Convert.ToInt32(filas[8]) + Convert.ToInt32(filas[9]) + Convert.ToInt32(filas[10])).ToString();
+                    costoAC += Convert.ToInt32(filas[11]);
+                    filas[12] = costoAC.ToString();
+
+                    if (Iteracion >= desde && Iteracion <= desde + 400)
+                    {
+                        if (desde == 0 && Iteracion == 1)
+                        {
+                            string fil = "";
+                            var filasas = new string[13];
+                            for (int j = 0; j < L1.Length; j++)
+                            {
+
+                                if (L1[j] == 0)
+                                {
+                                    fil = "-";
+                                }
+                                else
+                                {
+                                    fil = L1[j].ToString();
+                                }
+
+                                filasas[j] = fil;
+                            }
+                            DgvTabla400Filas.Rows.Add(filasas);
+                            DgvTabla400Filas.Rows.Add(filas);
+
+                        }
+                        else
+                        {
+                            DgvTabla400Filas.Rows.Add(filas);
+                        }
+
+                    }
+
+
+
+
                 }
+
+
+
+
+                
 
 
 
@@ -298,7 +348,7 @@ namespace TP4
                 return Plazo;
             }
 
-            bool ControlStock(int stocks)
+            bool ControlStock(double stocks)
             {
                 if (stocks <= 12)
                 {
