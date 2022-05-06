@@ -55,6 +55,7 @@ namespace TP4
             TxtIteraciones.Clear();
             TxtDesde.Clear();
             TxtHasta.Clear();
+            TxtResultado.Clear();
             DgvTabla2Filas.Rows.Clear();
             DgvTabla400Filas.Rows.Clear();
         }
@@ -113,12 +114,27 @@ namespace TP4
             if (TxtDesde.Text == "")
             {
                 desde = 0;
+                TxtDesde.Text = desde.ToString();
+                
             }
             else
             {
                 desde = Convert.ToInt32(TxtDesde.Text);
             }
-            TxtHasta.Text = (desde + 400).ToString();
+            //TxtDesde.Enabled = false;
+
+            if (N < 400)
+            {
+                TxtHasta.Text = N.ToString();
+            }
+            else if (desde + 400 > N)
+            {
+                TxtHasta.Text = N.ToString();
+            }
+            else
+            {
+                TxtHasta.Text = (desde + 400).ToString();
+            }
 
 
 
@@ -145,6 +161,7 @@ namespace TP4
                     if (i == (LlegadaPedidos - 1) && i != 0)
                     {
                         stock += Q;
+                        LlegadaPedidos = 0;
                         BanderaPedido = false;
                         banderaDemora = false;
                     }
@@ -193,8 +210,15 @@ namespace TP4
                             listaDeVectores[contador][3] = RND2;
                             listaDeVectores[contador][4] = Demora;
                             listaDeVectores[contador][5] = Q;
-                            BanderaPedido = false;
+                            //BanderaPedido = false;
                         }
+                        else
+                        {
+                            listaDeVectores[contador][3] = 0;
+                            listaDeVectores[contador][4] = 0;
+                            listaDeVectores[contador][5] = 0;
+                        }
+                        
                         listaDeVectores[contador][6] = LlegadaPedidos;
                         listaDeVectores[contador][7] = stock;
 
@@ -252,9 +276,9 @@ namespace TP4
                     }
                     else
                     {
-                        filas[3] = "-";
-                        filas[4] = "-";
-                        filas[5] = "-";
+                        listaDeVectores[contador][3] = 0;
+                        listaDeVectores[contador][4] = 0;
+                        listaDeVectores[contador][5] = 0;
                     }
                     listaDeVectores[contador][0] = Iteracion;
                     listaDeVectores[contador][1] = RND;
@@ -319,33 +343,38 @@ namespace TP4
                         filas[10] = listaDeVectores[contador][10].ToString();
                         filas[11] = listaDeVectores[contador][11].ToString();
                         filas[12] = listaDeVectores[contador][12].ToString();
-                        if (desde == 0 && Iteracion == 1)
-                        {
-                            string fil = "";
-                            var filasas = new string[13];
-                            for (int j = 0; j < listaDeVectores[contador].Length; j++)
-                            {
+                        DgvTabla400Filas.Rows.Add(filas);
+                        //if (desde == 0 && Iteracion == 1)
+                        //{
+                        //    string fil = "";
+                        //    var filasas = new string[13];
+                        //    for (int j = 0; j < listaDeVectores[contador].Length; j++)
+                        //    {
 
-                                if (listaDeVectores[contador][j] == 0)
-                                {
-                                    fil = "-";
-                                }
-                                else
-                                {
-                                    fil = listaDeVectores[contador].ToString();
-                                }
+                        //        if (listaDeVectores[contador][j] == 0)
+                        //        {
+                        //            fil = "-";
+                        //        }
+                        //        else
+                        //        {
+                        //            fil = listaDeVectores[contador].ToString();
+                        //        }
 
-                                filasas[j] = fil;
-                            }
-                            DgvTabla400Filas.Rows.Add(filasas);
-                            DgvTabla400Filas.Rows.Add(filas);
+                        //        filasas[j] = fil;
+                        //    }
+                        //    DgvTabla400Filas.Rows.Add(filasas);
+                        //    //DgvTabla400Filas.Rows.Add(filas);
 
-                        }
-                        else
-                        {
-                            DgvTabla400Filas.Rows.Add(filas);
-                        }
+                        //}
+                        //else
+                        //{
+                        //    DgvTabla400Filas.Rows.Add(filas);
+                        //}
 
+                    }
+                    if (Iteracion == N)
+                    {
+                        TxtResultado.Text = "$" + Math.Round((costoAC / Convert.ToDouble(N)), 4).ToString();
                     }
                     continue;
 
@@ -376,6 +405,7 @@ namespace TP4
                     if (i == (LlegadaPedidos - 1) && i != 0)
                     {
                         stock += Q;
+                        LlegadaPedidos = 0;
                         BanderaPedido = false;
                         banderaDemora = false;
                     }
@@ -424,7 +454,13 @@ namespace TP4
                             listaDeVectores[contador][3] = RND2;
                             listaDeVectores[contador][4] = Demora;
                             listaDeVectores[contador][5] = Q;
-                            BanderaPedido = false;
+                            //BanderaPedido = false;
+                        }
+                        else
+                        {
+                            listaDeVectores[contador][3] = 0;
+                            listaDeVectores[contador][4] = 0;
+                            listaDeVectores[contador][5] = 0;
                         }
                         listaDeVectores[contador][6] = LlegadaPedidos;
                         listaDeVectores[contador][7] = stock;
@@ -483,9 +519,9 @@ namespace TP4
                     }
                     else
                     {
-                        filas[3] = "-";
-                        filas[4] = "-";
-                        filas[5] = "-";
+                        listaDeVectores[contador][3] = 0;
+                        listaDeVectores[contador][4] = 0;
+                        listaDeVectores[contador][5] = 0;
                     }
                     listaDeVectores[contador][0] = Iteracion;
                     listaDeVectores[contador][1] = RND;
@@ -546,42 +582,46 @@ namespace TP4
                         filas[10] = listaDeVectores[contador][10].ToString();
                         filas[11] = listaDeVectores[contador][11].ToString();
                         filas[12] = listaDeVectores[contador][12].ToString();
-                        if (desde == 0 && Iteracion == 1)
-                        {
+                        DgvTabla400Filas.Rows.Add(filas);
+                        //if (desde == 0 && Iteracion == 1)
+                        //{
 
-                            string fil = "";
-                            var filasas = new string[13];
+                        //    string fil = "";
+                        //    var filasas = new string[13];
 
-                            for (int j = 0; j < listaDeVectores[contador].Length; j++)
-                            {
+                        //    for (int j = 0; j < listaDeVectores[contador].Length; j++)
+                        //    {
 
-                                if (listaDeVectores[contador][j] == 0)
-                                {
-                                    fil = "-";
-                                }
-                                else
-                                {
-                                    fil = listaDeVectores[contador][j].ToString();
-                                }
+                        //        if (listaDeVectores[contador][j] == 0)
+                        //        {
+                        //            fil = "-";
+                        //        }
+                        //        else
+                        //        {
+                        //            fil = listaDeVectores[contador][j].ToString();
+                        //        }
 
-                                filasas[j] = fil;
-                            }
-                            DgvTabla400Filas.Rows.Add(filasas);
-                            DgvTabla400Filas.Rows.Add(filas);
+                        //        filasas[j] = fil;
+                        //    }
+                        //    DgvTabla400Filas.Rows.Add(filasas);
+                        //    DgvTabla400Filas.Rows.Add(filas);
 
-                        }
-                        else
-                        {
-                            DgvTabla400Filas.Rows.Add(filas);
-                        }
+                        //}
+                        //else
+                        //{
+                        //    DgvTabla400Filas.Rows.Add(filas);
+                        //}
 
                     }
-
+                    
 
 
 
                 }
-
+                if (Iteracion == N)
+                {
+                    TxtResultado.Text = "$" + Math.Round((costoAC / Convert.ToDouble(N)), 4).ToString();
+                }
 
 
 
@@ -628,7 +668,9 @@ namespace TP4
         }
         private void BtnGenerar_Click(object sender, EventArgs e)
         {
-
+            DgvTabla2Filas.Rows.Clear();
+            DgvTabla400Filas.Rows.Clear();
+            //TxtResultado.Clear();
             Calculador();
 
 
