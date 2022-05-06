@@ -58,10 +58,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.PanelEntry = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TxtHasta = new System.Windows.Forms.TextBox();
             this.LblParametros = new System.Windows.Forms.Label();
+            this.LblHasta = new System.Windows.Forms.Label();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.TxtR = new System.Windows.Forms.TextBox();
+            this.LblVisualización = new System.Windows.Forms.Label();
+            this.TxtDesde = new System.Windows.Forms.TextBox();
             this.TxtKs = new System.Windows.Forms.TextBox();
+            this.LblDesde = new System.Windows.Forms.Label();
             this.TxtKm = new System.Windows.Forms.TextBox();
             this.TxtKo = new System.Windows.Forms.TextBox();
             this.TxtQ = new System.Windows.Forms.TextBox();
@@ -73,12 +80,6 @@
             this.BtnGenerar = new System.Windows.Forms.Button();
             this.LblIteraciones = new System.Windows.Forms.Label();
             this.TxtIteraciones = new System.Windows.Forms.TextBox();
-            this.LblDesde = new System.Windows.Forms.Label();
-            this.TxtDesde = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.TxtHasta = new System.Windows.Forms.TextBox();
-            this.LblHasta = new System.Windows.Forms.Label();
-            this.LblVisualización = new System.Windows.Forms.Label();
             this.DgvTabla2Filas = new System.Windows.Forms.DataGridView();
             this.Iteracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RND1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -107,25 +108,28 @@
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.TxtResultado = new System.Windows.Forms.TextBox();
             this.LblResultado = new System.Windows.Forms.Label();
-            this.BtnVer = new System.Windows.Forms.Button();
             this.PanelEntry.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2Filas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla400Filas)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelEntry
             // 
             this.PanelEntry.BackColor = System.Drawing.Color.SkyBlue;
             this.PanelEntry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelEntry.Controls.Add(this.LblTitulo);
+            this.PanelEntry.Controls.Add(this.label5);
+            this.PanelEntry.Controls.Add(this.TxtHasta);
             this.PanelEntry.Controls.Add(this.LblParametros);
+            this.PanelEntry.Controls.Add(this.LblHasta);
             this.PanelEntry.Controls.Add(this.BtnLimpiar);
             this.PanelEntry.Controls.Add(this.TxtR);
+            this.PanelEntry.Controls.Add(this.LblVisualización);
+            this.PanelEntry.Controls.Add(this.TxtDesde);
             this.PanelEntry.Controls.Add(this.TxtKs);
+            this.PanelEntry.Controls.Add(this.LblDesde);
             this.PanelEntry.Controls.Add(this.TxtKm);
             this.PanelEntry.Controls.Add(this.TxtKo);
             this.PanelEntry.Controls.Add(this.TxtQ);
@@ -137,29 +141,70 @@
             this.PanelEntry.Controls.Add(this.BtnGenerar);
             this.PanelEntry.Controls.Add(this.LblIteraciones);
             this.PanelEntry.Controls.Add(this.TxtIteraciones);
-            this.PanelEntry.Location = new System.Drawing.Point(13, 12);
+            this.PanelEntry.Location = new System.Drawing.Point(4, 12);
             this.PanelEntry.Name = "PanelEntry";
-            this.PanelEntry.Size = new System.Drawing.Size(292, 209);
+            this.PanelEntry.Size = new System.Drawing.Size(301, 513);
             this.PanelEntry.TabIndex = 0;
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.AutoSize = true;
+            this.LblTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblTitulo.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.Location = new System.Drawing.Point(17, 51);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(253, 48);
+            this.LblTitulo.TabIndex = 21;
+            this.LblTitulo.Text = "Concesionaria de autos \r\nsimulación de Montecarlo";
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(7, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 23);
+            this.label5.TabIndex = 20;
+            // 
+            // TxtHasta
+            // 
+            this.TxtHasta.Enabled = false;
+            this.TxtHasta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtHasta.Location = new System.Drawing.Point(176, 382);
+            this.TxtHasta.Name = "TxtHasta";
+            this.TxtHasta.Size = new System.Drawing.Size(120, 27);
+            this.TxtHasta.TabIndex = 19;
+            this.TxtHasta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LblParametros
             // 
             this.LblParametros.AutoSize = true;
-            this.LblParametros.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.LblParametros.Location = new System.Drawing.Point(3, 46);
+            this.LblParametros.Font = new System.Drawing.Font("Century Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblParametros.Location = new System.Drawing.Point(-1, 199);
             this.LblParametros.Name = "LblParametros";
             this.LblParametros.Size = new System.Drawing.Size(120, 23);
             this.LblParametros.TabIndex = 16;
             this.LblParametros.Text = "Parámetros:";
+            // 
+            // LblHasta
+            // 
+            this.LblHasta.AutoSize = true;
+            this.LblHasta.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
+            this.LblHasta.Location = new System.Drawing.Point(13, 386);
+            this.LblHasta.Name = "LblHasta";
+            this.LblHasta.Size = new System.Drawing.Size(68, 23);
+            this.LblHasta.TabIndex = 18;
+            this.LblHasta.Text = "Hasta:";
             // 
             // BtnLimpiar
             // 
             this.BtnLimpiar.BackColor = System.Drawing.SystemColors.Window;
             this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLimpiar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLimpiar.Location = new System.Drawing.Point(11, 159);
+            this.BtnLimpiar.Location = new System.Drawing.Point(11, 438);
             this.BtnLimpiar.Name = "BtnLimpiar";
-            this.BtnLimpiar.Size = new System.Drawing.Size(135, 39);
+            this.BtnLimpiar.Size = new System.Drawing.Size(135, 51);
             this.BtnLimpiar.TabIndex = 15;
             this.BtnLimpiar.Text = "Limpiar";
             this.BtnLimpiar.UseVisualStyleBackColor = false;
@@ -169,27 +214,57 @@
             // 
             this.TxtR.Enabled = false;
             this.TxtR.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtR.Location = new System.Drawing.Point(177, 82);
+            this.TxtR.Location = new System.Drawing.Point(181, 235);
             this.TxtR.Name = "TxtR";
             this.TxtR.Size = new System.Drawing.Size(52, 27);
             this.TxtR.TabIndex = 14;
             this.TxtR.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // LblVisualización
+            // 
+            this.LblVisualización.AutoSize = true;
+            this.LblVisualización.Font = new System.Drawing.Font("Century Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVisualización.Location = new System.Drawing.Point(-1, 314);
+            this.LblVisualización.Name = "LblVisualización";
+            this.LblVisualización.Size = new System.Drawing.Size(137, 23);
+            this.LblVisualización.TabIndex = 17;
+            this.LblVisualización.Text = "Visualización:";
+            // 
+            // TxtDesde
+            // 
+            this.TxtDesde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDesde.Location = new System.Drawing.Point(176, 349);
+            this.TxtDesde.Name = "TxtDesde";
+            this.TxtDesde.Size = new System.Drawing.Size(120, 27);
+            this.TxtDesde.TabIndex = 2;
+            this.TxtDesde.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtDesde.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDesde_KeyPress);
+            // 
             // TxtKs
             // 
             this.TxtKs.Enabled = false;
             this.TxtKs.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtKs.Location = new System.Drawing.Point(218, 116);
+            this.TxtKs.Location = new System.Drawing.Point(222, 269);
             this.TxtKs.Name = "TxtKs";
             this.TxtKs.Size = new System.Drawing.Size(52, 27);
             this.TxtKs.TabIndex = 13;
             this.TxtKs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // LblDesde
+            // 
+            this.LblDesde.AutoSize = true;
+            this.LblDesde.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
+            this.LblDesde.Location = new System.Drawing.Point(11, 353);
+            this.LblDesde.Name = "LblDesde";
+            this.LblDesde.Size = new System.Drawing.Size(73, 23);
+            this.LblDesde.TabIndex = 3;
+            this.LblDesde.Text = "Desde:";
+            // 
             // TxtKm
             // 
             this.TxtKm.Enabled = false;
             this.TxtKm.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtKm.Location = new System.Drawing.Point(137, 116);
+            this.TxtKm.Location = new System.Drawing.Point(141, 269);
             this.TxtKm.Name = "TxtKm";
             this.TxtKm.Size = new System.Drawing.Size(52, 27);
             this.TxtKm.TabIndex = 12;
@@ -199,7 +274,7 @@
             // 
             this.TxtKo.Enabled = false;
             this.TxtKo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtKo.Location = new System.Drawing.Point(50, 116);
+            this.TxtKo.Location = new System.Drawing.Point(54, 269);
             this.TxtKo.Name = "TxtKo";
             this.TxtKo.Size = new System.Drawing.Size(52, 27);
             this.TxtKo.TabIndex = 11;
@@ -209,7 +284,7 @@
             // 
             this.TxtQ.Enabled = false;
             this.TxtQ.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtQ.Location = new System.Drawing.Point(94, 82);
+            this.TxtQ.Location = new System.Drawing.Point(98, 235);
             this.TxtQ.Name = "TxtQ";
             this.TxtQ.Size = new System.Drawing.Size(52, 27);
             this.TxtQ.TabIndex = 10;
@@ -219,7 +294,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(192, 120);
+            this.label4.Location = new System.Drawing.Point(196, 273);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 23);
             this.label4.TabIndex = 9;
@@ -229,7 +304,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(162, 84);
+            this.label3.Location = new System.Drawing.Point(166, 237);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(16, 23);
             this.label3.TabIndex = 8;
@@ -239,7 +314,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(102, 120);
+            this.label2.Location = new System.Drawing.Point(106, 273);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 23);
             this.label2.TabIndex = 7;
@@ -249,7 +324,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(21, 120);
+            this.label1.Location = new System.Drawing.Point(25, 273);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 23);
             this.label1.TabIndex = 6;
@@ -259,7 +334,7 @@
             // 
             this.Lblq.AutoSize = true;
             this.Lblq.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.Lblq.Location = new System.Drawing.Point(74, 83);
+            this.Lblq.Location = new System.Drawing.Point(78, 236);
             this.Lblq.Name = "Lblq";
             this.Lblq.Size = new System.Drawing.Size(23, 23);
             this.Lblq.TabIndex = 5;
@@ -270,9 +345,9 @@
             this.BtnGenerar.BackColor = System.Drawing.SystemColors.Window;
             this.BtnGenerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGenerar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGenerar.Location = new System.Drawing.Point(149, 159);
+            this.BtnGenerar.Location = new System.Drawing.Point(152, 438);
             this.BtnGenerar.Name = "BtnGenerar";
-            this.BtnGenerar.Size = new System.Drawing.Size(135, 39);
+            this.BtnGenerar.Size = new System.Drawing.Size(135, 51);
             this.BtnGenerar.TabIndex = 4;
             this.BtnGenerar.Text = "Generar ";
             this.BtnGenerar.UseVisualStyleBackColor = false;
@@ -281,8 +356,8 @@
             // LblIteraciones
             // 
             this.LblIteraciones.AutoSize = true;
-            this.LblIteraciones.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.LblIteraciones.Location = new System.Drawing.Point(7, 14);
+            this.LblIteraciones.Font = new System.Drawing.Font("Century Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblIteraciones.Location = new System.Drawing.Point(-1, 148);
             this.LblIteraciones.Name = "LblIteraciones";
             this.LblIteraciones.Size = new System.Drawing.Size(199, 23);
             this.LblIteraciones.TabIndex = 1;
@@ -291,76 +366,12 @@
             // TxtIteraciones
             // 
             this.TxtIteraciones.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIteraciones.Location = new System.Drawing.Point(212, 14);
+            this.TxtIteraciones.Location = new System.Drawing.Point(200, 148);
             this.TxtIteraciones.Name = "TxtIteraciones";
-            this.TxtIteraciones.Size = new System.Drawing.Size(74, 27);
+            this.TxtIteraciones.Size = new System.Drawing.Size(96, 27);
             this.TxtIteraciones.TabIndex = 0;
             this.TxtIteraciones.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtIteraciones.TextChanged += new System.EventHandler(this.TxtIteraciones_TextChanged);
             this.TxtIteraciones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIteraciones_KeyPress);
-            // 
-            // LblDesde
-            // 
-            this.LblDesde.AutoSize = true;
-            this.LblDesde.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.LblDesde.Location = new System.Drawing.Point(7, 51);
-            this.LblDesde.Name = "LblDesde";
-            this.LblDesde.Size = new System.Drawing.Size(73, 23);
-            this.LblDesde.TabIndex = 3;
-            this.LblDesde.Text = "Desde:";
-            // 
-            // TxtDesde
-            // 
-            this.TxtDesde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDesde.Location = new System.Drawing.Point(172, 47);
-            this.TxtDesde.Name = "TxtDesde";
-            this.TxtDesde.Size = new System.Drawing.Size(102, 27);
-            this.TxtDesde.TabIndex = 2;
-            this.TxtDesde.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDesde_KeyPress);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.SkyBlue;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.TxtHasta);
-            this.panel1.Controls.Add(this.LblHasta);
-            this.panel1.Controls.Add(this.BtnVer);
-            this.panel1.Controls.Add(this.LblVisualización);
-            this.panel1.Controls.Add(this.TxtDesde);
-            this.panel1.Controls.Add(this.LblDesde);
-            this.panel1.Location = new System.Drawing.Point(13, 227);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(292, 172);
-            this.panel1.TabIndex = 1;
-            // 
-            // TxtHasta
-            // 
-            this.TxtHasta.Enabled = false;
-            this.TxtHasta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtHasta.Location = new System.Drawing.Point(172, 80);
-            this.TxtHasta.Name = "TxtHasta";
-            this.TxtHasta.Size = new System.Drawing.Size(102, 27);
-            this.TxtHasta.TabIndex = 19;
-            // 
-            // LblHasta
-            // 
-            this.LblHasta.AutoSize = true;
-            this.LblHasta.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.LblHasta.Location = new System.Drawing.Point(9, 84);
-            this.LblHasta.Name = "LblHasta";
-            this.LblHasta.Size = new System.Drawing.Size(68, 23);
-            this.LblHasta.TabIndex = 18;
-            this.LblHasta.Text = "Hasta:";
-            // 
-            // LblVisualización
-            // 
-            this.LblVisualización.AutoSize = true;
-            this.LblVisualización.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.LblVisualización.Location = new System.Drawing.Point(7, 12);
-            this.LblVisualización.Name = "LblVisualización";
-            this.LblVisualización.Size = new System.Drawing.Size(137, 23);
-            this.LblVisualización.TabIndex = 17;
-            this.LblVisualización.Text = "Visualización:";
             // 
             // DgvTabla2Filas
             // 
@@ -394,7 +405,7 @@
             this.CostoTotalAcumulado});
             this.DgvTabla2Filas.Location = new System.Drawing.Point(311, 12);
             this.DgvTabla2Filas.Name = "DgvTabla2Filas";
-            this.DgvTabla2Filas.Size = new System.Drawing.Size(1170, 119);
+            this.DgvTabla2Filas.Size = new System.Drawing.Size(1170, 129);
             this.DgvTabla2Filas.TabIndex = 128;
             // 
             // Iteracion
@@ -423,7 +434,7 @@
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.Demanda.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Demanda.FillWeight = 65F;
+            this.Demanda.FillWeight = 50F;
             this.Demanda.HeaderText = "Demanda";
             this.Demanda.Name = "Demanda";
             // 
@@ -443,7 +454,7 @@
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.PlazoEntrega.DefaultCellStyle = dataGridViewCellStyle6;
-            this.PlazoEntrega.FillWeight = 80F;
+            this.PlazoEntrega.FillWeight = 55F;
             this.PlazoEntrega.HeaderText = "Plazo entrega";
             this.PlazoEntrega.Name = "PlazoEntrega";
             // 
@@ -453,7 +464,7 @@
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.OrdenColocada.DefaultCellStyle = dataGridViewCellStyle7;
-            this.OrdenColocada.FillWeight = 80F;
+            this.OrdenColocada.FillWeight = 50F;
             this.OrdenColocada.HeaderText = "Orden colocada";
             this.OrdenColocada.Name = "OrdenColocada";
             // 
@@ -463,7 +474,7 @@
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.LlegadaPedido.DefaultCellStyle = dataGridViewCellStyle8;
-            this.LlegadaPedido.FillWeight = 80F;
+            this.LlegadaPedido.FillWeight = 55F;
             this.LlegadaPedido.HeaderText = "Llegada pedido";
             this.LlegadaPedido.Name = "LlegadaPedido";
             // 
@@ -473,7 +484,7 @@
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.Stock.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Stock.FillWeight = 53.34134F;
+            this.Stock.FillWeight = 40F;
             this.Stock.HeaderText = "Stock";
             this.Stock.Name = "Stock";
             // 
@@ -557,9 +568,9 @@
             this.dataGridViewTextBoxColumn11,
             this.dataGridViewTextBoxColumn12,
             this.dataGridViewTextBoxColumn13});
-            this.DgvTabla400Filas.Location = new System.Drawing.Point(311, 137);
+            this.DgvTabla400Filas.Location = new System.Drawing.Point(311, 147);
             this.DgvTabla400Filas.Name = "DgvTabla400Filas";
-            this.DgvTabla400Filas.Size = new System.Drawing.Size(1170, 388);
+            this.DgvTabla400Filas.Size = new System.Drawing.Size(1170, 378);
             this.DgvTabla400Filas.TabIndex = 129;
             // 
             // dataGridViewTextBoxColumn1
@@ -588,7 +599,7 @@
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle18.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridViewTextBoxColumn3.FillWeight = 65F;
+            this.dataGridViewTextBoxColumn3.FillWeight = 50F;
             this.dataGridViewTextBoxColumn3.HeaderText = "Demanda";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
@@ -608,7 +619,7 @@
             dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle20.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle20;
-            this.dataGridViewTextBoxColumn5.FillWeight = 80F;
+            this.dataGridViewTextBoxColumn5.FillWeight = 55F;
             this.dataGridViewTextBoxColumn5.HeaderText = "Plazo entrega";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
@@ -618,7 +629,7 @@
             dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle21.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle21;
-            this.dataGridViewTextBoxColumn6.FillWeight = 80F;
+            this.dataGridViewTextBoxColumn6.FillWeight = 50F;
             this.dataGridViewTextBoxColumn6.HeaderText = "Orden colocada";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
@@ -628,7 +639,7 @@
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle22.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle22;
-            this.dataGridViewTextBoxColumn7.FillWeight = 80F;
+            this.dataGridViewTextBoxColumn7.FillWeight = 55F;
             this.dataGridViewTextBoxColumn7.HeaderText = "Llegada pedido";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
@@ -638,7 +649,7 @@
             dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle23.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle23;
-            this.dataGridViewTextBoxColumn8.FillWeight = 53.34134F;
+            this.dataGridViewTextBoxColumn8.FillWeight = 40F;
             this.dataGridViewTextBoxColumn8.HeaderText = "Stock";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
@@ -692,73 +703,51 @@
             this.dataGridViewTextBoxColumn13.HeaderText = "Costo AC";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.SkyBlue;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.TxtResultado);
-            this.panel2.Controls.Add(this.LblResultado);
-            this.panel2.Location = new System.Drawing.Point(1126, 531);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(355, 61);
-            this.panel2.TabIndex = 130;
-            // 
             // TxtResultado
             // 
+            this.TxtResultado.Enabled = false;
             this.TxtResultado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtResultado.Location = new System.Drawing.Point(257, 17);
+            this.TxtResultado.Location = new System.Drawing.Point(1165, 105);
             this.TxtResultado.Name = "TxtResultado";
-            this.TxtResultado.Size = new System.Drawing.Size(91, 27);
+            this.TxtResultado.Size = new System.Drawing.Size(309, 27);
             this.TxtResultado.TabIndex = 17;
             this.TxtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LblResultado
             // 
             this.LblResultado.AutoSize = true;
+            this.LblResultado.BackColor = System.Drawing.Color.SkyBlue;
             this.LblResultado.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.LblResultado.Location = new System.Drawing.Point(8, 20);
+            this.LblResultado.Location = new System.Drawing.Point(920, 107);
             this.LblResultado.Name = "LblResultado";
             this.LblResultado.Size = new System.Drawing.Size(243, 23);
             this.LblResultado.TabIndex = 17;
             this.LblResultado.Text = "Costo promedio por mes:";
-            // 
-            // BtnVer
-            // 
-            this.BtnVer.BackColor = System.Drawing.SystemColors.Window;
-            this.BtnVer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnVer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVer.Location = new System.Drawing.Point(74, 122);
-            this.BtnVer.Name = "BtnVer";
-            this.BtnVer.Size = new System.Drawing.Size(135, 39);
-            this.BtnVer.TabIndex = 17;
-            this.BtnVer.Text = "Ver";
-            this.BtnVer.UseVisualStyleBackColor = false;
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1493, 604);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(1486, 532);
+            this.Controls.Add(this.TxtResultado);
+            this.Controls.Add(this.LblResultado);
             this.Controls.Add(this.DgvTabla400Filas);
             this.Controls.Add(this.DgvTabla2Filas);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.PanelEntry);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1502, 571);
+            this.MinimumSize = new System.Drawing.Size(1502, 571);
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Concesionaria de autos - Simulación de Montecarlo";
             this.Load += new System.EventHandler(this.Principal_Load);
             this.PanelEntry.ResumeLayout(false);
             this.PanelEntry.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2Filas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla400Filas)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -782,11 +771,14 @@
         private System.Windows.Forms.Label LblIteraciones;
         private System.Windows.Forms.TextBox TxtIteraciones;
         private System.Windows.Forms.Label LblParametros;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label LblVisualización;
         private System.Windows.Forms.TextBox TxtHasta;
         private System.Windows.Forms.Label LblHasta;
         private System.Windows.Forms.DataGridView DgvTabla2Filas;
+        private System.Windows.Forms.DataGridView DgvTabla400Filas;
+        private System.Windows.Forms.TextBox TxtResultado;
+        private System.Windows.Forms.Label LblResultado;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Iteracion;
         private System.Windows.Forms.DataGridViewTextBoxColumn RND1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Demanda;
@@ -800,7 +792,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ks;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoTotalAcumulado;
-        private System.Windows.Forms.DataGridView DgvTabla400Filas;
+        private System.Windows.Forms.Label LblTitulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -814,10 +806,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox TxtResultado;
-        private System.Windows.Forms.Label LblResultado;
-        private System.Windows.Forms.Button BtnVer;
     }
 }
 
