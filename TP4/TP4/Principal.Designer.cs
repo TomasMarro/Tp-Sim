@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,7 +44,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -56,6 +56,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.PanelEntry = new System.Windows.Forms.Panel();
             this.LblTitulo = new System.Windows.Forms.Label();
@@ -81,6 +83,11 @@
             this.LblIteraciones = new System.Windows.Forms.Label();
             this.TxtIteraciones = new System.Windows.Forms.TextBox();
             this.DgvTabla2Filas = new System.Windows.Forms.DataGridView();
+            this.DgvTabla400Filas = new System.Windows.Forms.DataGridView();
+            this.TxtResultado = new System.Windows.Forms.TextBox();
+            this.LblResultado = new System.Windows.Forms.Label();
+            this.TxtVentas = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.Iteracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RND1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Demanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,7 +101,7 @@
             this.Ks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostoTotalAcumulado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DgvTabla400Filas = new System.Windows.Forms.DataGridView();
+            this.VentasAC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,8 +115,7 @@
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TxtResultado = new System.Windows.Forms.TextBox();
-            this.LblResultado = new System.Windows.Forms.Label();
+            this.VentasAC2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelEntry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2Filas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla400Filas)).BeginInit();
@@ -402,11 +408,91 @@
             this.Km,
             this.Ks,
             this.CostoTotal,
-            this.CostoTotalAcumulado});
+            this.CostoTotalAcumulado,
+            this.VentasAC});
             this.DgvTabla2Filas.Location = new System.Drawing.Point(311, 12);
             this.DgvTabla2Filas.Name = "DgvTabla2Filas";
-            this.DgvTabla2Filas.Size = new System.Drawing.Size(1170, 129);
+            this.DgvTabla2Filas.Size = new System.Drawing.Size(1255, 129);
             this.DgvTabla2Filas.TabIndex = 128;
+            // 
+            // DgvTabla400Filas
+            // 
+            this.DgvTabla400Filas.AllowUserToAddRows = false;
+            this.DgvTabla400Filas.AllowUserToDeleteRows = false;
+            this.DgvTabla400Filas.AllowUserToResizeColumns = false;
+            this.DgvTabla400Filas.AllowUserToResizeRows = false;
+            this.DgvTabla400Filas.BackgroundColor = System.Drawing.Color.SkyBlue;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvTabla400Filas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.DgvTabla400Filas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvTabla400Filas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.VentasAC2});
+            this.DgvTabla400Filas.Location = new System.Drawing.Point(311, 147);
+            this.DgvTabla400Filas.Name = "DgvTabla400Filas";
+            this.DgvTabla400Filas.Size = new System.Drawing.Size(1255, 378);
+            this.DgvTabla400Filas.TabIndex = 129;
+            // 
+            // TxtResultado
+            // 
+            this.TxtResultado.Enabled = false;
+            this.TxtResultado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtResultado.Location = new System.Drawing.Point(1380, 107);
+            this.TxtResultado.Name = "TxtResultado";
+            this.TxtResultado.Size = new System.Drawing.Size(176, 27);
+            this.TxtResultado.TabIndex = 17;
+            this.TxtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // LblResultado
+            // 
+            this.LblResultado.AutoSize = true;
+            this.LblResultado.BackColor = System.Drawing.Color.SkyBlue;
+            this.LblResultado.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
+            this.LblResultado.Location = new System.Drawing.Point(1131, 108);
+            this.LblResultado.Name = "LblResultado";
+            this.LblResultado.Size = new System.Drawing.Size(243, 23);
+            this.LblResultado.TabIndex = 17;
+            this.LblResultado.Text = "Costo promedio por mes:";
+            // 
+            // TxtVentas
+            // 
+            this.TxtVentas.Enabled = false;
+            this.TxtVentas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtVentas.Location = new System.Drawing.Point(949, 107);
+            this.TxtVentas.Name = "TxtVentas";
+            this.TxtVentas.Size = new System.Drawing.Size(176, 27);
+            this.TxtVentas.TabIndex = 130;
+            this.TxtVentas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtVentas.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.SkyBlue;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(697, 108);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(251, 23);
+            this.label6.TabIndex = 131;
+            this.label6.Text = "Ventas promedio por año:";
             // 
             // Iteracion
             // 
@@ -534,51 +620,26 @@
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.CostoTotalAcumulado.DefaultCellStyle = dataGridViewCellStyle14;
-            this.CostoTotalAcumulado.FillWeight = 53.34134F;
+            this.CostoTotalAcumulado.FillWeight = 55F;
             this.CostoTotalAcumulado.HeaderText = "Costo AC";
             this.CostoTotalAcumulado.Name = "CostoTotalAcumulado";
             // 
-            // DgvTabla400Filas
+            // VentasAC
             // 
-            this.DgvTabla400Filas.AllowUserToAddRows = false;
-            this.DgvTabla400Filas.AllowUserToDeleteRows = false;
-            this.DgvTabla400Filas.AllowUserToResizeColumns = false;
-            this.DgvTabla400Filas.AllowUserToResizeRows = false;
-            this.DgvTabla400Filas.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.VentasAC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvTabla400Filas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.DgvTabla400Filas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvTabla400Filas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn13});
-            this.DgvTabla400Filas.Location = new System.Drawing.Point(311, 147);
-            this.DgvTabla400Filas.Name = "DgvTabla400Filas";
-            this.DgvTabla400Filas.Size = new System.Drawing.Size(1170, 378);
-            this.DgvTabla400Filas.TabIndex = 129;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.VentasAC.DefaultCellStyle = dataGridViewCellStyle15;
+            this.VentasAC.FillWeight = 45F;
+            this.VentasAC.HeaderText = "Ventas AC";
+            this.VentasAC.Name = "VentasAC";
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridViewTextBoxColumn1.FillWeight = 53.41175F;
             this.dataGridViewTextBoxColumn1.HeaderText = "Iteración";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
@@ -586,9 +647,9 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridViewTextBoxColumn2.FillWeight = 53.34134F;
             this.dataGridViewTextBoxColumn2.HeaderText = "RND";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
@@ -596,9 +657,9 @@
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridViewTextBoxColumn3.FillWeight = 50F;
             this.dataGridViewTextBoxColumn3.HeaderText = "Demanda";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -606,9 +667,9 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridViewTextBoxColumn4.FillWeight = 53.34134F;
             this.dataGridViewTextBoxColumn4.HeaderText = "RND";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -616,9 +677,9 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridViewTextBoxColumn5.FillWeight = 55F;
             this.dataGridViewTextBoxColumn5.HeaderText = "Plazo entrega";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -626,9 +687,9 @@
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridViewTextBoxColumn6.FillWeight = 50F;
             this.dataGridViewTextBoxColumn6.HeaderText = "Orden colocada";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
@@ -636,9 +697,9 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridViewTextBoxColumn7.FillWeight = 55F;
             this.dataGridViewTextBoxColumn7.HeaderText = "Llegada pedido";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
@@ -646,9 +707,9 @@
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridViewTextBoxColumn8.FillWeight = 40F;
             this.dataGridViewTextBoxColumn8.HeaderText = "Stock";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -656,9 +717,9 @@
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridViewTextBoxColumn9.FillWeight = 45F;
             this.dataGridViewTextBoxColumn9.HeaderText = "Ko";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
@@ -666,9 +727,9 @@
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle26;
             this.dataGridViewTextBoxColumn10.FillWeight = 55F;
             this.dataGridViewTextBoxColumn10.HeaderText = "Km";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
@@ -676,9 +737,9 @@
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridViewTextBoxColumn11.FillWeight = 40F;
             this.dataGridViewTextBoxColumn11.HeaderText = "Ks";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
@@ -686,9 +747,9 @@
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridViewTextBoxColumn12.FillWeight = 53.34134F;
             this.dataGridViewTextBoxColumn12.HeaderText = "Costo Total";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
@@ -696,48 +757,39 @@
             // dataGridViewTextBoxColumn13
             // 
             this.dataGridViewTextBoxColumn13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle28;
-            this.dataGridViewTextBoxColumn13.FillWeight = 53.34134F;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle29;
+            this.dataGridViewTextBoxColumn13.FillWeight = 55F;
             this.dataGridViewTextBoxColumn13.HeaderText = "Costo AC";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             // 
-            // TxtResultado
+            // VentasAC2
             // 
-            this.TxtResultado.Enabled = false;
-            this.TxtResultado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtResultado.Location = new System.Drawing.Point(1165, 105);
-            this.TxtResultado.Name = "TxtResultado";
-            this.TxtResultado.Size = new System.Drawing.Size(309, 27);
-            this.TxtResultado.TabIndex = 17;
-            this.TxtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // LblResultado
-            // 
-            this.LblResultado.AutoSize = true;
-            this.LblResultado.BackColor = System.Drawing.Color.SkyBlue;
-            this.LblResultado.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.LblResultado.Location = new System.Drawing.Point(920, 107);
-            this.LblResultado.Name = "LblResultado";
-            this.LblResultado.Size = new System.Drawing.Size(243, 23);
-            this.LblResultado.TabIndex = 17;
-            this.LblResultado.Text = "Costo promedio por mes:";
+            this.VentasAC2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.VentasAC2.DefaultCellStyle = dataGridViewCellStyle30;
+            this.VentasAC2.FillWeight = 45F;
+            this.VentasAC2.HeaderText = "Ventas AC";
+            this.VentasAC2.Name = "VentasAC2";
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1486, 532);
+            this.ClientSize = new System.Drawing.Size(1573, 532);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TxtVentas);
             this.Controls.Add(this.TxtResultado);
             this.Controls.Add(this.LblResultado);
             this.Controls.Add(this.DgvTabla400Filas);
             this.Controls.Add(this.DgvTabla2Filas);
             this.Controls.Add(this.PanelEntry);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(1502, 571);
-            this.MinimumSize = new System.Drawing.Size(1502, 571);
+            this.MaximumSize = new System.Drawing.Size(1589, 571);
+            this.MinimumSize = new System.Drawing.Size(1589, 571);
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Concesionaria de autos - Simulación de Montecarlo";
@@ -779,6 +831,9 @@
         private System.Windows.Forms.TextBox TxtResultado;
         private System.Windows.Forms.Label LblResultado;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label LblTitulo;
+        private System.Windows.Forms.TextBox TxtVentas;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Iteracion;
         private System.Windows.Forms.DataGridViewTextBoxColumn RND1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Demanda;
@@ -792,7 +847,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ks;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoTotalAcumulado;
-        private System.Windows.Forms.Label LblTitulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VentasAC;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -806,6 +861,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VentasAC2;
     }
 }
 

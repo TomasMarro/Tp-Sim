@@ -56,8 +56,18 @@ namespace TP4
             TxtDesde.Clear();
             TxtHasta.Clear();
             TxtResultado.Clear();
+            TxtVentas.Clear();
             DgvTabla2Filas.Rows.Clear();
             DgvTabla400Filas.Rows.Clear();
+        }
+        private double GenerarRandom(Random random)
+        {
+            double randomm = 0;
+            while (randomm == 0 || randomm == 1)
+            {
+                randomm = Math.Round(random.NextDouble(),4);
+            }
+            return randomm;
         }
 
         private void Calculador()
@@ -86,8 +96,8 @@ namespace TP4
             var PlazoEntrega = new int[] { 1, 2, 3, 4 };
 
 
-            var L1 = new double[] { 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0 };
-            var L2 = new double[13];
+            var L1 = new double[] { 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0 };
+            var L2 = new double[14];
 
             List<double[]> listaDeVectores = new List<double[]>();
 
@@ -106,7 +116,7 @@ namespace TP4
             double stockNegativo = 0;
             int desde = 0;
             int contador = 1;
-            double CostosTotales = 0;
+            double VentasAC = 0;
             double CostoTotalAcum = 0;
 
 
@@ -150,7 +160,7 @@ namespace TP4
                 {
                     contador = 1;
                     Iteracion = Iteracion;
-                    double RND = Math.Round(random.NextDouble(), 4);
+                    double RND = GenerarRandom(random);
                     int Demandas = Demanda(V1Ventas, V2Ventas, NrosVentas, RND);
                     stock = listaDeVectores[contador - 1][7];
                     //CostosTotales = listaDeVectores[contador][11];
@@ -181,13 +191,13 @@ namespace TP4
 
                     bool ReposiciondeStock = ControlStock(stock);
 
-                    var filas = new string[13];
+                    var filas = new string[14];
 
 
 
                     if (ReposiciondeStock && BanderaPedido == false && banderaDemora == false)
                     {
-                        RND2 = Math.Round(random2.NextDouble(), 4);
+                        RND2 = GenerarRandom(random2);
                         Demora = PlazoDeEntrega(V1Plazo, V2Plazo, PlazoEntrega, RND2);
                         LlegadaPedidos = Iteracion + Demora;
                         banderaDemora = true;
@@ -197,7 +207,7 @@ namespace TP4
                     }
                     if (i == (N - 1) || i == (N - 2))
                     {
-                        var filass = new string[13];
+                        var filass = new string[14];
 
                         listaDeVectores[contador][0] = Iteracion;
                         listaDeVectores[contador][1] = RND;
@@ -248,7 +258,10 @@ namespace TP4
                             listaDeVectores[contador][10] = 0;
                         }
                         listaDeVectores[contador][11] = Convert.ToInt32(listaDeVectores[contador][8]) + Convert.ToInt32(listaDeVectores[contador][9]) + Convert.ToInt32(listaDeVectores[contador][10]);
-                        costoAC += Convert.ToInt32(listaDeVectores[0][11]);
+                        costoAC = Convert.ToInt64(listaDeVectores[contador][11]) + Convert.ToInt64(listaDeVectores[contador-1][12]);
+                        listaDeVectores[contador][13] = Convert.ToInt32(listaDeVectores[contador][2]);
+                        VentasAC = Convert.ToInt32(listaDeVectores[contador][13]) + Convert.ToInt32(listaDeVectores[contador-1][13]);
+                        listaDeVectores[contador][13] = VentasAC;
                         listaDeVectores[contador][12] = costoAC;
                         filass[0] = listaDeVectores[contador][0].ToString();
                         filass[1] = listaDeVectores[contador][1].ToString();
@@ -265,13 +278,21 @@ namespace TP4
                             filass[4] = listaDeVectores[contador][4].ToString();
                             filass[5] = listaDeVectores[contador][5].ToString();
                         }
-                        filass[6] = listaDeVectores[contador][6].ToString();
+                        if (listaDeVectores[contador][6] == 0)
+                        {
+                            filass[6] = "-";
+                        }
+                        else
+                        {
+                            filass[6] = listaDeVectores[contador][6].ToString();
+                        }
                         filass[7] = listaDeVectores[contador][7].ToString();
                         filass[8] = listaDeVectores[contador][8].ToString();
                         filass[9] = listaDeVectores[contador][9].ToString();
                         filass[10] = listaDeVectores[contador][10].ToString();
                         filass[11] = listaDeVectores[contador][11].ToString();
                         filass[12] = listaDeVectores[contador][12].ToString();
+                        filass[13] = listaDeVectores[contador][13].ToString();
 
                         DgvTabla2Filas.Rows.Add(filass);
                     }
@@ -325,14 +346,28 @@ namespace TP4
 
 
                     listaDeVectores[contador][11] = Convert.ToInt32(listaDeVectores[contador][8]) + Convert.ToInt32(listaDeVectores[contador][9]) + Convert.ToInt32(listaDeVectores[contador][10]);
+                    listaDeVectores[contador][13] = Convert.ToInt32(listaDeVectores[contador][2]);
                     if (i == (N - 1) || i == (N - 2))
                     {
                         listaDeVectores[contador][12] = costoAC;
+                        listaDeVectores[contador][13] = VentasAC;
+                    }
+                    else if (i == 0)
+                    {
+                        costoAC = Convert.ToInt64(listaDeVectores[contador ][11]);
+                        listaDeVectores[contador][12] = costoAC;
+
+                        VentasAC = Convert.ToInt32(listaDeVectores[contador][2]);
+                        listaDeVectores[contador][13] = VentasAC;
                     }
                     else
                     {
-                        costoAC += Convert.ToInt32(listaDeVectores[0][11]);
+                        costoAC = Convert.ToInt64(listaDeVectores[contador][11]) + Convert.ToInt64(listaDeVectores[contador-1][12]);
                         listaDeVectores[contador][12] = costoAC;
+
+                        VentasAC = Convert.ToInt32(listaDeVectores[contador][13]) + Convert.ToInt32(listaDeVectores[contador-1][13]);
+                        listaDeVectores[contador][13] = VentasAC;
+
                     }
 
 
@@ -354,13 +389,21 @@ namespace TP4
                             filas[4] = listaDeVectores[contador][4].ToString();
                             filas[5] = listaDeVectores[contador][5].ToString();
                         }
-                        filas[6] = listaDeVectores[contador][6].ToString();
+                        if (listaDeVectores[contador][6] == 0)
+                        {
+                            filas[6] = "-";
+                        }
+                        else
+                        {
+                            filas[6] = listaDeVectores[contador][6].ToString();
+                        }
                         filas[7] = listaDeVectores[contador][7].ToString();
                         filas[8] = listaDeVectores[contador][8].ToString();
                         filas[9] = listaDeVectores[contador][9].ToString();
                         filas[10] = listaDeVectores[contador][10].ToString();
                         filas[11] = listaDeVectores[contador][11].ToString();
                         filas[12] = listaDeVectores[contador][12].ToString();
+                        filas[13] = listaDeVectores[contador][13].ToString();
                         DgvTabla400Filas.Rows.Add(filas);
                         //if (desde == 0 && Iteracion == 1)
                         //{
@@ -393,9 +436,10 @@ namespace TP4
                     if (Iteracion == N)
                     {
                         TxtResultado.Text = "$" + Math.Round((costoAC / Convert.ToDouble(N)), 4).ToString();
+                        double n2 = Math.Round((Convert.ToDouble(N) / 12), 4);
+                        TxtVentas.Text = Math.Round((VentasAC / n2), 2).ToString();
                     }
                     continue;
-
                 }
 
 
@@ -404,7 +448,7 @@ namespace TP4
                 {
                     contador = 0;
                     Iteracion = Iteracion;
-                    double RND = Math.Round(random.NextDouble(), 4);
+                    double RND = GenerarRandom(random);
                     int Demandas = Demanda(V1Ventas, V2Ventas, NrosVentas, RND);
                     if (Iteracion - 1 == 0)
                     {
@@ -441,13 +485,13 @@ namespace TP4
 
                     bool ReposiciondeStock = ControlStock(stock);
 
-                    var filas = new string[13];
+                    var filas = new string[14];
 
 
 
                     if (ReposiciondeStock && BanderaPedido == false && banderaDemora == false)
                     {
-                        RND2 = Math.Round(random.NextDouble(), 4);
+                        RND2 = GenerarRandom(random2);
                         Demora = PlazoDeEntrega(V1Plazo, V2Plazo, PlazoEntrega, RND2);
                         LlegadaPedidos = Iteracion + Demora;
                         banderaDemora = true;
@@ -459,7 +503,7 @@ namespace TP4
                     }
                     if (i == (N - 1) || i == (N - 2))
                     {
-                        var filass = new string[13];
+                        var filass = new string[14];
 
                         listaDeVectores[contador][0] = Iteracion;
                         listaDeVectores[contador][1] = RND;
@@ -509,7 +553,10 @@ namespace TP4
                             listaDeVectores[contador][10] = 0;
                         }
                         listaDeVectores[contador][11] = Convert.ToInt32(listaDeVectores[contador][8]) + Convert.ToInt32(listaDeVectores[contador][9]) + Convert.ToInt32(listaDeVectores[contador][10]);
-                        costoAC += Convert.ToInt32(listaDeVectores[0][11]);
+                        costoAC = Convert.ToInt64(listaDeVectores[contador][11]) + Convert.ToInt64(listaDeVectores[contador+1][12]);
+                        listaDeVectores[contador][13] = Convert.ToInt32(listaDeVectores[contador][2]);
+                        VentasAC = Convert.ToInt32(listaDeVectores[contador][13]) + Convert.ToInt32(listaDeVectores[contador + 1][13]);
+                        listaDeVectores[contador][13] = VentasAC;
                         listaDeVectores[contador][12] = costoAC;
                         filass[0] = listaDeVectores[contador][0].ToString();
                         filass[1] = listaDeVectores[contador][1].ToString();
@@ -526,13 +573,21 @@ namespace TP4
                             filass[4] = listaDeVectores[contador][4].ToString();
                             filass[5] = listaDeVectores[contador][5].ToString();
                         }
-                        filass[6] = listaDeVectores[contador][6].ToString();
+                        if (listaDeVectores[contador][6] == 0)
+                        {
+                            filass[6] = "-";
+                        }
+                        else
+                        {
+                            filass[6] = listaDeVectores[contador][6].ToString();
+                        }
                         filass[7] = listaDeVectores[contador][7].ToString();
                         filass[8] = listaDeVectores[contador][8].ToString();
                         filass[9] = listaDeVectores[contador][9].ToString();
                         filass[10] = listaDeVectores[contador][10].ToString();
                         filass[11] = listaDeVectores[contador][11].ToString();
                         filass[12] = listaDeVectores[contador][12].ToString();
+                        filass[13] = listaDeVectores[contador][13].ToString();
 
                         DgvTabla2Filas.Rows.Add(filass);
                     }
@@ -583,14 +638,28 @@ namespace TP4
                     }
 
                     listaDeVectores[contador][11] = Convert.ToInt32(listaDeVectores[contador][8]) + Convert.ToInt32(listaDeVectores[contador][9]) + Convert.ToInt32(listaDeVectores[contador][10]);
+                    listaDeVectores[contador][13] = Convert.ToInt32(listaDeVectores[contador][2]);
                     if (i == (N - 1) || i == (N - 2))
                     {
                         listaDeVectores[contador][12] = costoAC;
+                        listaDeVectores[contador][13] = VentasAC;
+                    }
+                    else if (i == 0)
+                    {
+                        costoAC = Convert.ToInt32(listaDeVectores[contador][11]);
+                        listaDeVectores[contador][12] = costoAC;
+
+                        VentasAC = Convert.ToInt32(listaDeVectores[contador][2]);
+                        listaDeVectores[contador][13] = VentasAC;
                     }
                     else
                     {
-                        costoAC += Convert.ToInt32(listaDeVectores[0][11]);
+                        costoAC = Convert.ToInt64(listaDeVectores[contador][11]) + Convert.ToInt64(listaDeVectores[contador + 1][12]);
                         listaDeVectores[contador][12] = costoAC;
+
+                        VentasAC = Convert.ToInt32(listaDeVectores[contador][13]) + Convert.ToInt32(listaDeVectores[contador + 1][13]);
+                        listaDeVectores[contador][13] = VentasAC;
+
                     }
 
 
@@ -611,13 +680,21 @@ namespace TP4
                             filas[4] = listaDeVectores[contador][4].ToString();
                             filas[5] = listaDeVectores[contador][5].ToString();
                         }
-                        filas[6] = listaDeVectores[contador][6].ToString();
+                        if (listaDeVectores[contador][6] == 0)
+                        {
+                            filas[6] = "-";
+                        }
+                        else
+                        {
+                            filas[6] = listaDeVectores[contador][6].ToString();
+                        }
                         filas[7] = listaDeVectores[contador][7].ToString();
                         filas[8] = listaDeVectores[contador][8].ToString();
                         filas[9] = listaDeVectores[contador][9].ToString();
                         filas[10] = listaDeVectores[contador][10].ToString();
                         filas[11] = listaDeVectores[contador][11].ToString();
                         filas[12] = listaDeVectores[contador][12].ToString();
+                        filas[13] = listaDeVectores[contador][13].ToString();
                         DgvTabla400Filas.Rows.Add(filas);
                         //if (desde == 0 && Iteracion == 1)
                         //{
@@ -656,8 +733,11 @@ namespace TP4
                 }
                 if (Iteracion == N)
                 {
-                    TxtResultado.Text = "$" + Math.Round((costoAC / Convert.ToDouble(N)), 4).ToString();
+                    TxtResultado.Text = "$" + Math.Round((costoAC / Convert.ToDouble(N)), 2).ToString();
+                    double n2 = Math.Round((Convert.ToDouble(N) / 12),4);
+                    TxtVentas.Text = Math.Round((VentasAC / n2),2).ToString();
                 }
+
 
 
 
@@ -713,6 +793,11 @@ namespace TP4
         }
 
         private void TxtIteraciones_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
